@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6835125872088670824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Run
+  m_EditorClassIdentifier: 
+  Path: event:/Run
+  Guid:
+    Data1: 840024414
+    Data2: 1154362573
+    Data3: -548485228
+    Data4: 1214897754
+  Banks:
+  - {fileID: -5006624635424317080}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 16248
 --- !u!114 &-5737087769777370424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,10 +42,26 @@ MonoBehaviour:
   Path: ../CYSTD_fmod/Build/Desktop/Master.bank
   Name: Build/Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 638380032875479280
-  FileSizes:
-  - Name: 
-    Value: 1036
+  lastModified: 638381811581279285
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-5006624635424317080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Player.bank
+  m_EditorClassIdentifier: 
+  Path: ../CYSTD_fmod/Build/Desktop/Player.bank
+  Name: Player
+  StudioPath: bank:/Player
+  lastModified: 638381811583511246
+  FileSizes: []
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -35,13 +78,16 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 8528111148586951436}
   - {fileID: -5737087769777370424}
-  EditorEvents: []
+  - {fileID: -5006624635424317080}
+  EditorEvents:
+  - {fileID: 8734572354150109662}
+  - {fileID: -6835125872088670824}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5737087769777370424}
   StringsBanks:
   - {fileID: 8528111148586951436}
-  cacheTime: 638380032875499212
+  cacheTime: 638381811583511246
   cacheVersion: 131609
 --- !u!114 &8528111148586951436
 MonoBehaviour:
@@ -53,13 +99,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Build/Desktop/Master.strings.bank
+  m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
   Path: ../CYSTD_fmod/Build/Desktop/Master.strings.bank
-  Name: Build/Desktop/Master.strings
+  Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638380032875499212
+  lastModified: 638381811581289275
   FileSizes:
   - Name: 
-    Value: 712
+    Value: 848
   Exists: 1
+--- !u!114 &8734572354150109662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Walk
+  m_EditorClassIdentifier: 
+  Path: event:/Walk
+  Guid:
+    Data1: -266844324
+    Data2: 1239056580
+    Data3: -1127177586
+    Data4: -1924676171
+  Banks:
+  - {fileID: -5006624635424317080}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 19104
