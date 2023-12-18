@@ -74,3 +74,6 @@ CYSTD/Temp
 CYSTD/Logs
 CYSTD/Library
 CYSTD/obj
+CYSTD/fmod_editor.log
+CYSTD/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+CYSTD/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset
