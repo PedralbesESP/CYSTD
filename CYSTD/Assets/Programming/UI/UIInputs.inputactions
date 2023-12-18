@@ -1,0 +1,52 @@
+{
+    "name": "UIInputs",
+    "maps": [
+        {
+            "name": "Pause",
+            "id": "9a7cce98-93b5-4562-9f77-d187ae94d6d9",
+            "actions": [
+                {
+                    "name": "Pause_Esc",
+                    "type": "Button",
+                    "id": "d11efb2c-7546-4e47-b704-f256b8907807",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Pause_P",
+                    "type": "Button",
+                    "id": "35ac5d2d-9341-4778-a7b0-963d5be5d306",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4b9e0b8a-db22-4eeb-b395-65f0c5bb4692",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause_Esc",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d7c2a6b-1ff9-42f1-8325-72f298c2e5f7",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause_P",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
