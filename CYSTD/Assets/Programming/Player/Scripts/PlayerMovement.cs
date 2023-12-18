@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] InputActionAsset _inputActions;
     [SerializeField] float _speed, _jumpForce;
+    [SerializeField] [Range(0, 1)] float _rotationSensitivity;
     InputAction _leftRightAction, _backwardForwardAction, _yDelta;
     Rigidbody _rigidbody;
     float _leftRight, _backwardForward, _yRotation;
@@ -90,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
 
     void _Rotate()
     {
-        transform.Rotate(Vector3.up * _yRotation);
+        transform.Rotate(Vector3.up * _yRotation * _rotationSensitivity);
     }
 
     void _GetInput()
