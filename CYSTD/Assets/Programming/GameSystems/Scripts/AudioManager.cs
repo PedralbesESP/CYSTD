@@ -7,7 +7,7 @@ using FMOD.Studio;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager audioManager {  get; private set; }
+    public static AudioManager audioManager { get; private set; }
     private List<EventInstance> eventInstances;
     private EventInstance musicEventInstance;
 
@@ -23,13 +23,7 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    private EventInstance CreateInstance(EventReference eventReference)
+    public EventInstance CreateEventInstance(EventReference eventReference)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
         eventInstances.Add(eventInstance);
@@ -39,5 +33,20 @@ public class AudioManager : MonoBehaviour
     public void PlayOneShot(EventReference sound, Vector3 worldPosition)
     {
         RuntimeManager.PlayOneShot(sound, worldPosition);
+    }
+
+    private void CleanUp()
+    {
+        //Parar y soltar cualquier instancia creada
+        foreach (EventInstance eventInstance in eventInstances)
+        {
+            eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            eventInstance.release();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        CleanUp();
     }
 }
