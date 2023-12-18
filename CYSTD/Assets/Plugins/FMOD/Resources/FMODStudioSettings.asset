@@ -424,10 +424,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   switchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
-  sourceProjectPath: 
-  sourceBankPath: 
+  HasSourceProject: 0
+  HasPlatforms: 0
+  sourceProjectPath: ../CYSTD_fmod/CYSTD_fmod.fspro
+  sourceBankPath: ../CYSTD_fmod
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
