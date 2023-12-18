@@ -8,7 +8,7 @@ public class WalkPlayerState : PlayerState
     {
         if (_playerMovement.Direction != Vector3.zero)
         {
-            Vector3 desiredVelocity = _playerMovement.Direction * _playerMovement.Speed * Time.deltaTime;
+            Vector3 desiredVelocity = _playerMovement.Direction * _playerMovement.Speed;
             _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, desiredVelocity, 0.01f); 
         }
     }

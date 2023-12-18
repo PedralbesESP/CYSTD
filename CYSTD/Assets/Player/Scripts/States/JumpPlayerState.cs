@@ -20,9 +20,8 @@ public class JumpPlayerState : PlayerState
         {
             _isGrounded = false;
             Vector3 upForce = _rigidbody.transform.up * _playerMovement.JumpForce;
-            Vector3 dest = (_direction + upForce) * Time.deltaTime;
+            Vector3 dest = _direction + upForce;
             _rigidbody.AddForce(dest);
-            //Debug.Log($"Y:{dest.y}");
         }
     }
 
@@ -33,7 +32,7 @@ public class JumpPlayerState : PlayerState
             _isGrounded = LauchRays();
             if (!_isGrounded && _rigidbody.velocity.y < 0)
             {
-                _rigidbody.velocity.SetY(_rigidbody.velocity.y * 7);
+                _rigidbody.velocity.SetY(_rigidbody.velocity.y * 10);
             }
         }
         else
@@ -54,9 +53,9 @@ public class JumpPlayerState : PlayerState
     bool LauchRays()
     {
         bool hitDetected = false;
-        float x = (_gameObject.transform.localScale.x / 2);
-        float y = (_gameObject.transform.localScale.y / 2);
-        float z = (_gameObject.transform.localScale.z / 2);
+        float x = (_gameObject.transform.localScale.x / 2) + 0.2f;
+        float y = (_gameObject.transform.localScale.y / 2) + 0.1f;
+        float z = (_gameObject.transform.localScale.z / 2) + 0.2f;
 
         (Vector3 direction, float length)[] rays = 
         {
@@ -68,14 +67,20 @@ public class JumpPlayerState : PlayerState
         {
             if (i == 0)
             {
-                hitDetected = Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length + 0.1f);
+                if (Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length + 0.1f))
+                {
+                    return true;
+                }
             }
             else
             {
-                hitDetected = Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length + 0.1f) ||
-                              Physics.Raycast(_gameObject.transform.position, -rays[i].direction, out _, rays[i].length + 0.1f);
+                if (Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length + 0.1f) ||
+                    Physics.Raycast(_gameObject.transform.position, -rays[i].direction, out _, rays[i].length + 0.1f))
+                {
+                    return true;
+                }
             }
         }
-        return hitDetected;
+        return false;
     }
 }

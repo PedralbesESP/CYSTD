@@ -5,29 +5,30 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     const string MOVEMENT_ACTION_MAP = "Movement",
-                        LEFT_RIGHT_ACTION = "LeftRight",
-                        BACKWARD_FORWARD_ACTION = "BackwardForward",
-                        JUMP_ACTION = "Jump";
-    const float SPEED_SCALE_FACTOR = 1000, FORCE_SCALE_FACTOR = 5000;
+                 LEFT_RIGHT_ACTION = "LeftRight",
+                 BACKWARD_FORWARD_ACTION = "BackwardForward",
+                 JUMP_ACTION = "Jump",
+                 HEAD_ACTION_MAP = "Head",
+                 MOUSE_DELTA_ACTION = "MouseDelta";
+    const float FORCE_SCALE_FACTOR = 100;
 
     [SerializeField] InputActionAsset _inputActions;
     [SerializeField] float _speed, _jumpForce;
-    bool _isLocalPlayer = true;  // true FOR TESTING
-    InputAction _leftRightAction, _backwardForwardAction;
+    InputAction _leftRightAction, _backwardForwardAction, _yDelta;
     Rigidbody _rigidbody;
-    float _leftRight, _backwardForward;
+    float _leftRight, _backwardForward, _yRotation;
     PlayerState _currentState;
 
-    public PlayerState CurrentState 
-    { 
+    public PlayerState CurrentState
+    {
         get => _currentState; 
-        set 
+        set
         {
-            _currentState = value; 
-            _currentState.Start(gameObject, _rigidbody, this); 
-        } 
+            _currentState = value;
+            _currentState.Start(gameObject, _rigidbody, this);
+        }
     }
-    public float Speed { get => _speed * SPEED_SCALE_FACTOR; }
+    public float Speed { get => _speed; }
     public float JumpForce { get => _jumpForce * FORCE_SCALE_FACTOR; }
     public Vector3 Direction
     {
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         InputActionMap movementActions = _inputActions.FindActionMap(MOVEMENT_ACTION_MAP);
         _leftRightAction = movementActions.FindAction(LEFT_RIGHT_ACTION);
         _backwardForwardAction = movementActions.FindAction(BACKWARD_FORWARD_ACTION);
+        _yDelta = _inputActions.FindActionMap(HEAD_ACTION_MAP).FindAction(MOUSE_DELTA_ACTION);
         movementActions.FindAction(JUMP_ACTION).performed += Jump;
 
         CurrentState = new IdlePlayerState();
@@ -57,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _GetInput();
         _currentState.Update();
+        _Rotate();
         Debug.Log("State ->" + _currentState.GetType().Name);
     }
 
@@ -85,12 +88,15 @@ public class PlayerMovement : MonoBehaviour
         CurrentState = new JumpPlayerState(_rigidbody.velocity);
     }
 
+    void _Rotate()
+    {
+        transform.Rotate(Vector3.up * _yRotation);
+    }
+
     void _GetInput()
     {
-        if (_isLocalPlayer)
-        {
-            _leftRight = _leftRightAction.ReadValue<float>();
-            _backwardForward = _backwardForwardAction.ReadValue<float>();
-        }
+        _leftRight = _leftRightAction.ReadValue<float>();
+        _backwardForward = _backwardForwardAction.ReadValue<float>();
+        _yRotation = _yDelta.ReadValue<Vector2>().x;
     }
 }

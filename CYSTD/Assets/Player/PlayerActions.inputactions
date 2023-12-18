@@ -87,6 +87,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Head",
+            "id": "80c750b7-6221-4a48-8169-bffd26d97165",
+            "actions": [
+                {
+                    "name": "MouseDelta",
+                    "type": "Value",
+                    "id": "f05e8b5f-9891-48fb-8d16-a955e147f036",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c8532306-91bf-4cf7-b39b-0b347531c68d",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseDelta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
