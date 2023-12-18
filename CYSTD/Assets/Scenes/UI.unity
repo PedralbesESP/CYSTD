@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3810803908730812289, guid: a917e5e25254c3f4999d85b9fbfe49ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MainScene
+      objectReference: {fileID: 0}
     - target: {fileID: 4702957962725414578, guid: a917e5e25254c3f4999d85b9fbfe49ac, type: 3}
       propertyPath: m_Name
       value: MainMenu
@@ -323,6 +327,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 3518596384801824097, guid: 0e5a2bc9351b99c46aff3c90629239fb, type: 3}
+      propertyPath: _inputUI
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 11feb41122df8bb46a1f6f5baafdb367, type: 3}
     - target: {fileID: 5818033563842684219, guid: 0e5a2bc9351b99c46aff3c90629239fb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

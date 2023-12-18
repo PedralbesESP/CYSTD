@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class WalkPlayerState : PlayerState
 {
+    
+    public override void Start(GameObject go, Rigidbody rb, PlayerMovement pm)
+    {
+        base.Start(go, rb, pm);
+        AudioManager.audioManager.PlayOneShot(FMODEvents.instance.PlayerSteps, _playerMovement.transform.position);
+
+    }
     public override void Update()
     {
         if (_playerMovement.Direction != Vector3.zero)
