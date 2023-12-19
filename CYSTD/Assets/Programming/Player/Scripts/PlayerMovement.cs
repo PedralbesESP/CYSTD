@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] InputActionAsset _inputActions;
     [SerializeField] float _speed, _jumpForce;
-    [SerializeField] [Range(0, 1)] float _rotationSensitivity;
+    [SerializeField][Range(0, 1)] float _rotationSensitivity;
     InputAction _leftRightAction, _backwardForwardAction, _yDelta;
     Rigidbody _rigidbody;
     float _leftRight, _backwardForward, _yRotation;
@@ -22,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerState CurrentState
     {
-        get => _currentState; 
+        get => _currentState;
         set
         {
             _currentState = value;
@@ -36,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         get
         {
             Vector3 dir = new Vector3(_leftRight, 0f, _backwardForward);
-            if (dir == Vector3.zero) 
+            if (dir == Vector3.zero)
             {
                 return dir;
             }
@@ -56,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         CurrentState = new IdlePlayerState();
     }
 
-    void Update() 
+    void Update()
     {
         _GetInput();
         _currentState.Update();
