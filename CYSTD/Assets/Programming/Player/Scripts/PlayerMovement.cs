@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         _leftRightAction = movementActions.FindAction(LEFT_RIGHT_ACTION);
         _backwardForwardAction = movementActions.FindAction(BACKWARD_FORWARD_ACTION);
         _yDelta = _inputActions.FindActionMap(HEAD_ACTION_MAP).FindAction(MOUSE_DELTA_ACTION);
-        movementActions.FindAction(JUMP_ACTION).performed += Jump;
+        movementActions.FindAction(JUMP_ACTION).performed += _Jump;
 
         CurrentState = new IdlePlayerState();
     }
@@ -81,11 +81,11 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDisable()
     {
-        _inputActions.FindActionMap(MOVEMENT_ACTION_MAP).FindAction(JUMP_ACTION).performed -= Jump;
+        _inputActions.FindActionMap(MOVEMENT_ACTION_MAP).FindAction(JUMP_ACTION).performed -= _Jump;
         _inputActions.Disable();
     }
 
-    public void Jump(InputAction.CallbackContext ctx)
+    void _Jump(InputAction.CallbackContext ctx)
     {
         CurrentState = new JumpPlayerState(_rigidbody.velocity);
     }

@@ -52,7 +52,6 @@ public class JumpPlayerState : PlayerState
 
     bool LauchRays()
     {
-        bool hitDetected = false;
         float x = (_gameObject.transform.localScale.x / 2) + 0.2f;
         float y = (_gameObject.transform.localScale.y / 2) + 0.1f;
         float z = (_gameObject.transform.localScale.z / 2) + 0.2f;

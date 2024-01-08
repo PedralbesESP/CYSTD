@@ -9,6 +9,8 @@ public class HeadMovement : MonoBehaviour
                  MOUSE_DELTA_ACTION = "MouseDelta";
 
     [SerializeField] InputActionAsset _inputActions;
+    [SerializeField] [Range(0, 1)] float _rotationSensitivity;
+    [SerializeField] [Range(0, 85)] float _maxUpAngle, _maxDownAngle;
     InputAction _mouseDelta;
     float _xRotation;
 
@@ -20,7 +22,7 @@ public class HeadMovement : MonoBehaviour
     void Update()
     {
         _ReadInput();
-        //_MoveHead();
+        _MoveHead();
     }
 
     void OnEnable()
@@ -35,12 +37,13 @@ public class HeadMovement : MonoBehaviour
 
     void _ReadInput()
     {
-        _xRotation = _mouseDelta.ReadValue<Vector2>().x;
-        _xRotation = Mathf.Clamp(_xRotation, -90.0f, 90.0f);
+        _xRotation = _mouseDelta.ReadValue<Vector2>().y;
     }
 
     void _MoveHead()
     {
-        transform.localRotation = Quaternion.Euler(_xRotation, 0.0f, 0.0f);
+        transform.Rotate(Vector3.right * -_xRotation * _rotationSensitivity);
+        transform.rotation = transform.rotation.ClampRotationX(-_maxUpAngle, _maxDownAngle);
+        transform.rotation = transform.rotation.SetZ(0);
     }
 }
