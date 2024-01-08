@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{77de8e44-8702-4cb6-b7a3-d8e8397206b2}">
+		<property name="assetPath">
+			<value>GroundRunning_5.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.38400000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c53e70ba-b042-42b3-920b-482171776b1b}</destination>
+		</relationship>
+	</object>
+</objects>
