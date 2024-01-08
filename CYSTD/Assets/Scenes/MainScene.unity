@@ -9414,7 +9414,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputActions: {fileID: -944628639613478452, guid: 9611f8a77a3e77245af7efeae1e6ba07, type: 3}
-  _rotationSensitivity: 0
+  _rotationSensitivity: 0.2
+  _maxUpAngle: 85
+  _maxDownAngle: 60
 --- !u!4 &1437611392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e012fa3483f8d9344b38d098fdcb56a2, type: 3}

@@ -52,9 +52,9 @@ public class JumpPlayerState : PlayerState
 
     bool LauchRays()
     {
-        float x = (_gameObject.transform.localScale.x / 2) + 0.2f;
-        float y = (_gameObject.transform.localScale.y / 2) + 0.1f;
-        float z = (_gameObject.transform.localScale.z / 2) + 0.2f;
+        float x = _gameObject.transform.localScale.x / 2;
+        float y = _gameObject.transform.localScale.y / 2;
+        float z = _gameObject.transform.localScale.z / 2;
 
         (Vector3 direction, float length)[] rays = 
         {
@@ -66,15 +66,15 @@ public class JumpPlayerState : PlayerState
         {
             if (i == 0)
             {
-                if (Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length + 0.1f))
+                if (Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length))
                 {
                     return true;
                 }
             }
             else
             {
-                if (Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length + 0.1f) ||
-                    Physics.Raycast(_gameObject.transform.position, -rays[i].direction, out _, rays[i].length + 0.1f))
+                if (Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length) ||
+                    Physics.Raycast(_gameObject.transform.position, -rays[i].direction, out _, rays[i].length))
                 {
                     return true;
                 }
