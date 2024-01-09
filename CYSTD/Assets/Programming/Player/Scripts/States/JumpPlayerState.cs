@@ -16,7 +16,7 @@ public class JumpPlayerState : PlayerState
     public override void Start(GameObject go, Rigidbody rb, PlayerMovement pm)
     {
         base.Start(go, rb, pm);
-        if (LauchRays())
+        if (_IsGrounded())
         {
             _isGrounded = false;
             Vector3 upForce = _rigidbody.transform.up * _playerMovement.JumpForce;
@@ -29,7 +29,7 @@ public class JumpPlayerState : PlayerState
     {
         if (_hasPassedFirstFrame)
         {
-            _isGrounded = LauchRays();
+            _isGrounded = _IsGrounded();
             if (!_isGrounded && _rigidbody.velocity.y < 0)
             {
                 _rigidbody.velocity.SetY(_rigidbody.velocity.y * 10);
@@ -50,36 +50,8 @@ public class JumpPlayerState : PlayerState
         return null;
     }
 
-    bool LauchRays()
+    bool _IsGrounded()
     {
-        float x = _gameObject.transform.localScale.x / 2;
-        float y = _gameObject.transform.localScale.y / 2;
-        float z = _gameObject.transform.localScale.z / 2;
-
-        (Vector3 direction, float length)[] rays = 
-        {
-            (Vector3.down, y),
-            (new Vector3(x, -1, 0).normalized, Mathf.Sqrt(Mathf.Pow(y, 2) + Mathf.Pow(x, 2))),
-            (new Vector3(0, -1, z).normalized, Mathf.Sqrt(Mathf.Pow(y, 2) + Mathf.Pow(z, 2)))
-        };
-        for (int i = 0; i < rays.Length; i++)
-        {
-            if (i == 0)
-            {
-                if (Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length))
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                if (Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length) ||
-                    Physics.Raycast(_gameObject.transform.position, -rays[i].direction, out _, rays[i].length))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return Physics.OverlapSphere(_gameObject.transform.position, 0.2f, _playerMovement.WalkableLayer).Length > 0;
     }
 }

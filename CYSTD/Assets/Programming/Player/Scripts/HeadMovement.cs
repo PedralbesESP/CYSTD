@@ -10,7 +10,7 @@ public class HeadMovement : MonoBehaviour
 
     [SerializeField] InputActionAsset _inputActions;
     [SerializeField] [Range(0, 1)] float _rotationSensitivity;
-    [SerializeField] [Range(0, 85)] float _maxUpAngle, _maxDownAngle;
+    [SerializeField] [Range(0, 80)] float _maxUpAngle, _maxDownAngle;
     InputAction _mouseDelta;
     float _xRotation;
 
