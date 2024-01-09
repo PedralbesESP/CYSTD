@@ -52,6 +52,6 @@ public class JumpPlayerState : PlayerState
 
     bool _IsGrounded()
     {
-        return Physics.OverlapSphere(_gameObject.transform.position, 0.2f, _playerMovement.WalkableLayer).Length > 0;
+        return Physics.OverlapBox(_gameObject.transform.position, new Vector3(0.4f, 0.1f, 0.4f), Quaternion.identity, _playerMovement.WalkableLayer).Length > 0;
     }
 }

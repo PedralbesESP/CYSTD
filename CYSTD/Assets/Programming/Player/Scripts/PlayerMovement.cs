@@ -106,8 +106,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        bool test = Physics.OverlapSphere(gameObject.transform.position, 0.2f, WalkableLayer).Length > 0;
+        Vector3 size = new Vector3(0.4f, 0.1f, 0.4f);
+        bool test = Physics.OverlapBox(gameObject.transform.position, size, Quaternion.identity, WalkableLayer).Length > 0;
         Gizmos.color = test ? Color.green : Color.red;
-        Gizmos.DrawSphere(gameObject.transform.position, 0.2f);
+        Gizmos.DrawWireCube(gameObject.transform.position, size);
     }
 }
