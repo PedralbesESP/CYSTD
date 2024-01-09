@@ -20,6 +20,7 @@ public class WalkPlayerState : PlayerState
         {
             Vector3 desiredVelocity = _playerMovement.Direction * _playerMovement.Speed;
             _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, desiredVelocity, 0.01f);
+            _rigidbody.velocity.SetY(-100); 
         }
         UpdateSound();
 
