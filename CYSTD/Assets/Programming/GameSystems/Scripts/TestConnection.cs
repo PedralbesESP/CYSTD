@@ -8,7 +8,7 @@ public class TestConnection : MonoBehaviour
     private InputAction connect;
 
     WebSocket ws;
-    string URL = "ws://localhost:3003";
+    string URL = "ws://140.238.221.197";
 
     void Start()
     {
@@ -23,6 +23,7 @@ public class TestConnection : MonoBehaviour
         {
             Debug.Log("Message recived from " + ((WebSocket)sender).Url + ", Data :" + e.Data);
         };
+        ws.Log.File = "C:\\Users\\argo\\Desktop\\Tests";
         ws.Connect();
     }
 
@@ -31,6 +32,8 @@ public class TestConnection : MonoBehaviour
     void sendInfo(InputAction.CallbackContext ctx)
     {
         Debug.Log("Send cositas");
+        
         ws.Send("Hello");
+        
     }
 }
