@@ -22,8 +22,9 @@ public class TestConnection : MonoBehaviour
         ws.OnMessage += (sender, e) =>
         {
             Debug.Log("Message recived from " + ((WebSocket)sender).Url + ", Data :" + e.Data);
+
+            //Join or create session and create dummy if there are ppl in that session. 
         };
-        ws.Log.File = "C:\\Users\\argo\\Desktop\\Tests";
         ws.Connect();
     }
 
@@ -34,6 +35,5 @@ public class TestConnection : MonoBehaviour
         Debug.Log("Send cositas");
         
         ws.Send("Hello");
-        
     }
 }
