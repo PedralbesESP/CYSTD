@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMOD;
 using FMOD.Studio;
 
 public class WalkPlayerState : PlayerState
@@ -12,7 +11,7 @@ public class WalkPlayerState : PlayerState
     {
         base.Start(go, rb, pm);
         _playerFootSteps = AudioManager.audioManager.CreateEventInstance(FMODEvents.instance.PlayerSteps);
-        AudioManager.audioManager.PlayOneShot(FMODEvents.instance.PlayerSteps, _playerMovement.transform.position);
+        _playerFootSteps.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(go));
 
     }
     public override void Update()
@@ -21,8 +20,10 @@ public class WalkPlayerState : PlayerState
         {
             Vector3 desiredVelocity = _playerMovement.Direction * _playerMovement.Speed;
             _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, desiredVelocity, 0.01f);
-            UpdateSound();
+            _rigidbody.velocity.SetY(-100); 
         }
+        UpdateSound();
+
     }
 
     public override PlayerState CheckTransition()
@@ -35,14 +36,26 @@ public class WalkPlayerState : PlayerState
     }
     private void UpdateSound()
     {
-        PLAYBACK_STATE playbackState;
-        _playerFootSteps.getPlaybackState(out playbackState);
-        if(playbackState.Equals(PLAYBACK_STATE.STOPPED))
+        Debug.Log(_playerMovement.Direction);
+        if (_playerMovement.Direction != Vector3.zero)
         {
-            _playerFootSteps.start();
-            return;
+            PLAYBACK_STATE playbackState;
+            _playerFootSteps.getPlaybackState(out playbackState);
+            Debug.Log(playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                _playerFootSteps.start();
+                return;
+            }
+
         }
-        _playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
+        else
+        {
+            _playerFootSteps.stop(STOP_MODE.IMMEDIATE);
+        }
+        
+
+
     }
 
 }

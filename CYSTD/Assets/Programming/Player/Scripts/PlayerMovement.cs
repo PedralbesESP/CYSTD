@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] InputActionAsset _inputActions;
     [SerializeField] float _speed, _jumpForce;
     [SerializeField][Range(0, 1)] float _rotationSensitivity;
+    [SerializeField] LayerMask _walkableLayer;
     InputAction _leftRightAction, _backwardForwardAction, _yDelta;
     Rigidbody _rigidbody;
     float _leftRight, _backwardForward, _yRotation;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
             return transform.TransformDirection(dir);
         }
     }
+    public LayerMask WalkableLayer { get => _walkableLayer; }
 
     void Start()
     {
@@ -52,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         _leftRightAction = movementActions.FindAction(LEFT_RIGHT_ACTION);
         _backwardForwardAction = movementActions.FindAction(BACKWARD_FORWARD_ACTION);
         _yDelta = _inputActions.FindActionMap(HEAD_ACTION_MAP).FindAction(MOUSE_DELTA_ACTION);
-        movementActions.FindAction(JUMP_ACTION).performed += Jump;
+        movementActions.FindAction(JUMP_ACTION).performed += _Jump;
 
         CurrentState = new IdlePlayerState();
     }
@@ -81,11 +83,11 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDisable()
     {
-        _inputActions.FindActionMap(MOVEMENT_ACTION_MAP).FindAction(JUMP_ACTION).performed -= Jump;
+        _inputActions.FindActionMap(MOVEMENT_ACTION_MAP).FindAction(JUMP_ACTION).performed -= _Jump;
         _inputActions.Disable();
     }
 
-    public void Jump(InputAction.CallbackContext ctx)
+    void _Jump(InputAction.CallbackContext ctx)
     {
         CurrentState = new JumpPlayerState(_rigidbody.velocity);
     }
@@ -100,5 +102,12 @@ public class PlayerMovement : MonoBehaviour
         _leftRight = _leftRightAction.ReadValue<float>();
         _backwardForward = _backwardForwardAction.ReadValue<float>();
         _yRotation = _yDelta.ReadValue<Vector2>().x;
+    }
+
+    private void OnDrawGizmos()
+    {
+        bool test = Physics.OverlapSphere(gameObject.transform.position, 0.2f, WalkableLayer).Length > 0;
+        Gizmos.color = test ? Color.green : Color.red;
+        Gizmos.DrawSphere(gameObject.transform.position, 0.2f);
     }
 }
