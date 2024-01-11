@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public static class Extensions
@@ -32,5 +33,23 @@ public static class Extensions
             return value + 360;
         }
         return value;
+    }
+    public static string Vector3ToString(this Vector3 vector)
+    {
+        return vector.x.ToString() + '/' + vector.y.ToString() + '/' + vector.z.ToString();
+    }
+    public static Vector3 Vector3FromString(this string vector)
+    {
+        string[] values = vector.Split('/');
+        if (values == null || values?.Length < 3)
+        {
+            return Vector3.zero;
+        }
+        float[] finalValues = new float[3];
+        for (int i = 0; i < 3; i++)
+        {
+            finalValues[i] = float.TryParse(values[i], out float f) ? f : 0;
+        }
+        return new Vector3(finalValues[0], finalValues[1], finalValues[2]);
     }
 }

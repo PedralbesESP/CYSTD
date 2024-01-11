@@ -36,7 +36,6 @@ public class WalkPlayerState : PlayerState
     }
     private void UpdateSound()
     {
-        Debug.Log(_playerMovement.Direction);
         if (_playerMovement.Direction != Vector3.zero)
         {
             PLAYBACK_STATE playbackState;
