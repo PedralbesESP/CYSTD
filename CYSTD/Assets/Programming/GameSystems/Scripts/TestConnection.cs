@@ -1,14 +1,16 @@
 using WebSocketSharp;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using System;
 
 public class TestConnection : MonoBehaviour
 {
     [SerializeField] private InputActionAsset testConection;
     private InputAction connect;
-
+    Queue<MessageEventArgs> serverEventQueue = new Queue<MessageEventArgs>();
     WebSocket ws;
-    string URL = "ws://140.238.221.197";
+    string URL = "ws://localhost:3003";
 
     void Start()
     {
@@ -21,19 +23,34 @@ public class TestConnection : MonoBehaviour
 
         ws.OnMessage += (sender, e) =>
         {
+            serverEventQueue.Enqueue(e);
             Debug.Log("Message recived from " + ((WebSocket)sender).Url + ", Data :" + e.Data);
         };
-        ws.Log.File = "C:\\Users\\argo\\Desktop\\Tests";
         ws.Connect();
     }
 
-    
-    
+    private void Update()
+    {
+        if (serverEventQueue.Count > 0)
+        {
+            ProcessEvent(serverEventQueue.Dequeue());
+        }
+    }
+
+    private void ProcessEvent(MessageEventArgs messageEventArgs)
+    {
+        //Llamar el método que procesa el ParameterSet y actualiza lo que toca con los valores recibidos
+    }
+
     void sendInfo(InputAction.CallbackContext ctx)
     {
         Debug.Log("Send cositas");
-        
         ws.Send("Hello");
-        
+
+    }
+
+    private void OnDestroy()
+    {
+        ws.Close();
     }
 }
