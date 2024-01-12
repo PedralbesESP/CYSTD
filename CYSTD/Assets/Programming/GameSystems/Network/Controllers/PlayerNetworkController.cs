@@ -6,7 +6,11 @@ public class PlayerNetworkController : NetworkControllerBase
 {
     public override void RecieveData(ParameterSet parameterSet)
     {
-        throw new System.NotImplementedException();
+        Debug.Log(parameterSet.SenderId);
+        foreach (var param in parameterSet.Parameters)
+        {
+            Debug.Log("Param: " + param.Key + "Value: " + param.Value);
+        }
     }
 
     public override ParameterSet SendData()

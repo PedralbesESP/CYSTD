@@ -52,4 +52,21 @@ public static class Extensions
         }
         return new Vector3(finalValues[0], finalValues[1], finalValues[2]);
     }
+    public static void SetParameters(this GameObject gameObject, ParameterSet parameterSet)
+    {
+        foreach (var param in parameterSet.Parameters)
+        {
+            switch ((ParamKey)param.Key)
+            {
+                case ParamKey.ID:
+                    break;
+                case ParamKey.POSITION:
+                    gameObject.transform.position = param.Value.Vector3FromString();
+                    break;
+                case ParamKey.ROTATION:
+                    gameObject.transform.eulerAngles = param.Value.Vector3FromString();
+                    break;
+            }
+        }
+    }
 }

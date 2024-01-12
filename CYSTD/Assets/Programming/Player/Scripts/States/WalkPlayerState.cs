@@ -40,7 +40,6 @@ public class WalkPlayerState : PlayerState
         {
             PLAYBACK_STATE playbackState;
             _playerFootSteps.getPlaybackState(out playbackState);
-            Debug.Log(playbackState);
             if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
             {
                 _playerFootSteps.start();

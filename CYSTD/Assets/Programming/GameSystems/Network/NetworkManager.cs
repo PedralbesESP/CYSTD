@@ -18,7 +18,7 @@ public class NetworkManager : MonoBehaviour
 
     const string URL = "ws://192.168.205.68:3003"; //////// SERVER ADDRESS ////////
 
-    void Start()
+    void Awake()
     {
         Instance = this;
         _networkControllers = new Dictionary<long, NetworkControllerBase>();
@@ -30,7 +30,7 @@ public class NetworkManager : MonoBehaviour
             {
                 _networkControllers[parameterSet.SenderId].RecieveData(parameterSet);
             }
-            
+
         };
         _socket.Connect();
     }
