@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{46fb3621-9a6d-487c-b0a7-0d2be9af6e8e}">
+		<property name="assetPath">
+			<value>GroundWalking_3.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.504</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c53e70ba-b042-42b3-920b-482171776b1b}</destination>
+		</relationship>
+	</object>
+</objects>

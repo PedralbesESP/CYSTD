@@ -20,9 +20,9 @@ public class @TestNet : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""connection"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""406a9d8c-870e-4ccf-a4b1-023b044b816b"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -31,7 +31,7 @@ public class @TestNet : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a45b522d-3941-4b94-b4c1-32069398cd5f"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
