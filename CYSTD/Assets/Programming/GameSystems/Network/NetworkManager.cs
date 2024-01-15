@@ -75,7 +75,7 @@ public class NetworkManager : MonoBehaviour
     void _SendMessage(NetworkMessage message)
     {
         string json = JsonConvert.SerializeObject(message);
-        _socket.Send(json);
+        if (_socket.IsAlive) _socket.Send(json);
     }
 
     /// <summary>
