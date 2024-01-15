@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -6,10 +7,22 @@ using UnityEngine;
 public static class IDManager
 {
     static long lastId = 0;
+    
     /// <summary>
     /// Assigns the next avaliable ID to the GameObject.
     /// </summary>
-    public static void GenerateID(this Identifiable target) { if (target.id != -1) target.id = lastId++; }
+    public static void GenerateID(this Identifiable target) 
+    {
+        if (target.gameObject.GetComponents<Identifiable>().Any(c => c.Id != -1))
+        {
+            target.Id = lastId++;
+        }
+        else
+        {
+            target.Id = target.GetComponent<Identifiable>().Id;
+        }
+    }
+    
     /// <summary>
     /// Finds and returns an instance of a GameObject by its ID in the current scene.
     /// </summary>
@@ -17,7 +30,7 @@ public static class IDManager
     {
         if (id < 1 || id > lastId) return null;
         foreach (Identifiable o in Object.FindObjectsOfType<Identifiable>())
-            if (o.id == id) return o.gameObject;
+            if (o.Id == id) return o.gameObject;
         return null;
     }
 }

@@ -18,7 +18,7 @@ public class WalkPlayerState : PlayerState
     {
         if (_playerMovement.Direction != Vector3.zero)
         {
-            Vector3 desiredVelocity = _playerMovement.Direction * _playerMovement.Speed;
+            Vector3 desiredVelocity = _playerMovement.Direction * _playerMovement.Speed * Time.deltaTime * 100;
             _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, desiredVelocity, 0.01f);
             _rigidbody.velocity.SetY(-100); 
         }
@@ -36,12 +36,10 @@ public class WalkPlayerState : PlayerState
     }
     private void UpdateSound()
     {
-        Debug.Log(_playerMovement.Direction);
         if (_playerMovement.Direction != Vector3.zero)
         {
             PLAYBACK_STATE playbackState;
             _playerFootSteps.getPlaybackState(out playbackState);
-            Debug.Log(playbackState);
             if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
             {
                 _playerFootSteps.start();

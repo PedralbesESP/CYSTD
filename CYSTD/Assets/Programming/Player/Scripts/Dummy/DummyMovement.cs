@@ -8,31 +8,12 @@ public class DummyManager : MonoBehaviour
 
     public void SpawnDummy(int playerNum)
     {
-        switch (playerNum)
+        for(int i=0; i < dummyObjects.Count; i++)
         {
-            case 0:
-                for (int i = playerNum + 1; i < dummyObjects.Count; i++)
-                {
-                    dummyObjects[i].SetActive(true);
-                }
-                break;
-            case 1:
-                dummyObjects[2].SetActive(true);
-                dummyObjects[3].SetActive(true);
-                dummyObjects[0].SetActive(true);
-                break;
-            case 2:
-                dummyObjects[3].SetActive(true);
-                dummyObjects[0].SetActive(true);
-                dummyObjects[1].SetActive(true);
-                break;
-                case 3:
-                for (int i = 0; i < dummyObjects.Count; i++)
-                {
-                    dummyObjects[i].SetActive(true);
-                }
-                break;
-
+            if (i != playerNum)
+            {
+                dummyObjects[i].SetActive(true);
+            }
         }
     }
 }
