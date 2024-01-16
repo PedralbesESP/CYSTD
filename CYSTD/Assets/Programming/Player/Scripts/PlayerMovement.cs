@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] InputActionAsset _inputActions;
     [SerializeField] float _speed, _jumpForce;
-    [SerializeField] [Range(0, 1)] float _rotationSensitivity;
+    [SerializeField][Range(0, 1)] float _rotationSensitivity;
     [SerializeField] LayerMask _walkableLayer;
     InputAction _leftRightAction, _backwardForwardAction, _yDelta;
     Rigidbody _rigidbody;
@@ -88,7 +88,8 @@ public class PlayerMovement : MonoBehaviour
             case WalkPlayerState walkPlayerState:
                 UpdateSound(walkPlayerState);
                 break;
-
+            case IdlePlayerState idlePlayerState: UpdateSound(idlePlayerState); break;
+            case JumpPlayerState jumpPlayerState: UpdateSound(jumpPlayerState); break;
         }
     }
     /*

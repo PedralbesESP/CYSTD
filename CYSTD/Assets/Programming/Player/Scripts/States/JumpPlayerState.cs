@@ -22,6 +22,7 @@ public class JumpPlayerState : PlayerState
             Vector3 upForce = _rigidbody.transform.up * _playerMovement.JumpForce;
             Vector3 dest = _direction + upForce;
             _rigidbody.AddForce(dest);
+            pm.StartCoroutine(WaitJump());
         }
     }
 
@@ -35,16 +36,19 @@ public class JumpPlayerState : PlayerState
                 _rigidbody.velocity.SetY(_rigidbody.velocity.y * 10);
             }
         }
-        else
-        {
-            _hasPassedFirstFrame = true;
-        }
+    }
+
+    IEnumerator WaitJump()
+    {
+        yield return new WaitForSecondsRealtime(.2f);
+        _hasPassedFirstFrame = true;
     }
 
     public override PlayerState CheckTransition()
     {
         if (_isGrounded)
         {
+            Debug.Log("IsGROUNDED");
             return new IdlePlayerState();
         }
         return null;
