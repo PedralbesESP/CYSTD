@@ -39,9 +39,27 @@ public class TestConnection : MonoBehaviour
 
     private void ProcessEvent(MessageEventArgs messageEventArgs)
     {
+        Debug.Log("Información recibida: " + messageEventArgs.Data);
+        if (int.TryParse(messageEventArgs.Data, out int id) && id > 0 && id < 5)
+        {
+            DummyManager.dummyManager.SetPlayerID(id);
+        }
+        if (messageEventArgs.Data.Contains("listaIds"))
+        {
+            idLIst data = JsonUtility.FromJson<idLIst>(messageEventArgs.Data);
+            foreach (int id1 in data.listaIds)
+            {
+                DummyManager.dummyManager.SpawnDummy(id1);
+            }
+            //DummyManager.dummyManager.SpawnDummy();
+        }
         //Llamar el método que procesa el ParameterSet y actualiza lo que toca con los valores recibidos
     }
 
+    public class idLIst
+    {
+        public List<int> listaIds;
+    }
     void sendInfo(InputAction.CallbackContext ctx)
     {
         Debug.Log("Send cositas");
