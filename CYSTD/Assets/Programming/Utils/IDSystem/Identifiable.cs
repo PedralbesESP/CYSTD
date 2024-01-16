@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class Identifiable : MonoBehaviour
 {
-    public long id;
-    public Identifiable() { this.GenerateID(); }
+    long _id = -1;
+    public long Id
+    {
+        get => _id;
+        set => _id = value;
+    }
+    void Awake() { this.GenerateID(); }
 }

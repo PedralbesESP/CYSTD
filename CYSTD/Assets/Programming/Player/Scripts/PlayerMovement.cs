@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         _GetInput();
         _currentState.Update();
         _Rotate();
-        Debug.Log("State ->" + _currentState.GetType().Name);
+        //Debug.Log("State ->" + _currentState.GetType().Name);
     }
 
     void LateUpdate()
