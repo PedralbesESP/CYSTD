@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputActions: {fileID: -944628639613478452, guid: 9611f8a77a3e77245af7efeae1e6ba07, type: 3}
-  _speed: 6
+  _speed: 12
   _jumpForce: 3
   _rotationSensitivity: 0.2
   _walkableLayer:
