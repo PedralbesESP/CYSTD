@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
     */
     void UpdateSound(PlayerState currentState)
     {
+        _playerFootSteps.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
         if (currentState is WalkPlayerState)
         {
             PLAYBACK_STATE playbackState;
