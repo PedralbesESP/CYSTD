@@ -13,9 +13,11 @@ public class PlayerMovement : MonoBehaviour
                  MOUSE_DELTA_ACTION = "MouseDelta";
     const float FORCE_SCALE_FACTOR = 100;
 
+    private EventInstance _playerFootSteps;
+
     [SerializeField] InputActionAsset _inputActions;
     [SerializeField] float _speed, _jumpForce;
-    [SerializeField][Range(0, 1)] float _rotationSensitivity;
+    [SerializeField] [Range(0, 1)] float _rotationSensitivity;
     [SerializeField] LayerMask _walkableLayer;
     InputAction _leftRightAction, _backwardForwardAction, _yDelta;
     Rigidbody _rigidbody;
@@ -55,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
         _backwardForwardAction = movementActions.FindAction(BACKWARD_FORWARD_ACTION);
         _yDelta = _inputActions.FindActionMap(HEAD_ACTION_MAP).FindAction(MOUSE_DELTA_ACTION);
         movementActions.FindAction(JUMP_ACTION).performed += _Jump;
+        _playerFootSteps = AudioManager.audioManager.CreateEventInstance(FMODEvents.instance.PlayerSteps);
+        _playerFootSteps.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
 
         CurrentState = new IdlePlayerState();
     }
@@ -73,6 +77,54 @@ public class PlayerMovement : MonoBehaviour
         if (newState != null)
         {
             CurrentState = newState;
+        }
+        checkState();
+    }
+
+    void checkState()
+    {
+        switch (CurrentState)
+        {
+            case WalkPlayerState walkPlayerState:
+                UpdateSound(walkPlayerState);
+                break;
+
+        }
+    }
+    /*
+     void UpdateSound1(PlayerState currentState)
+    {
+        if (_playerMovement.Direction != Vector3.zero)
+        {
+            PLAYBACK_STATE playbackState;
+            _playerFootSteps.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                _playerFootSteps.start();
+                return;
+            }
+        }
+        else
+        {
+            _playerFootSteps.stop(STOP_MODE.IMMEDIATE);
+        }
+    }
+    */
+    void UpdateSound(PlayerState currentState)
+    {
+        if (currentState is WalkPlayerState)
+        {
+            PLAYBACK_STATE playbackState;
+            _playerFootSteps.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                _playerFootSteps.start();
+                return;
+            }
+        }
+        else
+        {
+            _playerFootSteps.stop(STOP_MODE.IMMEDIATE);
         }
     }
 

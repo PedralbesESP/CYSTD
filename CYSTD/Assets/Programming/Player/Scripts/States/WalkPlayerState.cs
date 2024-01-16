@@ -5,13 +5,13 @@ using FMOD.Studio;
 
 public class WalkPlayerState : PlayerState
 {
-    private EventInstance _playerFootSteps;
+    //private EventInstance _playerFootSteps;
 
     public override void Start(GameObject go, Rigidbody rb, PlayerMovement pm)
     {
         base.Start(go, rb, pm);
-        _playerFootSteps = AudioManager.audioManager.CreateEventInstance(FMODEvents.instance.PlayerSteps);
-        _playerFootSteps.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(go));
+        //_playerFootSteps = AudioManager.audioManager.CreateEventInstance(FMODEvents.instance.PlayerSteps);
+        //_playerFootSteps.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(go));
 
     }
     public override void Update()
@@ -22,7 +22,7 @@ public class WalkPlayerState : PlayerState
             _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, desiredVelocity, 0.01f);
             _rigidbody.velocity.SetY(-100); 
         }
-        UpdateSound();
+        //UpdateSound();
 
     }
 
@@ -30,30 +30,11 @@ public class WalkPlayerState : PlayerState
     {
         if (_playerMovement.Direction == Vector3.zero)
         {
+            //UpdateSound();
             return new IdlePlayerState();
         }
         return null;
     }
-    private void UpdateSound()
-    {
-        if (_playerMovement.Direction != Vector3.zero)
-        {
-            PLAYBACK_STATE playbackState;
-            _playerFootSteps.getPlaybackState(out playbackState);
-            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
-            {
-                _playerFootSteps.start();
-                return;
-            }
-
-        }
-        else
-        {
-            _playerFootSteps.stop(STOP_MODE.IMMEDIATE);
-        }
-        
-
-
-    }
+    
 
 }
