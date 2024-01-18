@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         _inputActions.Enable();
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         _inputActions.FindActionMap(MOVEMENT_ACTION_MAP).FindAction(JUMP_ACTION).performed -= _Jump;
         _inputActions.Disable();

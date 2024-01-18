@@ -9,9 +9,9 @@ public class MissionManager : MonoBehaviour
 {
     public static MissionManager Instance;
     [SerializeField]
-    List<MissionObject> _missions;
+    List<BaseMission> _missions;
     [SerializeField]
-    EndMissionObject _sceneExitMission;
+    EndMission _sceneExitMission;
     [SerializeField]
     TMP_Text _missionText;
 
@@ -77,17 +77,17 @@ public class MissionManager : MonoBehaviour
         _SetMissionText(_sceneExitMission);
     }
 
-    void _SetMissionText(MissionObject mission) 
+    void _SetMissionText(BaseMission mission) 
     {
-        _SetMissionText(new List<MissionObject>() { mission });
+        _SetMissionText(new List<BaseMission>() { mission });
     }
 
-    void _SetMissionText(List<MissionObject> missions)
+    void _SetMissionText(List<BaseMission> missions)
     {
         if (_missionText != null)
         {
             StringBuilder sb = new StringBuilder();
-            foreach (MissionObject mission in missions)
+            foreach (BaseMission mission in missions)
             {
                 if (mission != null)
                 {
@@ -98,12 +98,12 @@ public class MissionManager : MonoBehaviour
         }
     }
 
-    public List<MissionObject> GetMissions()
+    public List<BaseMission> GetMissions()
     {
         return _missions;
     }
 
-    public List<MissionObject> GetActiveMissions()
+    public List<BaseMission> GetActiveMissions()
     {
         return _missions.Where(m => 
                                     m.GetMissionState().Equals(MissionState.NOT_DONE) || 
