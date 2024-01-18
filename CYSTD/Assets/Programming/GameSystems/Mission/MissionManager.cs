@@ -105,9 +105,6 @@ public class MissionManager : MonoBehaviour
 
     public List<BaseMission> GetActiveMissions()
     {
-        return _missions.Where(m => 
-                                    m.GetMissionState().Equals(MissionState.NOT_DONE) || 
-                                    m.GetMissionState().Equals(MissionState.DOING))
-                        .ToList();
+        return _missions.Where(m => !m.GetMissionState().Equals(MissionState.DONE)).ToList();
     }
 }
