@@ -16,12 +16,13 @@ public class JumpPlayerState : PlayerState
     public override void Start(GameObject go, Rigidbody rb, PlayerMovement pm)
     {
         base.Start(go, rb, pm);
-        if (LauchRays())
+        if (_IsGrounded())
         {
             _isGrounded = false;
             Vector3 upForce = _rigidbody.transform.up * _playerMovement.JumpForce;
             Vector3 dest = _direction + upForce;
             _rigidbody.AddForce(dest);
+            pm.StartCoroutine(WaitJump());
         }
     }
 
@@ -29,58 +30,32 @@ public class JumpPlayerState : PlayerState
     {
         if (_hasPassedFirstFrame)
         {
-            _isGrounded = LauchRays();
+            _isGrounded = _IsGrounded();
             if (!_isGrounded && _rigidbody.velocity.y < 0)
             {
                 _rigidbody.velocity.SetY(_rigidbody.velocity.y * 10);
             }
         }
-        else
-        {
-            _hasPassedFirstFrame = true;
-        }
+    }
+
+    IEnumerator WaitJump()
+    {
+        yield return new WaitForSecondsRealtime(.2f);
+        _hasPassedFirstFrame = true;
     }
 
     public override PlayerState CheckTransition()
     {
         if (_isGrounded)
         {
+            Debug.Log("IsGROUNDED");
             return new IdlePlayerState();
         }
         return null;
     }
 
-    bool LauchRays()
+    bool _IsGrounded()
     {
-        bool hitDetected = false;
-        float x = (_gameObject.transform.localScale.x / 2) + 0.2f;
-        float y = (_gameObject.transform.localScale.y / 2) + 0.1f;
-        float z = (_gameObject.transform.localScale.z / 2) + 0.2f;
-
-        (Vector3 direction, float length)[] rays = 
-        {
-            (Vector3.down, y),
-            (new Vector3(x, -1, 0).normalized, Mathf.Sqrt(Mathf.Pow(y, 2) + Mathf.Pow(x, 2))),
-            (new Vector3(0, -1, z).normalized, Mathf.Sqrt(Mathf.Pow(y, 2) + Mathf.Pow(z, 2)))
-        };
-        for (int i = 0; i < rays.Length; i++)
-        {
-            if (i == 0)
-            {
-                if (Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length + 0.1f))
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                if (Physics.Raycast(_gameObject.transform.position, rays[i].direction, out _, rays[i].length + 0.1f) ||
-                    Physics.Raycast(_gameObject.transform.position, -rays[i].direction, out _, rays[i].length + 0.1f))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return Physics.OverlapBox(_gameObject.transform.position, new Vector3(0.4f, 0.1f, 0.4f), Quaternion.identity, _playerMovement.WalkableLayer).Length > 0;
     }
 }
