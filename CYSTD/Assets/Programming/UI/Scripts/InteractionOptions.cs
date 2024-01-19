@@ -7,12 +7,30 @@ public class InteractionOptions : MonoBehaviour
 {
     [SerializeField]
     TMP_Text _interactionHint;
+    bool _isActiveWithTime = false;
 
     public static InteractionOptions Instance;
 
     void Awake()
     {
         Instance = this;
+    }
+
+    public void ActivateWithTime(string text, float seconds)
+    {
+        if (!_isActiveWithTime)
+        {
+            _isActiveWithTime = true;
+            Activate(text);
+            StartCoroutine(DeactivateAfterSeconds(seconds));
+        }
+    }
+
+    IEnumerator DeactivateAfterSeconds(float seconds)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
+        Deactivate();
+        _isActiveWithTime = false;
     }
 
     public void Activate(string text)

@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    [SerializeField]
+    TMP_Text _inventoryText;
     [SerializeField]
     int maxItems;
     Dictionary<ItemType, GameObject> _items;
@@ -29,6 +32,7 @@ public class Inventory : MonoBehaviour
         {
             item.SetActive(false);
             _items.Add(g.ItemType, item);
+            _SetInventoryText();
             return true;
         }
         return false;
@@ -52,6 +56,7 @@ public class Inventory : MonoBehaviour
             i.transform.position = transform.position;
             i.SetActive(true);
             _items.Remove(itemType);
+            _SetInventoryText();
             return i;
         }
         else
@@ -67,5 +72,10 @@ public class Inventory : MonoBehaviour
     public List<ItemType> GetAvaliableItems()
     {
         return new List<ItemType>(_items.Keys);
+    }
+
+    void _SetInventoryText()
+    {
+        _inventoryText.SetText(string.Join(", ", _items.Select(i => i.Key)));
     }
 }
