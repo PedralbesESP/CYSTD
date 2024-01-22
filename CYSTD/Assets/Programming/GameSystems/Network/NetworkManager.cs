@@ -32,7 +32,7 @@ public class NetworkManager : MonoBehaviour
             }
 
         };
-        _socket.Connect();
+        //_socket.Connect();
     }
 
     void Update()
@@ -42,7 +42,7 @@ public class NetworkManager : MonoBehaviour
         {
             return;
         }
-        _SendMessage(message);
+        //_SendMessage(message);
     }
 
     NetworkMessage _CreateNetworkMessage()

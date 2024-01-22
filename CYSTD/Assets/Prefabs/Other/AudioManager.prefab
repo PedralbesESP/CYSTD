@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 952746088980675968}
   - component: {fileID: 952746088980675971}
   - component: {fileID: 952746088980675970}
-  - component: {fileID: 1421854485}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -45,13 +44,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd439999e805fa468347676d9b1bb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSteps:
+  _playerSteps:
     Guid:
-      Data1: -923046130
-      Data2: 1289658471
-      Data3: 1261682350
-      Data4: 1136909947
-    Path: event:/Walk
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _atmosphereHorror:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &952746088980675970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,16 +70,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b0f396461c5b5419e84224cc476ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1421854485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952746088980675973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80170fbc5f66afb4abef722419647de8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testConection: {fileID: -944628639613478452, guid: 909d2a88d4b6cca4687c1d551da9d6e2, type: 3}

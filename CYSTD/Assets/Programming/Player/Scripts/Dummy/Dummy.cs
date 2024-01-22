@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dummy : MonoBehaviour
 {
-    private int dummyNumber;
-    // Start is called before the first frame update
-    void Start()
+    public string dummyUid;
+    public Text dummyText;
+    
+    public void SetId(string uid)
     {
-        //DummyManager.dummyManager.assignDummy(dummyNumber, this.gameObject);
+        dummyUid = uid;
+        if (dummyText != null)
+        {
+            dummyText.text = dummyUid;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

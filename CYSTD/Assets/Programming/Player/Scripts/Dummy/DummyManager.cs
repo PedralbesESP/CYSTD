@@ -1,21 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DummyManager : MonoBehaviour
 {
     public static DummyManager dummyManager;
+    public Text idText;
     //Este id estará en otro sitio
-    private int _idYourPlayer;
-    //public List<GameObject> dummyObjects = new List<GameObject>(4);
-    private Dictionary<int, GameObject> dummyObjects;
-    private int _spawnDummy;
+    [SerializeField] private string _idYourPlayer = null;
+    public List<string> otherPlayersId;
+    public List<GameObject> DisableDummyList;
+    private Dictionary<string, GameObject> dummyDictionary;
 
+    public string getPlayerID()
+    {
+        return _idYourPlayer;
+    }
 
-    public void SetPlayerID(int id)
+    public void SetPlayerID(string id)
     {
         _idYourPlayer = id;
+        if (idText != null)
+        {
+            idText.text = _idYourPlayer;
+        }
+
     }
+
     private void Start()
     {
         if (dummyManager != null)
@@ -23,18 +35,35 @@ public class DummyManager : MonoBehaviour
             Debug.LogError("Hay más de 1 dummyManager en la escena");
         }
         dummyManager = this;
-        dummyObjects = new Dictionary<int, GameObject>();
+        dummyDictionary = new Dictionary<string, GameObject>();
     }
-    public void assignDummy(GameObject dummy)
-    {
-        //dummyObjects.Add(dummy);
-    }
-    public void SpawnDummy(int playerNum)
-    {
-        if (playerNum != _idYourPlayer)
-        {
-            dummyObjects[0].SetActive(true);
 
+    public void AssignToDictionary(string id)
+    {
+
+        if (DisableDummyList.Count > 0)
+        {
+            dummyDictionary.Add(id, DisableDummyList[0]);
+            otherPlayersId.Add(id);
+            DisableDummyList.RemoveAt(0);
+            SpawnDummy(id);
+        }
+        //dummyObjects.Add(id[i], DummyList.DummyList[i]);
+        // SpawnDummy
+        if (dummyDictionary.Count >= 4)
+        {
+            //SpawnDummy();
+        }
+
+    }
+    public void SpawnDummy(string id)
+    {
+        for (int i = 0; i < dummyDictionary.Count && i < 5; i++)
+        {
+
+            Debug.Log("Dummy Spawned: " + dummyDictionary[id].name);
+            dummyDictionary[id].gameObject.GetComponent<Dummy>().SetId(id);
+            dummyDictionary[id].gameObject.SetActive(true);
         }
     }
 }
