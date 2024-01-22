@@ -21,7 +21,11 @@ public class DummyManager : MonoBehaviour
     public void SetPlayerID(string id)
     {
         _idYourPlayer = id;
-        idText.text = _idYourPlayer;
+        if (idText != null)
+        {
+            idText.text = _idYourPlayer;
+        }
+
     }
 
     private void Start()
