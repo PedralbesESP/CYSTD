@@ -6,8 +6,6 @@ public class ExitGame : MonoBehaviour
 {
     public void QuitGame()
     {
-        Application.Quit();
-        Debug.Log("Game is exiting");
-        //Just to make sure its working
+        GameManager.Instance.Exit();
     }
 }

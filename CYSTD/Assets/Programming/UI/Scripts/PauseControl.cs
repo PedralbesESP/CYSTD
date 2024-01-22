@@ -20,7 +20,7 @@ public class PauseControl : MonoBehaviour
         _pauseEsc.Enable();
         _pauseP.Enable();
     }
-    // Update is called once per frame
+
     void Update()
     {
 

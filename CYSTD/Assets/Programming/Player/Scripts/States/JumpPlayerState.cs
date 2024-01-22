@@ -7,6 +7,7 @@ public class JumpPlayerState : PlayerState
     Vector3 _direction;
     bool _isGrounded;
     bool _hasPassedFirstFrame = false;
+    bool _isOnJump = false;
 
     public JumpPlayerState(Vector3 direction)
     {
@@ -23,6 +24,10 @@ public class JumpPlayerState : PlayerState
             Vector3 dest = _direction + upForce;
             _rigidbody.AddForce(dest);
             pm.StartCoroutine(WaitJump());
+        }
+        else
+        {
+            _isOnJump = true;
         }
     }
 
@@ -46,7 +51,7 @@ public class JumpPlayerState : PlayerState
 
     public override PlayerState CheckTransition()
     {
-        if (_isGrounded)
+        if (_isGrounded || _isOnJump)
         {
             Debug.Log("IsGROUNDED");
             return new IdlePlayerState();
