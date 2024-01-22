@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class Dummy : MonoBehaviour
 {
-    private int dummyNumber;
-    // Start is called before the first frame update
-    void Start()
+    public string dummyUid;
+    
+    public void SetId(string uid)
     {
-        //DummyManager.dummyManager.assignDummy(dummyNumber, this.gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        dummyUid = uid;
     }
 }

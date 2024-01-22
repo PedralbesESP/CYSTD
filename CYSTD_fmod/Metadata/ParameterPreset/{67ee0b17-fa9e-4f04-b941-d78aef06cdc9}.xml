@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{67ee0b17-fa9e-4f04-b941-d78aef06cdc9}">
+		<property name="name">
+			<value>CercaniaMonstro</value>
+		</property>
+		<relationship name="folder">
+			<destination>{284bf88f-c821-4ecc-893b-919ac82fa4db}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{fab27c0b-984f-4a30-971b-6eb45dcbd091}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{fab27c0b-984f-4a30-971b-6eb45dcbd091}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
