@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private GameObject _player;
 
     void Awake()
     {
@@ -18,6 +19,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public GameObject getPlayer()
+    {
+        return _player;
+    }
+    public void setPlayer(GameObject player)
+    {
+        _player = player;
     }
 
     public void Win()

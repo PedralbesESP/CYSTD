@@ -15,7 +15,7 @@ public class PlayerNetworkController : NetworkControllerBase
 
     public override ParameterSet SendData()
     {
-        ParameterSet parameterSet = new ParameterSet(Id);
+        ParameterSet parameterSet = new ParameterSet(DummyManager.dummyManager.getPlayerID());
         parameterSet.AddParameter(ParamKey.POSITION, transform.position.Vector3ToString());
         parameterSet.AddParameter(ParamKey.ROTATION, transform.rotation.eulerAngles.Vector3ToString());
         return parameterSet;

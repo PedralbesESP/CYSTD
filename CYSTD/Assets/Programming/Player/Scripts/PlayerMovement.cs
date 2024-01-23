@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
     float _leftRight, _backwardForward, _yRotation;
     PlayerState _currentState;
 
+    private void Awake()
+    {
+        GameManager.Instance.setPlayer(this.gameObject);
+    }
     public PlayerState CurrentState
     {
         get => _currentState;

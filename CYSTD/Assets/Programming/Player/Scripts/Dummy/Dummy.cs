@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Dummy : MonoBehaviour
 {
-    public string dummyUid;
+    [SerializeField]private string dummyUid;
     public Text dummyText;
     
     public void SetId(string uid)
@@ -15,6 +15,15 @@ public class Dummy : MonoBehaviour
         {
             dummyText.text = dummyUid;
         }
+    }
+    public string getId()
+    {
+        return dummyUid;
+    }
+
+    public void moveDummy(Vector3 position, Vector3 rotation)
+    {
+        //position.Vector3ToString
     }
 
 }
