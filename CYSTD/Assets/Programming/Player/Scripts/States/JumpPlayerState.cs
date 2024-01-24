@@ -7,7 +7,7 @@ public class JumpPlayerState : PlayerState
     Vector3 _direction;
     bool _isGrounded;
     bool _hasPassedFirstFrame = false;
-    bool _isOnJump = false;
+    bool _isOnJumpAtStart = false;
 
     public JumpPlayerState(Vector3 direction)
     {
@@ -27,7 +27,7 @@ public class JumpPlayerState : PlayerState
         }
         else
         {
-            _isOnJump = true;
+            _isOnJumpAtStart = true;
         }
     }
 
@@ -51,9 +51,21 @@ public class JumpPlayerState : PlayerState
 
     public override PlayerState CheckTransition()
     {
-        if (_isGrounded || _isOnJump)
+        if (_isGrounded || _isOnJumpAtStart)
         {
-            Debug.Log("IsGROUNDED");
+            //Debug.Log("IsGROUNDED");
+            if (_playerMovement.Direction != Vector3.zero)
+            {
+                if (_playerMovement.IsRunning)
+                {
+                    return new RunPlayerState();
+                }
+                if (_playerMovement.IsCrouching)
+                {
+                    return new CrouchPlayerState();
+                }
+                return new WalkPlayerState();
+            }
             return new IdlePlayerState();
         }
         return null;
