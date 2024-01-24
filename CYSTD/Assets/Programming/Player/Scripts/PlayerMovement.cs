@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] [Range(0, 1)] float _rotationSensitivity;
     [SerializeField] [Range(1, 3)] float _runIncrementFactor;
     [SerializeField] [Range(0.6f, 1)] float _crouchDecrementFactor;
+    [SerializeField] float _maxRunTime;
     [SerializeField] LayerMask _walkableLayer;
     InputAction _leftRightAction, _backwardForwardAction, _yDelta;
     Rigidbody _rigidbody;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerState _currentState;
     bool _isRunning;
     bool _isCrouching;
+    float _currentRunTime;
     
     public PlayerState CurrentState
     {
@@ -62,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        _currentRunTime = _maxRunTime;
         _rigidbody = GetComponent<Rigidbody>();
         InputActionMap movementActions = _inputActions.FindActionMap(MOVEMENT_ACTION_MAP);
         _leftRightAction = movementActions.FindAction(LEFT_RIGHT_ACTION);
@@ -85,7 +88,9 @@ public class PlayerMovement : MonoBehaviour
         _GetInput();
         _currentState.Update();
         _Rotate();
-        Debug.Log("State ->" + _currentState.GetType().Name);
+        _HandleRun();
+        //Debug.Log(_currentRunTime);
+        //Debug.Log("State ->" + _currentState.GetType().Name);
     }
 
     void LateUpdate()
@@ -173,6 +178,27 @@ public class PlayerMovement : MonoBehaviour
         _leftRight = _leftRightAction.ReadValue<float>();
         _backwardForward = _backwardForwardAction.ReadValue<float>();
         _yRotation = _yDelta.ReadValue<Vector2>().x;
+    }
+
+    void _HandleRun() 
+    {
+        if (IsRunning)
+        {
+            _currentRunTime -= Time.deltaTime;
+            if (_currentRunTime <= 0)
+            {
+                _currentRunTime = 0;
+                IsRunning = false;
+            } 
+        }
+        else if (_currentRunTime < _maxRunTime)
+        {
+            _currentRunTime += Time.deltaTime;
+            if (_currentRunTime > _maxRunTime)
+            {
+                _currentRunTime = _maxRunTime;
+            }
+        }
     }
 
     void _StartRun(InputAction.CallbackContext ctx)
