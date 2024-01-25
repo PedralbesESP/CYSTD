@@ -44,7 +44,7 @@ public class NetworkManager : MonoBehaviour
         }
         else
         {
-            switch (info.action.ToString())
+            switch (info.action)
             {
                 case "SetPlayerId":
                     if (DummyManager.dummyManager.getPlayerID() != info.data[0].value)
@@ -67,6 +67,8 @@ public class NetworkManager : MonoBehaviour
                         dummy.transform.rotation = Quaternion.Euler(info.data[2].value.Vector3FromString());
                     }
                     break;
+                case "PlayerDisconnect":
+
                 default:
                     break;
             }
@@ -183,6 +185,7 @@ public class NetworkManager : MonoBehaviour
         PlayerInfo,
         SetPlayerId,
         SetDummyId,
+        PlayerDisconnect,
     }
 
 
