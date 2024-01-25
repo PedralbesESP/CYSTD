@@ -13,6 +13,8 @@ public class DummyManager : MonoBehaviour
     public List<GameObject> DisableDummyList;
     private Dictionary<string, GameObject> dummyDictionary;
 
+    public Dictionary<string, GameObject> DummyDictionary { get => dummyDictionary; set => dummyDictionary = value; }
+
     public string getPlayerID()
     {
         return _idYourPlayer;
@@ -26,6 +28,7 @@ public class DummyManager : MonoBehaviour
             idText.text = _idYourPlayer;
         }
 
+
     }
 
     private void Start()
@@ -35,22 +38,21 @@ public class DummyManager : MonoBehaviour
             Debug.LogError("Hay más de 1 dummyManager en la escena");
         }
         dummyManager = this;
-        dummyDictionary = new Dictionary<string, GameObject>();
+        DummyDictionary = new Dictionary<string, GameObject>();
     }
 
     public void AssignToDictionary(string id)
     {
-
         if (DisableDummyList.Count > 0)
         {
-            dummyDictionary.Add(id, DisableDummyList[0]);
+            DummyDictionary.Add(id, DisableDummyList[0]);
             otherPlayersId.Add(id);
             DisableDummyList.RemoveAt(0);
             SpawnDummy(id);
         }
         //dummyObjects.Add(id[i], DummyList.DummyList[i]);
         // SpawnDummy
-        if (dummyDictionary.Count >= 4)
+        if (DummyDictionary.Count >= 4)
         {
             //SpawnDummy();
         }
@@ -58,12 +60,12 @@ public class DummyManager : MonoBehaviour
     }
     public void SpawnDummy(string id)
     {
-        for (int i = 0; i < dummyDictionary.Count && i < 5; i++)
+        for (int i = 0; i < DummyDictionary.Count && i < 5; i++)
         {
 
-            Debug.Log("Dummy Spawned: " + dummyDictionary[id].name);
-            dummyDictionary[id].gameObject.GetComponent<Dummy>().SetId(id);
-            dummyDictionary[id].gameObject.SetActive(true);
+            Debug.Log("Dummy Spawned: " + DummyDictionary[id].name);
+            DummyDictionary[id].gameObject.GetComponent<Dummy>().SetId(id);
+            DummyDictionary[id].gameObject.SetActive(true);
         }
     }
 }

@@ -9,7 +9,7 @@ public abstract class NetworkControllerBase : Identifiable
 {
     void Start()
     {
-        NetworkManager.Instance.AddNetworkController(this);
+       // NetworkManager.Instance.AddNetworkController(this);
     }
 
     /// <summary>

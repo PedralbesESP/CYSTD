@@ -6,21 +6,13 @@ using System;
 
 public class TestConnection : MonoBehaviour
 {
-    [SerializeField] private InputActionAsset testConection;
-    private InputAction connect;
-    Queue<MessageEventArgs> serverEventQueue = new Queue<MessageEventArgs>();
+   /* Queue<MessageEventArgs> serverEventQueue = new Queue<MessageEventArgs>();
     WebSocket ws;
     string URL = "ws://localhost:3003"; //Server address
 
     void Start()
     {
-        connect = testConection.FindActionMap("test").FindAction("connection");
-        connect.performed += sendInfo;
-        connect.Enable();
-
         ws = new WebSocket(URL);
-
-
         ws.OnMessage += (sender, e) =>
         {
             serverEventQueue.Enqueue(e);
@@ -58,19 +50,6 @@ public class TestConnection : MonoBehaviour
                 }
                 break;
         }
-
-
-        /* if (messageEventArgs.Data.Contains("listaIds"))
-         {
-             idLIst data = JsonUtility.FromJson<idLIst>(messageEventArgs.Data);
-             foreach (int id1 in data.listaIds)
-             {
-                 DummyManager.dummyManager.SpawnDummy(id1);
-             }
-             //DummyManager.dummyManager.SpawnDummy();
-
-         }*/
-        //Llamar el método que procesa el ParameterSet y actualiza lo que toca con los valores recibidos
     }
 
     public class idLIst
@@ -101,4 +80,5 @@ public class TestConnection : MonoBehaviour
         public string key;
         public string value;
     }
+   */
 }

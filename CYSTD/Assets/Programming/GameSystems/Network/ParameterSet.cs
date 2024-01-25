@@ -8,10 +8,10 @@ using UnityEngine;
 /// </summary>
 public class ParameterSet
 {
-    long _senderId;
+    string _senderId;
     Dictionary<int, string> _parameters;
 
-    public long SenderId
+    public string SenderId
     {
         get => _senderId;
         set { _senderId = value; }
@@ -23,13 +23,13 @@ public class ParameterSet
         set { _parameters = value; }
     }
 
-    public ParameterSet(long senderId)
+    public ParameterSet(string senderId)
     {
         _senderId = senderId;
         _parameters = new Dictionary<int, string>();
     }
 
-    public ParameterSet(long senderId, Dictionary<int, string> parameters)
+    public ParameterSet(string senderId, Dictionary<int, string> parameters)
     {
         _senderId = senderId;
         _parameters = parameters;
@@ -85,4 +85,5 @@ public class ParameterSet
     {
         AddParameter((int)key, value.ToString());
     }
+
 }

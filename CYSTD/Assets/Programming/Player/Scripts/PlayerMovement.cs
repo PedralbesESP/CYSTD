@@ -34,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
     bool _isCrouching;
     float _currentRunTime;
     
+
+    private void Awake()
+    {
+        GameManager.Instance.setPlayer(this.gameObject);
+    }
     public PlayerState CurrentState
     {
         get => _currentState;
