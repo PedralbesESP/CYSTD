@@ -1,4 +1,5 @@
 using FMOD.Studio;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] [Range(0.6f, 1)] float _crouchDecrementFactor;
     [SerializeField] float _maxRunTime;
     [SerializeField] LayerMask _walkableLayer;
+    [SerializeField] TMP_Text _staminaTxt;
     InputAction _leftRightAction, _backwardForwardAction, _yDelta;
     Rigidbody _rigidbody;
     float _leftRight, _backwardForward, _yRotation;
@@ -61,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public LayerMask WalkableLayer { get => _walkableLayer; }
     public float LerpFactor { get => 0.03f; }
+    int StaminaPercentage { get => Mathf.RoundToInt((_currentRunTime / _maxRunTime) * 100); }
 
     void Start()
     {
@@ -199,6 +202,7 @@ public class PlayerMovement : MonoBehaviour
                 _currentRunTime = _maxRunTime;
             }
         }
+        _staminaTxt.SetText($"{StaminaPercentage}%");
     }
 
     void _StartRun(InputAction.CallbackContext ctx)
