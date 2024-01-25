@@ -13,6 +13,7 @@ public class NetworkManager : MonoBehaviour
     public static NetworkManager Instance;
     Queue<MessageEventArgs> serverEventQueue = new Queue<MessageEventArgs>();
     Dictionary<string, NetworkControllerBase> _networkControllers;
+    Vector3 playerPosition;
 
     WebSocket _socket;
 
@@ -20,6 +21,7 @@ public class NetworkManager : MonoBehaviour
 
     void Start()
     {
+        playerPosition = GameManager.Instance.getPlayer().transform.position;
         Instance = this;
         _networkControllers = new Dictionary<string, NetworkControllerBase>();
         _socket = new WebSocket(URL);
@@ -28,7 +30,6 @@ public class NetworkManager : MonoBehaviour
             serverEventQueue.Enqueue(e);
         };
         _socket.Connect();
-        StartCoroutine(waitCo());
     }
 
     private void ProcessEvent(MessageEventArgs messageEventArgs)
@@ -72,30 +73,32 @@ public class NetworkManager : MonoBehaviour
         }
 
     }
-
-    void FixedUpdate()
+    private void Update()
     {
         if (serverEventQueue.Count > 0)
         {
             ProcessEvent(serverEventQueue.Dequeue());
         }
-        
-        
-    }
-    
-
-
-    IEnumerator waitCo()
-    {
-        
-        while (true)
+        Vector3 pos = GameManager.Instance.getPlayer().transform.position;
+        float dif = Vector3.SqrMagnitude(pos - playerPosition);
+        if (dif > Vector3.kEpsilon)
         {
             Info message = createNetworkMessage();
             _SendMessage(message);
-            yield return new WaitForSecondsRealtime(.2f);
+            playerPosition = GameManager.Instance.getPlayer().transform.position;
         }
         
     }
+
+    IEnumerator waitCo()
+    {
+        while (true)
+        {
+
+            //yield return new WaitForSecondsRealtime(.2f);
+        }
+    }
+
     Info createNetworkMessage()
     {
         Info message = new Info();
