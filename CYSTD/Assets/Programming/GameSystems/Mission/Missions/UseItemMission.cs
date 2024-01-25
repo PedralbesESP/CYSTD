@@ -8,6 +8,14 @@ public class UseItemMission : BaseMission
     [SerializeField]
     List<ItemType> _requiredItems;
 
+    public void AddRequirements(ItemType newItem)
+    {
+        if (_requiredItems != null)
+        {
+            _requiredItems.Add(newItem);
+        }
+    }
+
     public List<ItemType> UseRequiredItems()
     {
         List<ItemType> usedItems = new List<ItemType>();

@@ -10,19 +10,26 @@ public class PlayerMovement : MonoBehaviour
                  BACKWARD_FORWARD_ACTION = "BackwardForward",
                  JUMP_ACTION = "Jump",
                  HEAD_ACTION_MAP = "Head",
-                 MOUSE_DELTA_ACTION = "MouseDelta";
+                 MOUSE_DELTA_ACTION = "MouseDelta",
+                 RUN_ACTION = "Run",
+                 CROUCH_ACTION = "Crouch";
     const float FORCE_SCALE_FACTOR = 100;
 
     private EventInstance _playerFootSteps;
 
     [SerializeField] InputActionAsset _inputActions;
     [SerializeField] float _speed, _jumpForce;
-    [SerializeField][Range(0, 1)] float _rotationSensitivity;
+    [SerializeField] [Range(0, 1)] float _rotationSensitivity;
+    [SerializeField] [Range(1, 3)] float _runIncrementFactor;
+    [SerializeField] [Range(0.6f, 1)] float _crouchDecrementFactor;
     [SerializeField] LayerMask _walkableLayer;
     InputAction _leftRightAction, _backwardForwardAction, _yDelta;
     Rigidbody _rigidbody;
     float _leftRight, _backwardForward, _yRotation;
     PlayerState _currentState;
+    bool _isRunning;
+    bool _isCrouching;
+    
 
     private void Awake()
     {
@@ -39,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public float Speed { get => _speed; }
     public float JumpForce { get => _jumpForce * FORCE_SCALE_FACTOR; }
+    public float RunIncrementFactor { get => _runIncrementFactor; set => _runIncrementFactor = value; }
+    public float CrouchDecrementFactor { get => _crouchDecrementFactor; set => _crouchDecrementFactor = value; }
+    public bool IsRunning { get => _isRunning; set => _isRunning = value; }
+    public bool IsCrouching { get => _isCrouching; set => _isCrouching = value; }
     public Vector3 Direction
     {
         get
@@ -52,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     public LayerMask WalkableLayer { get => _walkableLayer; }
+    public float LerpFactor { get => 0.03f; }
 
     void Start()
     {
@@ -63,6 +75,12 @@ public class PlayerMovement : MonoBehaviour
         movementActions.FindAction(JUMP_ACTION).performed += _Jump;
         _playerFootSteps = AudioManager.audioManager.CreateEventInstance(FMODEvents.instance.PlayerSteps);
         _playerFootSteps.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
+        InputAction runAction = movementActions.FindAction(RUN_ACTION);
+        runAction.started += _StartRun;
+        runAction.canceled += _StopRun;
+        InputAction crouchAction = movementActions.FindAction(CROUCH_ACTION);
+        crouchAction.started += _StartCrouch;
+        crouchAction.canceled += _StopCrouch;
 
         CurrentState = new IdlePlayerState();
     }
@@ -72,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         _GetInput();
         _currentState.Update();
         _Rotate();
-        //Debug.Log("State ->" + _currentState.GetType().Name);
+        Debug.Log("State ->" + _currentState.GetType().Name);
     }
 
     void LateUpdate()
@@ -160,6 +178,26 @@ public class PlayerMovement : MonoBehaviour
         _leftRight = _leftRightAction.ReadValue<float>();
         _backwardForward = _backwardForwardAction.ReadValue<float>();
         _yRotation = _yDelta.ReadValue<Vector2>().x;
+    }
+
+    void _StartRun(InputAction.CallbackContext ctx)
+    {
+        IsRunning = true;
+    }
+
+    void _StopRun(InputAction.CallbackContext ctx)
+    {
+        IsRunning = false;
+    }
+
+    void _StartCrouch(InputAction.CallbackContext ctx)
+    {
+        IsCrouching = true;
+    }
+
+    void _StopCrouch(InputAction.CallbackContext ctx)
+    {
+        IsCrouching = false;
     }
 
     private void OnDrawGizmos()
