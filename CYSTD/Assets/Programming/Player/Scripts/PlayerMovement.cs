@@ -30,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
     bool _isRunning;
     bool _isCrouching;
     
+
+    private void Awake()
+    {
+        GameManager.Instance.setPlayer(this.gameObject);
+    }
     public PlayerState CurrentState
     {
         get => _currentState;

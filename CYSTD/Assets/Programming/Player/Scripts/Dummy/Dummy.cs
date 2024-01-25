@@ -5,16 +5,24 @@ using UnityEngine.UI;
 
 public class Dummy : MonoBehaviour
 {
-    public string dummyUid;
-    public Text dummyText;
-    
+    [SerializeField]private string dummyUid;
+    public Text dummyText ;
+
+    private void Start()
+    {
+        dummyText.text = "";
+    }
     public void SetId(string uid)
     {
         dummyUid = uid;
         if (dummyText != null)
         {
-            dummyText.text = dummyUid;
+            dummyText.text = dummyText.text + "id: "+ dummyUid;
         }
+    }
+    public string getId()
+    {
+        return dummyUid;
     }
 
 }

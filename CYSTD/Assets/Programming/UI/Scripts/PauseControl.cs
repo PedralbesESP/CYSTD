@@ -57,4 +57,9 @@ public class PauseControl : MonoBehaviour
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
     }
+    private void OnDestroy()
+    {
+        _pauseP.Disable();
+        _pauseEsc.Disable();
+    }
 }
