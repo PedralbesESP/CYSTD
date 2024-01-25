@@ -7,6 +7,7 @@ public class PauseControl : MonoBehaviour
 {
     [SerializeField] private GameObject PauseMenu;
     [SerializeField] private InputActionAsset _inputUI;
+    [SerializeField] private InputActionAsset _playerInput;
     private bool isPaused;
     private InputAction _pauseP, _pauseEsc;
 
@@ -33,8 +34,10 @@ public class PauseControl : MonoBehaviour
         {
             PauseMenu.SetActive(true);
             isPaused = true;
+            _playerInput.FindActionMap("Movement").Disable();
+            _playerInput.FindActionMap("Head").Disable();
+            _playerInput.FindActionMap("Interaction").Disable();
 
-            Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
@@ -48,7 +51,9 @@ public class PauseControl : MonoBehaviour
     {
         PauseMenu.SetActive(false);
         isPaused = false;
-        Time.timeScale = 1;
+        _playerInput.FindActionMap("Movement").Enable();
+        _playerInput.FindActionMap("Head").Enable();
+        _playerInput.FindActionMap("Interaction").Enable();
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
     }
