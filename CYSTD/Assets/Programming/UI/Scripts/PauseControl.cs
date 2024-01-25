@@ -8,6 +8,7 @@ public class PauseControl : MonoBehaviour
     [SerializeField] private GameObject PauseMenu;
     [SerializeField] private InputActionAsset _inputUI;
     [SerializeField] private InputActionAsset _playerInput;
+    [SerializeField] Canvas gameCanvas;
     private bool isPaused;
     private InputAction _pauseP, _pauseEsc;
 
@@ -32,6 +33,7 @@ public class PauseControl : MonoBehaviour
         Debug.Log("Llega");
         if (!isPaused)
         {
+            gameCanvas.enabled = false;
             PauseMenu.SetActive(true);
             isPaused = true;
             _playerInput.FindActionMap("Movement").Disable();
@@ -49,6 +51,7 @@ public class PauseControl : MonoBehaviour
 
     public void Resume()
     {
+        gameCanvas.enabled = true;
         PauseMenu.SetActive(false);
         isPaused = false;
         _playerInput.FindActionMap("Movement").Enable();
