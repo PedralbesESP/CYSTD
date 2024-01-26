@@ -11,12 +11,16 @@ public class Timer : MonoBehaviour
     [SerializeField]
     TMP_Text _timerText; 
     bool _last10Seconds = false;
+    float _maxSeconds;
 
     public static Timer Instance;
+
+    public float TimePercentage { get => (_secondsToEnd / _maxSeconds) * 100; }
 
     void Start()
     {
         Instance = this;
+        _maxSeconds = _secondsToEnd;
         SetTime();
     }
 
@@ -69,6 +73,7 @@ public class Timer : MonoBehaviour
         if (_secondsToEnd > 0)
         {
             _secondsToEnd += secondsToAdd;
+            if (_secondsToEnd > _maxSeconds) _secondsToEnd = _maxSeconds;
             if (_secondsToEnd >= 10)
             {
                 _last10Seconds = true;

@@ -34,7 +34,7 @@ public class NetworkManager : MonoBehaviour
 
     private void ProcessEvent(MessageEventArgs messageEventArgs)
     {
-        Debug.Log("Información recibida: " + messageEventArgs.Data);
+        //Debug.Log("Información recibida: " + messageEventArgs.Data);
 
         Info info = new Info();
         info = JsonUtility.FromJson<Info>(messageEventArgs.Data);
