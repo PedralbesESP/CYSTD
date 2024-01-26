@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
 
     public void Loose()
     {
-        SceneLoader.Instance.LoadScene("UI");
         GameOver.SetActive(true);
         DisableInputs();
     }
