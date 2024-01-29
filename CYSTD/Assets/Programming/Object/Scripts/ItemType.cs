@@ -8,5 +8,6 @@ public enum ItemType
     BATTERY,
     LEAVER,
     CABLE,
-    KEY
+    KEY,
+    NOTEBOOK
 }

@@ -17,7 +17,7 @@ public class NetworkManager : MonoBehaviour
 
     WebSocket _socket;
 
-    const string URL = "ws://192.168.205.68:3003"; //////// SERVER ADDRESS ////////
+    const string URL = "ws://140.238.221.197:3000"; //////// SERVER ADDRESS ////////
 
     void Start()
     {

@@ -9,6 +9,8 @@ public class MissionManager : MonoBehaviour
 {
     public static MissionManager Instance;
     [SerializeField]
+    BaseMission _sceneEnterMission;
+    [SerializeField]
     List<BaseMission> _missions;
     [SerializeField]
     EndMission _sceneExitMission;
@@ -24,6 +26,11 @@ public class MissionManager : MonoBehaviour
 
     void Update()
     {
+        if (!_sceneEnterMission.GetMissionState().Equals(MissionState.DONE))
+        {
+            _SetMissionText(_sceneEnterMission);
+            return;
+        }
         if (_hasEndedMissions)
         {
             if (_CheckSceneExited())

@@ -11,6 +11,9 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     int maxItems;
     Dictionary<ItemType, GameObject> _items;
+    Notebook _notebook;
+    
+    public Notebook Notebook { get => _notebook; }
 
     public static Inventory Instance;
 
@@ -25,15 +28,22 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public bool AddItem(GameObject item)
     {
-        if (_items.Count <= maxItems && 
-            item != null &&
-            item.TryGetComponent(out Grabbable g) &&
-            !_items.ContainsKey(g.ItemType))
+        
+        if (_items.Count <= maxItems && item != null)
         {
-            item.SetActive(false);
-            _items.Add(g.ItemType, item);
-            _SetInventoryText();
-            return true;
+            if (item.TryGetComponent(out Notebook n) && _notebook == null)
+            {
+                _notebook = n;
+                item.SetActive(false);
+                return true;
+            }
+            else if (item.TryGetComponent(out Grabbable g) && !_items.ContainsKey(g.ItemType))
+            {
+                item.SetActive(false);
+                _items.Add(g.ItemType, item);
+                _SetInventoryText();
+                return true;
+            }
         }
         return false;
     }
@@ -43,6 +53,7 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public bool HasItem(ItemType itemType)
     {
+        if (itemType.Equals(ItemType.NOTEBOOK)) return _notebook != null;
         return _items.ContainsKey(itemType);
     }
 
