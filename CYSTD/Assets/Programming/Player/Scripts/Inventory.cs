@@ -28,7 +28,6 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public bool AddItem(GameObject item)
     {
-        
         if (_items.Count <= maxItems && item != null)
         {
             if (item.TryGetComponent(out Notebook n) && _notebook == null)

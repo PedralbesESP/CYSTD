@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneEnterMission: {fileID: 505477933824893443}
   _missions:
-  - {fileID: 4706261762448297775}
+  - {fileID: 399625774043067906}
   - {fileID: 4706261761404419647}
   - {fileID: 4706261761402838785}
   - {fileID: 4706261761972889094}
@@ -131,7 +131,7 @@ Transform:
   m_LocalScale: {x: 1.1768923, y: 1, z: 0.78518}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4706261761306061321}
+  m_Father: {fileID: 6710721143644320736}
   m_LocalEulerAnglesHint: {x: 0, y: -40.416, z: 0}
 --- !u!65 &3924828298796225773
 BoxCollider:
@@ -166,8 +166,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc646f82e7392b74f9ca264ad22f49c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabledOnStart: 1
   _explaination: Gasoline
   _requiredItems: 00000000
+--- !u!1 &2561684883136215546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4711406888716703086}
+  - component: {fileID: 3348194038516059424}
+  m_Layer: 0
+  m_Name: GetCableMission
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4711406888716703086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2561684883136215546}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.40891564, z: -0, w: 0.9125722}
+  m_LocalPosition: {x: -35.06, y: 0, z: 246.74}
+  m_LocalScale: {x: 11.236872, y: 6.646544, z: 13.681362}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9193945855859448384}
+  m_LocalEulerAnglesHint: {x: 0, y: 48.273, z: 0}
+--- !u!114 &3348194038516059424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2561684883136215546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c32cb792a8b4c4cb841ae747e4a108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledOnStart: 0
+  _explaination: Find a cable near the game zone
+  _missionItem: {fileID: 7077400950037408080}
+  DisableItemOnDisablingMission: 1
 --- !u!1 &2768850525460225557
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,11 +243,11 @@ Transform:
   m_GameObject: {fileID: 2768850525460225557}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.40891564, z: -0, w: 0.9125722}
-  m_LocalPosition: {x: 32.258247, y: 0, z: 176.85602}
-  m_LocalScale: {x: 31.432972, y: 6.646544, z: 35.760834}
+  m_LocalPosition: {x: -24.47, y: 0, z: 99.94}
+  m_LocalScale: {x: 31.432976, y: 6.646544, z: 35.760838}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4706261761306061321}
+  m_Father: {fileID: 6710721143644320736}
   m_LocalEulerAnglesHint: {x: 0, y: 48.273, z: 0}
 --- !u!114 &505477933824893443
 MonoBehaviour:
@@ -212,8 +261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c32cb792a8b4c4cb841ae747e4a108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabledOnStart: 1
   _explaination: Get the notebook
-  _missionItem: {fileID: 6029774497988326469}
+  _missionItem: {fileID: 7979519349935627241}
+  DisableItemOnDisablingMission: 1
 --- !u!1 &4706261761281979275
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,14 +415,7 @@ Transform:
   m_Children:
   - {fileID: 215695704}
   - {fileID: 5498013893785699969}
-  - {fileID: 1091895380066231829}
-  - {fileID: 4706261762448297772}
-  - {fileID: 4706261761404419644}
-  - {fileID: 4706261761402838790}
-  - {fileID: 4706261761972889095}
-  - {fileID: 4706261761575375433}
-  - {fileID: 1678460580368301143}
-  - {fileID: 4706261761972802770}
+  - {fileID: 6710721143644320736}
   - {fileID: 4706261761873930173}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -402,10 +446,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.40891564, z: -0, w: 0.9125722}
   m_LocalPosition: {x: 105.55825, y: 0, z: 69.556015}
-  m_LocalScale: {x: 31.026712, y: 6.646544, z: 32.38915}
+  m_LocalScale: {x: 31.026714, y: 6.646544, z: 32.389153}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4706261761306061321}
+  m_Father: {fileID: 6710721143644320736}
   m_LocalEulerAnglesHint: {x: 0, y: 48.273, z: 0}
 --- !u!114 &4706261761402838785
 MonoBehaviour:
@@ -419,8 +463,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c32cb792a8b4c4cb841ae747e4a108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabledOnStart: 0
   _explaination: Find a leaver
   _missionItem: {fileID: 4706261761281979269}
+  DisableItemOnDisablingMission: 1
 --- !u!1 &4706261761404419645
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,10 +494,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.40891564, z: -0, w: 0.9125722}
   m_LocalPosition: {x: 32.258247, y: 0, z: 176.85602}
-  m_LocalScale: {x: 31.432972, y: 6.646544, z: 35.760834}
+  m_LocalScale: {x: 31.432976, y: 6.646544, z: 35.760838}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4706261761306061321}
+  m_Father: {fileID: 6710721143644320736}
   m_LocalEulerAnglesHint: {x: 0, y: 48.273, z: 0}
 --- !u!114 &4706261761404419647
 MonoBehaviour:
@@ -465,8 +511,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c32cb792a8b4c4cb841ae747e4a108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabledOnStart: 0
   _explaination: Find a cable
   _missionItem: {fileID: 4706261762106083191}
+  DisableItemOnDisablingMission: 1
 --- !u!1 &4706261761575375438
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,13 +541,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4706261761575375438}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.08605409, z: -0, w: 0.9962905}
-  m_LocalPosition: {x: 115.5, y: 0, z: 233.3}
-  m_LocalScale: {x: 20.781467, y: 6.646544, z: 28.188704}
+  m_LocalRotation: {x: -0, y: 0.04193465, z: -0, w: 0.9991204}
+  m_LocalPosition: {x: 124.12, y: 0, z: 235.28}
+  m_LocalScale: {x: 12.3737, y: 6.646544, z: 17.94211}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4706261761306061321}
-  m_LocalEulerAnglesHint: {x: 0, y: -9.873, z: 0}
+  m_Father: {fileID: 6710721143644320736}
+  m_LocalEulerAnglesHint: {x: 0, y: 4.807, z: 0}
 --- !u!65 &4706261761575375435
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -533,8 +581,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc646f82e7392b74f9ca264ad22f49c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabledOnStart: 0
   _explaination: Use the items to fix the ferris wheel
-  _requiredItems: 01000000020000000300000004000000
+  _requiredItems: 01000000020000000300000005000000
 --- !u!1 &4706261761841049107
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +613,7 @@ Transform:
   m_GameObject: {fileID: 4706261761841049107}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -90.47447, y: -1.6139625, z: 118.91919}
+  m_LocalPosition: {x: -94.171, y: -1.6139625, z: 115.07}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -684,10 +733,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4706261761841049106}
+  - {fileID: 1361585724620123219}
   - {fileID: 4706261762106083188}
   - {fileID: 4706261761281979274}
   - {fileID: 4706261762103149680}
-  - {fileID: 8570609112483819827}
+  - {fileID: 421324735044041653}
   m_Father: {fileID: 4706261761306061321}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4706261761972802771
@@ -720,10 +770,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.06448308, z: -0, w: 0.99791884}
   m_LocalPosition: {x: 125.35, y: 4.02, z: 234.83}
-  m_LocalScale: {x: 1, y: 5.603424, z: 3.6534002}
+  m_LocalScale: {x: 1, y: 5.603424, z: 3.6534004}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4706261761306061321}
+  m_Father: {fileID: 6710721143644320736}
   m_LocalEulerAnglesHint: {x: 0, y: 7.394, z: 0}
 --- !u!33 &4706261761972802734
 MeshFilter:
@@ -808,6 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff2fab4841fb4f4ca0e22c3e24b4b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabledOnStart: 0
   _explaination: Exit through the opening
 --- !u!1 &4706261761972889092
 GameObject:
@@ -836,10 +887,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.40891564, z: -0, w: 0.9125722}
   m_LocalPosition: {x: 92.44, y: 0, z: 224.81}
-  m_LocalScale: {x: 11.23687, y: 6.646544, z: 13.681358}
+  m_LocalScale: {x: 11.236871, y: 6.646544, z: 13.68136}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4706261761306061321}
+  m_Father: {fileID: 6710721143644320736}
   m_LocalEulerAnglesHint: {x: 0, y: 48.273, z: 0}
 --- !u!114 &4706261761972889094
 MonoBehaviour:
@@ -853,8 +904,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c32cb792a8b4c4cb841ae747e4a108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabledOnStart: 0
   _explaination: Find the key
   _missionItem: {fileID: 4706261762103149683}
+  DisableItemOnDisablingMission: 1
 --- !u!1 &4706261762103149681
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,7 +1026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2330ec699d8fbd64f85a9c902d0a869c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemType: 4
+  _itemType: 5
 --- !u!1 &4706261762106083189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,7 +1157,7 @@ GameObject:
   - component: {fileID: 4706261762448297772}
   - component: {fileID: 4706261762448297775}
   m_Layer: 0
-  m_Name: RecreationalAreaMission
+  m_Name: BatteryMission
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1119,11 +1172,11 @@ Transform:
   m_GameObject: {fileID: 4706261762448297773}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.40891564, z: -0, w: 0.9125722}
-  m_LocalPosition: {x: -35.06, y: 0, z: 246.74}
-  m_LocalScale: {x: 11.23687, y: 6.646544, z: 13.681358}
+  m_LocalPosition: {x: -35.51, y: 0, z: 246.34}
+  m_LocalScale: {x: 11.236872, y: 6.646544, z: 13.681362}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4706261761306061321}
+  m_Father: {fileID: 9193945855859448384}
   m_LocalEulerAnglesHint: {x: 0, y: 48.273, z: 0}
 --- !u!114 &4706261762448297775
 MonoBehaviour:
@@ -1137,9 +1190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c32cb792a8b4c4cb841ae747e4a108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explaination: Find a battery
+  enabledOnStart: 0
+  _explaination: Get the battery
   _missionItem: {fileID: 4706261761841049581}
---- !u!1 &6940781434842294313
+  DisableItemOnDisablingMission: 1
+--- !u!1 &4724941177646050513
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1147,11 +1202,64 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8570609112483819827}
-  - component: {fileID: 6785625642849713822}
-  - component: {fileID: 8433933527676740896}
-  - component: {fileID: 5609006071927821351}
-  - component: {fileID: 6029774497988326469}
+  - component: {fileID: 9193945855859448384}
+  - component: {fileID: 399625774043067906}
+  m_Layer: 0
+  m_Name: RecreationalArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9193945855859448384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724941177646050513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4711406888716703086}
+  - {fileID: 1407716680415518665}
+  - {fileID: 4706261762448297772}
+  m_Father: {fileID: 6710721143644320736}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &399625774043067906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724941177646050513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04a9aad5ccf66914fa37387cd93114c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledOnStart: 0
+  _explaination: 
+  _orderedSubmissions:
+  - {fileID: 3348194038516059424}
+  - {fileID: 5018387530852400426}
+  - {fileID: 4706261762448297775}
+--- !u!1 &4949447150674383939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 421324735044041653}
+  - component: {fileID: 309046278591732021}
+  - component: {fileID: 3873917339520422229}
+  - component: {fileID: 6109976390881689850}
+  - component: {fileID: 7979519349935627241}
   m_Layer: 0
   m_Name: Notebook
   m_TagString: Untagged
@@ -1159,13 +1267,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8570609112483819827
+--- !u!4 &421324735044041653
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6940781434842294313}
+  m_GameObject: {fileID: 4949447150674383939}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -84.16, y: -1.6139625, z: -32.292}
@@ -1174,21 +1282,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4706261761873930173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6785625642849713822
+--- !u!33 &309046278591732021
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6940781434842294313}
+  m_GameObject: {fileID: 4949447150674383939}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8433933527676740896
+--- !u!23 &3873917339520422229
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6940781434842294313}
+  m_GameObject: {fileID: 4949447150674383939}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -1224,13 +1332,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5609006071927821351
+--- !u!65 &6109976390881689850
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6940781434842294313}
+  m_GameObject: {fileID: 4949447150674383939}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1245,16 +1353,243 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8, y: 8, z: 8}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6029774497988326469
+--- !u!114 &7979519349935627241
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6940781434842294313}
+  m_GameObject: {fileID: 4949447150674383939}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d83950dcb9e45d047a7e1bb404f6d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemType: 5
+  _itemType: 6
+--- !u!1 &5708666157604470389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6710721143644320736}
+  m_Layer: 0
+  m_Name: Missions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6710721143644320736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708666157604470389}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1091895380066231829}
+  - {fileID: 4706261761404419644}
+  - {fileID: 4706261761402838790}
+  - {fileID: 4706261761972889095}
+  - {fileID: 4706261761575375433}
+  - {fileID: 1678460580368301143}
+  - {fileID: 4706261761972802770}
+  - {fileID: 9193945855859448384}
+  m_Father: {fileID: 4706261761306061321}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6422329025339261919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1361585724620123219}
+  - component: {fileID: 8922893094614959776}
+  - component: {fileID: 4686742917702467740}
+  - component: {fileID: 8315973190108559301}
+  - component: {fileID: 7077400950037408080}
+  m_Layer: 0
+  m_Name: Game machine cable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1361585724620123219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6422329025339261919}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -101.02, y: -1.6139625, z: 109.444}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4706261761873930173}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8922893094614959776
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6422329025339261919}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4686742917702467740
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6422329025339261919}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 4dca3502bcf04114daa6f802723497dd, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8315973190108559301
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6422329025339261919}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8, y: 8, z: 8}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7077400950037408080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6422329025339261919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2330ec699d8fbd64f85a9c902d0a869c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemType: 4
+--- !u!1 &8364981358200969633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1407716680415518665}
+  - component: {fileID: 130633597940661528}
+  - component: {fileID: 5018387530852400426}
+  m_Layer: 0
+  m_Name: ConnectCableMission
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1407716680415518665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364981358200969633}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.34315342, z: -0, w: 0.9392794}
+  m_LocalPosition: {x: -37.51, y: 0, z: 247.92}
+  m_LocalScale: {x: 11.758575, y: 4.172, z: 4.0485}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9193945855859448384}
+  m_LocalEulerAnglesHint: {x: 0, y: -40.138, z: 0}
+--- !u!65 &130633597940661528
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364981358200969633}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5018387530852400426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364981358200969633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc646f82e7392b74f9ca264ad22f49c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledOnStart: 0
+  _explaination: Connect the cable to the game machine
+  _requiredItems: 04000000

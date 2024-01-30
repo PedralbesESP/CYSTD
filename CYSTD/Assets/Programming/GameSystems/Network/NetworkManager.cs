@@ -164,7 +164,7 @@ public class NetworkManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        _socket.Close();
+        _socket?.Close();
     }
 
     [Serializable]
