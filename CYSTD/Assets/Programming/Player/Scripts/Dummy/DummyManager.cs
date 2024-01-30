@@ -8,28 +8,13 @@ public class DummyManager : MonoBehaviour
     public static DummyManager dummyManager;
     public Text idText;
     //Este id estará en otro sitio
-    [SerializeField] private string _idYourPlayer = null;
-    public List<string> otherPlayersId;
+
     public List<GameObject> DisableDummyList;
     private Dictionary<string, GameObject> dummyDictionary;
 
     public Dictionary<string, GameObject> DummyDictionary { get => dummyDictionary; set => dummyDictionary = value; }
 
-    public string getPlayerID()
-    {
-        return _idYourPlayer;
-    }
-
-    public void SetPlayerID(string id)
-    {
-        _idYourPlayer = id;
-        if (idText != null)
-        {
-            idText.text = _idYourPlayer;
-        }
-
-
-    }
+    
 
     private void Start()
     {
@@ -46,7 +31,6 @@ public class DummyManager : MonoBehaviour
         if (DisableDummyList.Count > 0)
         {
             DummyDictionary.Add(id, DisableDummyList[0]);
-            otherPlayersId.Add(id);
             DisableDummyList.RemoveAt(0);
             SpawnDummy(id);
         }

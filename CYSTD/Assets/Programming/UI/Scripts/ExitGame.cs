@@ -8,7 +8,6 @@ public class ExitGame : MonoBehaviour
     {
         GameManager.Instance.Exit();
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
         Debug.Log("Game is exiting");
         //Just to make sure its working
     }
