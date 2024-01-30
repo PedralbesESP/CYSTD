@@ -54,19 +54,11 @@ public class NetworkManager : MonoBehaviour
             serverEventQueue.Enqueue(e);
         };
         _socket.Connect();
-        if (SceneManager.GetActiveScene().name == "JoinRoom")
-        {
-            GetRooms();
-        }
-        if (SceneManager.GetActiveScene().name == "CreateRoom")
-        {
-            CreateRoom();
-        }
     }
 
     private void ProcessEvent(MessageEventArgs messageEventArgs)
     {
-        Debug.Log("Información recibida: " + messageEventArgs.Data);
+        //Debug.Log("Información recibida: " + messageEventArgs.Data);
 
         Info info = new Info();
         info = JsonUtility.FromJson<Info>(messageEventArgs.Data);
@@ -108,6 +100,19 @@ public class NetworkManager : MonoBehaviour
                         GameObject go = Instantiate(roomListObject);
                         go.transform.SetParent(_rooms.transform);
                         go.name = info.data[i].value;
+                        List<GameObject> childs = new List<GameObject>();
+                        foreach (Transform items in go.transform)
+                        {
+                            //items.GetComponent<TextMeshPro>().text = "Id: " + info.data[i].value;
+                            childs.Add(items.gameObject);
+                            Debug.Log("Added to list:" + items.name);
+                        }
+                        childs[0].GetComponent<TextMeshProUGUI>().text = "Id: " + info.data[i].value;
+                        childs[1].GetComponent<TextMeshProUGUI>().text = info.data[i].key + "/4";
+                        //go.GetComponentsInChildren<TextMeshPro>()[0].text = "Id: " + info.data[i].value;
+                        //go.GetComponentsInChildren<TextMeshPro>()[0].text = info.data.Count + "/4";
+                        //go.GetComponentsInChildren<TextMeshPro>()[0].text = info.data.Count + "/4";
+
                         roomItemList.Add(info.data[i]);
                         //_buttonList[i].name = info.data[i].value;
                         //_buttonList[i].GetComponent<Button>().onClick.AddListener(delegate { JoinRoom(_buttonList[i].name); });
@@ -115,6 +120,7 @@ public class NetworkManager : MonoBehaviour
                     break;
                 case "JoinRoom":
                     _yourRoom = info.data[0].value;
+                    MainMenuManager.Instance.SetId(info.data[0].value);
                     break;
                 case "StartGame":
                     SceneLoader.Instance.LoadScene("MainScene");
@@ -173,7 +179,6 @@ public class NetworkManager : MonoBehaviour
     {
         Info message = new Info();
         message.action = ActionType.GetRooms.ToString();
-
         _SendMessage(message);
     }
     public void JoinRoom(Info message)

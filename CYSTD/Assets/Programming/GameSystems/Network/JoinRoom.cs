@@ -20,7 +20,7 @@ public class JoinRoom : MonoBehaviour
         NetworkManager.Info _message = new NetworkManager.Info();
         _message.action = NetworkManager.ActionType.JoinRoom.ToString();
         _message.data = new List<NetworkManager.Item>();
-        _message.data.Add(new NetworkManager.Item { key = ParamKey.ID.ToString(), value = this.gameObject.name });
+        _message.data.Add(new NetworkManager.Item { key = ParamKey.ID.ToString(), value = transform.parent.gameObject.name });
         NetworkManager.Instance.JoinRoom(_message);
     }
 
