@@ -94,6 +94,10 @@ public class NetworkManager : MonoBehaviour
                     break;
                 case "PlayerDisconnect":
                     break;
+                case "CreateRoom":
+                    _yourRoom = info.data[0].value;
+                    MainMenuManager.Instance.SetId(_yourRoom);
+                    break;
                 case "GetRooms":
                     for (int i = 0; i < info.data.Count; i++)
                     {
@@ -119,8 +123,18 @@ public class NetworkManager : MonoBehaviour
                     }
                     break;
                 case "JoinRoom":
-                    _yourRoom = info.data[0].value;
-                    MainMenuManager.Instance.SetId(info.data[0].value);
+                    if (_yourRoom == null)
+                    {
+                        _yourRoom = info.data[0].key;
+                        MainMenuManager.Instance.JoinRoom();
+                        MainMenuManager.Instance.SetPlayersText(info.data.Count);
+                        MainMenuManager.Instance.SetId(_yourRoom);
+                    }
+                    else if (_yourRoom == info.data[0].key)
+                    {
+                        otherPlayersId.Add(info.data[0].value);
+                        MainMenuManager.Instance.SetPlayersText(info.data.Count);
+                    }
                     break;
                 case "StartGame":
                     SceneLoader.Instance.LoadScene("MainScene");
@@ -183,6 +197,16 @@ public class NetworkManager : MonoBehaviour
     }
     public void JoinRoom(Info message)
     {
+        _SendMessage(message);
+    }
+
+    public void StartGame()
+    {
+        Info message = new Info();
+        message.action = ActionType.StartGame.ToString();
+        message.data = new List<Item>();
+        message.data.Add(new Item { key = ParamKey.ID.ToString(), value = _yourRoom });
+
         _SendMessage(message);
     }
 
