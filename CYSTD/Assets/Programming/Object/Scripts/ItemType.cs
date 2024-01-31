@@ -8,5 +8,7 @@ public enum ItemType
     BATTERY,
     LEAVER,
     CABLE,
-    KEY
+    GAME_MACHINE_CABLE,
+    KEY,
+    NOTEBOOK
 }

@@ -7,12 +7,7 @@ public class EndMission : BaseMission
 {
     void Awake()
     {
-        gameObject.SetActive(false);
-    }
-
-    public void EnableMission()
-    {
-        gameObject.SetActive(true);
+        Disable();
     }
 
     void OnTriggerEnter(Collider other)
@@ -21,5 +16,17 @@ public class EndMission : BaseMission
         {
             _CompleteMission();
         }
+    }
+
+    public override void Enable()
+    {
+        base.Enable();
+        gameObject.SetActive(true);
+    }
+
+    public override void Disable()
+    {
+        base.Disable();
+        gameObject.SetActive(false);
     }
 }

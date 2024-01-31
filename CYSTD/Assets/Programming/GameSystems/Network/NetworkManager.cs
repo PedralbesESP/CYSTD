@@ -28,7 +28,7 @@ public class NetworkManager : MonoBehaviour
 
     List<Transform> _buttonList = new List<Transform>();
 
-    const string URL = "ws://192.168.205.68:3003"; //////// SERVER ADDRESS ////////
+    const string URL = "ws://140.238.221.197:3000"; //////// SERVER ADDRESS ////////
 
     [SerializeField] private GameObject _rooms;
 
@@ -225,7 +225,7 @@ public class NetworkManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        _socket.Close();
+        _socket?.Close();
     }
 
     [Serializable]
