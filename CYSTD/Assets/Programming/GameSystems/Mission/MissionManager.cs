@@ -9,6 +9,8 @@ public class MissionManager : MonoBehaviour
 {
     public static MissionManager Instance;
     [SerializeField]
+    BaseMission _sceneEnterMission;
+    [SerializeField]
     List<BaseMission> _missions;
     [SerializeField]
     EndMission _sceneExitMission;
@@ -24,16 +26,25 @@ public class MissionManager : MonoBehaviour
 
     void Update()
     {
+        if (!_sceneEnterMission.IsCompleted)
+        {
+            _SetMissionText(_sceneEnterMission);
+            return;
+        }
         if (_hasEndedMissions)
         {
             if (_CheckSceneExited())
             {
                 GameManager.Instance.Win();
                 return;
-            } 
+            }
         }
         else
         {
+            _missions.ForEach(m =>
+            {
+                if (!m.IsCompleted) m.Enable();
+            });
             _SetMissionText(GetActiveMissions());
             if (_CheckMissionsCompleted())
             {
@@ -55,7 +66,7 @@ public class MissionManager : MonoBehaviour
         }
         else
         {
-            return _missions.TrueForAll(m => m.GetMissionState().Equals(MissionState.DONE));
+            return _missions.TrueForAll(m => m.IsCompleted);
         }
     }
 
@@ -65,14 +76,14 @@ public class MissionManager : MonoBehaviour
         {
             return false;
         }
-        return _sceneExitMission.GetMissionState().Equals(MissionState.DONE);
+        return _sceneExitMission.IsCompleted;
     }
 
     void _EnableEndMission()
     {
         if (_sceneExitMission != null)
         {
-            _sceneExitMission.EnableMission();
+            _sceneExitMission.Enable();
         }
         _SetMissionText(_sceneExitMission);
     }
@@ -91,7 +102,8 @@ public class MissionManager : MonoBehaviour
             {
                 if (mission != null)
                 {
-                    sb.AppendLine(mission.GetMissionExplaination()); 
+                    string explaination = mission.GetMissionExplaination();
+                    if (explaination != null) sb.AppendLine(explaination);
                 }
             }
             _missionText.SetText(sb.ToString());
@@ -105,6 +117,6 @@ public class MissionManager : MonoBehaviour
 
     public List<BaseMission> GetActiveMissions()
     {
-        return _missions.Where(m => !m.GetMissionState().Equals(MissionState.DONE)).ToList();
+        return _missions.Where(m => !m.IsCompleted).ToList();
     }
 }

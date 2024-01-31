@@ -8,11 +8,7 @@ public class Grabbable : MonoBehaviour
     public bool Grabbed
     {
         get => _grabbed;
-        set
-        {
-            if (value) 
-            _grabbed = value;
-        }
+        set { _grabbed = value; }
     }
 
     [SerializeField]
@@ -20,9 +16,6 @@ public class Grabbable : MonoBehaviour
     public ItemType ItemType
     {
         get => _itemType;
-        set
-        {
-            _itemType = value;
-        }
+        set { _itemType = value; }
     }
 }

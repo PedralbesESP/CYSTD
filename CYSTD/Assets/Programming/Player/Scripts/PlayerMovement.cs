@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask WalkableLayer { get => _walkableLayer; }
     public float LerpFactor { get => 0.03f; }
     int StaminaPercentage { get => Mathf.RoundToInt((_currentRunTime / _maxRunTime) * 100); }
+    public InputActionAsset Input { get => _inputActions; }
 
     void Start()
     {
