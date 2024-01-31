@@ -39,6 +39,20 @@ public class InteractionController : MonoBehaviour
         _exitPuzzleHint = "Press " + exitBinding + " to use exit";
     }
 
+    void Update()
+    {
+        if (_nearestMission != null && (_nearestMission.IsCompleted || !_nearestMission.IsEnabled() || !_nearestMission.enabled))
+        {
+            _nearestMission = null;
+            _missionDistance = float.MaxValue;
+        }
+        if (_nearestItemOnReach != null && !_nearestItemOnReach.activeInHierarchy)
+        {
+            _nearestItemOnReach = null;
+            _itemDistance = float.MaxValue;
+        }
+    }
+
     void OnDestroy()
     {
         _inputActions.FindActionMap("Interaction").FindAction("MainInteraction").performed -= Grab;
@@ -78,7 +92,7 @@ public class InteractionController : MonoBehaviour
                 _missionDistance = distance;
                 _nearestMission = puzzleMission;
             }
-            ActivateUse();
+            ActivatePuzzle();
             if (_canUse) DeactivateUse();
             if (_canGrab) DeactivateGrab();
         }
@@ -183,7 +197,7 @@ public class InteractionController : MonoBehaviour
             ((PuzzleMission)_nearestMission).StartMission();
             DeactivatePuzzle();
             _inputActions.FindActionMap("Interaction").FindAction("ExitPuzzleInteraction").performed += ExitPuzzle;
-            InteractionOptions.Instance.Activate(_puzzleHint);
+            InteractionOptions.Instance.Activate(_exitPuzzleHint);
         }
     }
 

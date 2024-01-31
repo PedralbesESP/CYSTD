@@ -21,14 +21,12 @@ public class EndMission : BaseMission
     public override void Enable()
     {
         base.Enable();
-        gameObject.GetComponent<BoxCollider>().enabled = true;
-        if (gameObject.TryGetComponent(out MeshRenderer m)) m.enabled = true; // SACAR
+        gameObject.SetActive(true);
     }
 
     public override void Disable()
     {
         base.Disable();
-        gameObject.GetComponent<BoxCollider>().enabled = false;
-        if (gameObject.TryGetComponent(out MeshRenderer m)) m.enabled = false; // SACAR
+        gameObject.SetActive(false);
     }
 }

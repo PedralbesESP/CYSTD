@@ -53,6 +53,37 @@ MonoBehaviour:
   - {fileID: 4706261761575375432}
   _sceneExitMission: {fileID: 4706261761972802733}
   _missionText: {fileID: 0}
+--- !u!1 &575255956097661314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6817798052162766203}
+  m_Layer: 0
+  m_Name: PlayerPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6817798052162766203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575255956097661314}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 1.5, y: -0.10800594, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7778243397563767296}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &839912617764723771
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,7 +759,7 @@ Transform:
   m_GameObject: {fileID: 4706261761873930146}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 58.874474, y: 1.7279625, z: 132.58081}
+  m_LocalPosition: {x: 59.554474, y: 1.7279625, z: 132.11081}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1191,7 +1222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enabledOnStart: 0
-  _explaination: Get the battery
+  _explaination: Grab the battery
   _missionItem: {fileID: 4706261761841049581}
   DisableItemOnDisablingMission: 1
 --- !u!1 &4724941177646050513
@@ -1226,6 +1257,7 @@ Transform:
   m_Children:
   - {fileID: 4711406888716703086}
   - {fileID: 1407716680415518665}
+  - {fileID: 7778243397563767296}
   - {fileID: 4706261762448297772}
   m_Father: {fileID: 6710721143644320736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1246,6 +1278,7 @@ MonoBehaviour:
   _orderedSubmissions:
   - {fileID: 3348194038516059424}
   - {fileID: 5018387530852400426}
+  - {fileID: 2950242054270550592}
   - {fileID: 4706261762448297775}
 --- !u!1 &4949447150674383939
 GameObject:
@@ -1524,6 +1557,128 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemType: 4
+--- !u!1 &8309787813708355332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7778243397563767296}
+  - component: {fileID: 2430937010347496336}
+  - component: {fileID: 2950242054270550592}
+  - component: {fileID: 3182669578626980696}
+  - component: {fileID: 2684052271407073460}
+  m_Layer: 0
+  m_Name: GameMachineMission
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7778243397563767296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8309787813708355332}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.41384488, z: -0, w: 0.91034746}
+  m_LocalPosition: {x: -35.38, y: 0.4, z: 247.79}
+  m_LocalScale: {x: 1.4649, y: 3.7035, z: 1.6519}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6817798052162766203}
+  m_Father: {fileID: 9193945855859448384}
+  m_LocalEulerAnglesHint: {x: 0, y: 48.893, z: 0}
+--- !u!65 &2430937010347496336
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8309787813708355332}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 1.7, z: 1.7}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2950242054270550592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8309787813708355332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c202f45dc03094db5a3d38a48ac786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledOnStart: 0
+  _explaination: Get the battery from the game machine
+  _positionToDoPuzzle: {fileID: 6817798052162766203}
+--- !u!33 &3182669578626980696
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8309787813708355332}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2684052271407073460
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8309787813708355332}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 239378781582670930, guid: 834e64a9ec492e04a8bc30418cbbfde2, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8364981358200969633
 GameObject:
   m_ObjectHideFlags: 0
