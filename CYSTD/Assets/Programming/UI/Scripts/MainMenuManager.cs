@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Cinemachine;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -9,11 +10,14 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject _lobbyRoomCanvas;
     [SerializeField] private TextMeshProUGUI _roomId;
     [SerializeField] private TextMeshProUGUI _playerInRoom;
+    [SerializeField] private CinemachineVirtualCamera currentCamera;
+
     private int playersInRoom = 0;
     public static MainMenuManager Instance;
     private void Start()
     {
         Instance = this;
+        currentCamera.Priority++;
     }
     public void CreateGame()
     {
@@ -46,4 +50,13 @@ public class MainMenuManager : MonoBehaviour
     {
         NetworkManager.Instance.StartGame();
     }
+    public void UpdateCamera(CinemachineVirtualCamera target)
+    {
+        currentCamera.Priority--;
+        currentCamera = target;
+        currentCamera.Priority++;
+
+    }
+
+
 }
