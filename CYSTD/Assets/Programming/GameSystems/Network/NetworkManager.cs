@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
+ï»¿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using WebSocketSharp;
 
 /// <summary>
@@ -28,7 +24,7 @@ public class NetworkManager : MonoBehaviour
 
     List<Transform> _buttonList = new List<Transform>();
 
-    const string URL = "ws://140.238.221.197:3000"; //////// SERVER ADDRESS ////////
+    const string URL = "ws://192.168.205.68:3003"; //////// SERVER ADDRESS ////////
 
     [SerializeField] private GameObject _rooms;
 
@@ -58,7 +54,7 @@ public class NetworkManager : MonoBehaviour
 
     private void ProcessEvent(MessageEventArgs messageEventArgs)
     {
-        //Debug.Log("Información recibida: " + messageEventArgs.Data);
+        //Debug.Log("Informaciï¿½n recibida: " + messageEventArgs.Data);
 
         Info info = new Info();
         info = JsonUtility.FromJson<Info>(messageEventArgs.Data);
@@ -123,7 +119,8 @@ public class NetworkManager : MonoBehaviour
                     }
                     break;
                 case "JoinRoom":
-                    if (_yourRoom == null)
+                    Debug.Log(_yourRoom);
+                    if (string.IsNullOrEmpty(_yourRoom))
                     {
                         _yourRoom = info.data[0].key;
                         MainMenuManager.Instance.JoinRoom();
@@ -225,7 +222,7 @@ public class NetworkManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        _socket?.Close();
+        _socket.Close();
     }
 
     [Serializable]
