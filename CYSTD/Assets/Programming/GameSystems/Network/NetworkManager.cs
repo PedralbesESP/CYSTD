@@ -30,14 +30,8 @@ public class NetworkManager : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         roomItemList = new List<Item>();
-        /*
-        foreach (Transform items in _rooms.transform)
-        {
-            _buttonList.Add(items);
-        }
-        */
-        //_rooms.GetComponentsInChildren<Button>().ForEach(b => { onClick.AddListener(delegate { JoinRoom(i.ToString()); }); });
         if (isIngame)
         {
             playerPosition = GameManager.Instance.getPlayer().transform.position;
@@ -77,7 +71,7 @@ public class NetworkManager : MonoBehaviour
                     {
                         //DummyManager.dummyManager.saveId(data.value);
                         otherPlayersId.Add(data.value);
-                        //DummyManager.dummyManager.AssignToDictionary(data.value);
+                        DummyManager.dummyManager.AssignToDictionary(data.value);
                     }
                     break;
                 case "PlayerInfo":
@@ -153,15 +147,13 @@ public class NetworkManager : MonoBehaviour
             Vector3 pos = GameManager.Instance.getPlayer().transform.position;
             float dif = Vector3.SqrMagnitude(pos - playerPosition);
 
-            if (dif > Vector3.kEpsilon)
+            if (dif > Vector3.kEpsilon) //Cuando el jugador se mueve se envia su posición.
             {
                 Info message = createNetworkMessage();
                 _SendMessage(message);
                 playerPosition = GameManager.Instance.getPlayer().transform.position;
             }
         }
-
-
     }
 
 
@@ -186,6 +178,7 @@ public class NetworkManager : MonoBehaviour
         _SendMessage(message);
     }
 
+
     public void GetRooms()
     {
         Info message = new Info();
@@ -207,11 +200,27 @@ public class NetworkManager : MonoBehaviour
         _SendMessage(message);
     }
 
+    public void GameStarted()
+    {
+        Info message = new Info();
+        message.action = ActionType.SetDummyId.ToString();
+        message.data = new List<Item>();
+        message.data.Add(new Item { key = _yourRoom, value = _idYourPlayer });
+
+        _SendMessage(message);
+    }
+
 
     void _SendMessage(Info message)
     {
         string json = JsonConvert.SerializeObject(message);
         if (_socket.IsAlive) _socket.Send(json);
+    }
+
+    public void IsInGame()
+    {
+        isIngame = true;
+        GameStarted();
     }
 
 
