@@ -39,7 +39,9 @@ public class Inventory : MonoBehaviour
             else if (item.TryGetComponent(out Grabbable g) && !_items.ContainsKey(g.ItemType))
             {
                 item.SetActive(false);
-                _items.Add(g.ItemType, item);
+                var itemCopy = Instantiate(item);
+                itemCopy.GetComponent<Grabbable>().ItemType = item.GetComponent<Grabbable>().ItemType;
+                _items.Add(g.ItemType, itemCopy);
                 _SetInventoryText();
                 return true;
             }
