@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        NetworkManager.Instance.IsInGame();
     }
 
     public GameObject getPlayer()
