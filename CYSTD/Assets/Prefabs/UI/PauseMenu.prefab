@@ -36,10 +36,10 @@ RectTransform:
   - {fileID: 7743842013754130004}
   m_Father: {fileID: 7064146816584188352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 108.02315, y: -163.23035}
+  m_SizeDelta: {x: 216.0463, y: 65.29214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &117516103952093744
 CanvasRenderer:
@@ -359,14 +359,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9372549}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 1cd2b29108c3a84418023e343033f3ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -879,10 +879,10 @@ RectTransform:
   - {fileID: 2536605817148600099}
   m_Father: {fileID: 7064146816584188352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 108.02315, y: -32.64607}
+  m_SizeDelta: {x: 216.0463, y: 65.29214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5091508706461488436
 CanvasRenderer:
@@ -1035,10 +1035,10 @@ RectTransform:
   - {fileID: 90731057497394553}
   m_Father: {fileID: 7064146816584188352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 108.02315, y: -97.9382}
+  m_SizeDelta: {x: 216.0463, y: 65.29214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2524942531030855235
 CanvasRenderer:
@@ -1440,7 +1440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8539120669674630972
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1783,7 +1783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1174928139735628990
 RectTransform:
   m_ObjectHideFlags: 0
