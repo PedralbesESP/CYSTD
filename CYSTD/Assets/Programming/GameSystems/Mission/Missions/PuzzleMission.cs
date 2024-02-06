@@ -6,34 +6,59 @@ using UnityEngine;
 public class PuzzleMission : BaseMission
 {
     [SerializeField]
-    Transform _positionToDoPuzzle;
+    Puzzle _puzzle;
 
     public void StartMission()
     {
         if (!_enabled) return;
         SetMissionState(MissionState.DOING);
-        if (_positionToDoPuzzle != null)
+        if (_puzzle != null)
         {
-            GameManager.Instance.getPlayer().transform.SetPositionAndRotation(_positionToDoPuzzle.position, _positionToDoPuzzle.rotation);
-            GameManager.Instance.getPlayer().GetComponent<PlayerMovement>().Input.FindActionMap("Movement").Disable();
+            _puzzle.Activate();
+        }
+    }
+
+    void Update()
+    {
+        if (_state == MissionState.DOING || _state == MissionState.FAILED)
+        {
+            if (_puzzle.IsCompleted)
+            {
+                _CompleteMission();
+                ExitMission();
+                return;
+            }
+            if (_puzzle.IsFailed)
+            {
+                SetMissionState(MissionState.FAILED);
+                ExitMission();
+            }
         }
     }
 
     public void ExitMission()
     {
-        SetMissionState(MissionState.NOT_DONE);
-        GameManager.Instance.getPlayer().GetComponent<PlayerMovement>().Input.FindActionMap("Movement").Enable();
+        if (!_puzzle.IsFailed) SetMissionState(MissionState.NOT_DONE);
+        _puzzle.Deactivate();
     }
 
     public override void Enable()
     {
         base.Enable();
         gameObject.GetComponent<BoxCollider>().enabled = true;
+        _puzzle.enabled = true;
     }
 
     public override void Disable()
     {
         base.Disable();
         gameObject.GetComponent<BoxCollider>().enabled = false;
+        _puzzle.enabled = false;
+    }
+
+    public override void ResetMission()
+    {
+        base.ResetMission();
+        _puzzle.ResetPuzzle();
     }
 }

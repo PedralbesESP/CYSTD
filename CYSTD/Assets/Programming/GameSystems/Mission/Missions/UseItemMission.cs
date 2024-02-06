@@ -7,12 +7,21 @@ public class UseItemMission : BaseMission
 {
     [SerializeField]
     List<ItemType> _requiredItems;
+    [SerializeField]
+    bool _refreshRequirements;
+
+    List<ItemType> _requirements;
+
+    private void Start()
+    {
+        _requirements = _requiredItems;
+    }
 
     public void AddRequirements(ItemType newItem)
     {
-        if (_requiredItems != null)
+        if (_requirements != null)
         {
-            _requiredItems.Add(newItem);
+            _requirements.Add(newItem);
         }
     }
 
@@ -21,14 +30,14 @@ public class UseItemMission : BaseMission
         List<ItemType> usedItems = new List<ItemType>();
         foreach (ItemType t in Inventory.Instance.GetAvaliableItems())
         {
-            if (_requiredItems.Contains(t))
+            if (_requirements.Contains(t))
             {
                 usedItems.Add(t);
-                _requiredItems.Remove(t);
+                _requirements.Remove(t);
                 Destroy(Inventory.Instance.RetrieveItem(t));
             }
         }
-        if (_requiredItems.Count < 1) _CompleteMission();
+        if (_requirements.Count < 1) _CompleteMission();
         return usedItems;
     }
 
@@ -42,5 +51,11 @@ public class UseItemMission : BaseMission
     {
         base.Disable();
         gameObject.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    public override void ResetMission()
+    {
+        base.ResetMission();
+        if (_refreshRequirements) _requirements = _requiredItems;
     }
 }

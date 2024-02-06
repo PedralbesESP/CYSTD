@@ -21,6 +21,7 @@ public class DummyManager : MonoBehaviour
         if (dummyManager != null)
         {
             Debug.LogError("Hay más de 1 dummyManager en la escena");
+            Destroy(gameObject);
         }
         dummyManager = this;
         DummyDictionary = new Dictionary<string, GameObject>();

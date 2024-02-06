@@ -45,11 +45,16 @@ public class InteractionController : MonoBehaviour
         {
             _nearestMission = null;
             _missionDistance = float.MaxValue;
+            if (_canPuzzle) DeactivatePuzzle();
+            if (_canUse) DeactivateUse();
+            StartCoroutine(FindOtherActions());
         }
         if (_nearestItemOnReach != null && !_nearestItemOnReach.activeInHierarchy)
         {
             _nearestItemOnReach = null;
             _itemDistance = float.MaxValue;
+            if (_canGrab) DeactivateGrab();
+            StartCoroutine(FindOtherActions());
         }
     }
 
@@ -105,26 +110,27 @@ public class InteractionController : MonoBehaviour
             _itemDistance = float.MaxValue;
             _nearestItemOnReach = null;
             DeactivateGrab();
-            FindOtherActions();
+            StartCoroutine(FindOtherActions());
         }
         else if (other.gameObject.TryGetComponent(out UseItemMission _))
         {
             _missionDistance = float.MaxValue;
             _nearestMission = null;
             DeactivateUse();
-            FindOtherActions();
+            StartCoroutine(FindOtherActions());
         }
         else if (other.gameObject.TryGetComponent(out PuzzleMission _))
         {
             _missionDistance = float.MaxValue;
             _nearestMission = null;
             DeactivateUse();
-            FindOtherActions();
+            StartCoroutine(FindOtherActions());
         }
     }
 
-    void FindOtherActions()
+    IEnumerator FindOtherActions()
     {
+        yield return new WaitForEndOfFrame();
         CapsuleCollider collider = GetComponent<CapsuleCollider>();
         Vector3 smallerCollider = collider.bounds.extents - Vector3.one * 0.2f;
         List<Collider> collidersInside = Physics.OverlapBox(collider.bounds.center, smallerCollider, collider.transform.rotation).ToList();
@@ -197,7 +203,7 @@ public class InteractionController : MonoBehaviour
             ((PuzzleMission)_nearestMission).StartMission();
             DeactivatePuzzle();
             _inputActions.FindActionMap("Interaction").FindAction("ExitPuzzleInteraction").performed += ExitPuzzle;
-            InteractionOptions.Instance.Activate(_exitPuzzleHint);
+            InteractionOptions.Instance.ActivateWithTime(_exitPuzzleHint, 3);
         }
     }
 
@@ -208,7 +214,7 @@ public class InteractionController : MonoBehaviour
             ((PuzzleMission)_nearestMission).ExitMission();
             _inputActions.FindActionMap("Interaction").FindAction("ExitPuzzleInteraction").performed -= ExitPuzzle;
             InteractionOptions.Instance.Deactivate();
-            FindOtherActions();
+            StartCoroutine(FindOtherActions());
         }
     }
 
