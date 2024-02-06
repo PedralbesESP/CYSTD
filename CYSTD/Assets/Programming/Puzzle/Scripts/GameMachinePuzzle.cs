@@ -76,7 +76,7 @@ public class GameMachinePuzzle : Puzzle
         float yScale = _machineBase.transform.localScale.z / 2f;
         float x = Random.Range(-xScale, xScale);
         float z = Random.Range(-yScale, yScale);
-        return new Vector3(x, _prize.transform.position.y, z);
+        return new Vector3(x, _prize.transform.localPosition.y, z);
     }
 
     Quaternion GetRandomRotation()
