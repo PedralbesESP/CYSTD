@@ -18,22 +18,35 @@ public class MissionChain : BaseMission
     void Update()
     {
         if (!UpdateValidations()) return;
-        if (_orderedSubmissions[_currentPos].IsCompleted) 
-        {
-            _currentPos++;
-            if (_currentPos == _orderedSubmissions.Count)
-            {
-                _CompleteMission();
-                return;
-            }
-            _orderedSubmissions[_currentPos].Enable();
-        }
+        BaseMission currentMission = _orderedSubmissions[_currentPos];
+        if (currentMission.IsFailed) PreviousMission();
+        else if (currentMission.IsCompleted) NextMission();
     }
 
     public override string GetMissionExplaination()
     {
         if (_currentPos >= _orderedSubmissions.Count) return null;
         return _orderedSubmissions[_currentPos].GetMissionExplaination();
+    }
+
+    void PreviousMission()
+    {
+        _orderedSubmissions[_currentPos].ResetMission();
+        _orderedSubmissions[_currentPos].Disable();
+        _currentPos--;
+        _orderedSubmissions[_currentPos].Enable();
+        _orderedSubmissions[_currentPos].ResetMission();
+    }
+
+    void NextMission() 
+    {
+        _currentPos++;
+        if (_currentPos == _orderedSubmissions.Count)
+        {
+            _CompleteMission();
+            return;
+        }
+        _orderedSubmissions[_currentPos].Enable();
     }
 
     public override void Enable()
