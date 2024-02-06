@@ -7,6 +7,7 @@ public class LightSystem : MonoBehaviour
     public List<Light> _light; //cambiar a private
     float lightForce;
     float t = 0f;
+    
 
     private void Start()
     {
@@ -26,21 +27,23 @@ public class LightSystem : MonoBehaviour
         }
         lightForce = _light[0].intensity; // lightForce = fuerza inicial
 
-        //
         foreach (Light light in _light)
         {
-            CapsuleCollider cC = light.gameObject.AddComponent<CapsuleCollider>();
-            cC.radius = light.range;
+            SphereCollider cC = light.gameObject.AddComponent<SphereCollider>();
+            cC.radius = light.range * 0.5f;
+            cC.isTrigger = true;
         }
     }
 
     private void Update()
     {
-        t += 0.5f * Time.deltaTime;
-        lightForce = Mathf.Lerp(lightForce, 0, t);
+        //t += 0.5f * Time.deltaTime;
+        //lightForce = Mathf.Lerp(lightForce, 0, t);
         foreach(Light light in _light)
         {
-            light.intensity = lightForce;
+            //light.intensity = lightForce;
+            light.intensity = Timer.Instance.TimePercentage;
+
         }
     }
 }
