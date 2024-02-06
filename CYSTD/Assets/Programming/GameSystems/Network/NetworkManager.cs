@@ -99,6 +99,7 @@ public class NetworkManager : MonoBehaviour
                 case "CreateRoom":
                     _yourRoom = info.data[0].value;
                     MainMenuManager.Instance.SetId(_yourRoom);
+                    MainMenuManager.Instance.SetPlayersText(info.data.Count);
                     break;
                 case "GetRooms":
                     for (int i = 0; i < info.data.Count; i++)
