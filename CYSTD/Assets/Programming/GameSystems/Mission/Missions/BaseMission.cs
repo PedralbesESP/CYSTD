@@ -9,10 +9,8 @@ public class BaseMission : MonoBehaviour
     protected MissionState _state;
     protected bool _enabled;
 
-    public bool IsCompleted
-    {
-        get => _state.Equals(MissionState.DONE);
-    }
+    public bool IsCompleted { get => _state == MissionState.DONE; }
+    public bool IsFailed { get => _state == MissionState.FAILED; }
 
     void Awake()
     {
@@ -61,5 +59,10 @@ public class BaseMission : MonoBehaviour
     {
         SetMissionState(MissionState.DONE);
         Disable();
+    }
+
+    public virtual void ResetMission()
+    {
+        SetMissionState(MissionState.NOT_DONE);
     }
 }
