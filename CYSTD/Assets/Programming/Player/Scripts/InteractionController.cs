@@ -41,7 +41,7 @@ public class InteractionController : MonoBehaviour
 
     void Update()
     {
-        if (_nearestMission != null && (_nearestMission.IsCompleted || !_nearestMission.IsEnabled() || !_nearestMission.enabled))
+        if (_nearestMission != null && (_nearestMission.IsCompleted() || !_nearestMission.IsEnabled() || !_nearestMission.enabled))
         {
             _nearestMission = null;
             _missionDistance = float.MaxValue;
@@ -77,7 +77,7 @@ public class InteractionController : MonoBehaviour
             }
             if (!_canUse && !_canPuzzle) ActivateGrab();
         }
-        else if (other.gameObject.TryGetComponent(out UseItemMission useMission) && !useMission.IsCompleted)
+        else if (other.gameObject.TryGetComponent(out UseItemMission useMission) && !useMission.IsCompleted())
         {
             float distance = Vector3.Distance(other.gameObject.transform.position, transform.position);
             if (_nearestMission == null || _missionDistance > distance)
@@ -89,7 +89,7 @@ public class InteractionController : MonoBehaviour
             if (_canGrab) DeactivateGrab();
             if (_canPuzzle) DeactivatePuzzle();
         }
-        else if (other.gameObject.TryGetComponent(out PuzzleMission puzzleMission) && !puzzleMission.IsCompleted)
+        else if (other.gameObject.TryGetComponent(out PuzzleMission puzzleMission) && !puzzleMission.IsCompleted())
         {
             float distance = Vector3.Distance(other.gameObject.transform.position, transform.position);
             if (_nearestMission == null || _missionDistance > distance)
@@ -189,7 +189,7 @@ public class InteractionController : MonoBehaviour
             {
                 InteractionOptions.Instance.ActivateWithTime(_missionIssue, 4);
             }
-            if (_nearestMission.IsCompleted)
+            if (_nearestMission.IsCompleted())
             {
                 DeactivateUse();
             }
