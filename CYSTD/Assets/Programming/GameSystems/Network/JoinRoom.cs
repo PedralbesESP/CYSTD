@@ -10,8 +10,6 @@ public class JoinRoom : MonoBehaviour
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(onClick);
-        button.transform.localScale = new Vector3(1, 1, 1);
-        button.transform.position = new Vector3(button.transform.position.x, button.transform.position.y, 0);
     }
 
     void onClick()

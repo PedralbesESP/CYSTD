@@ -93,8 +93,9 @@ public class NetworkManager : MonoBehaviour
                     }
                     if (dummy != null)
                     {
-                        dummy.transform.position = info.data[1].value.Vector3FromString();
+                        //dummy.transform.position = info.data[1].value.Vector3FromString();
                         dummy.transform.rotation = Quaternion.Euler(info.data[2].value.Vector3FromString());
+                        dummy.GetComponent<Dummy>().movePosition(info.data[1].value.Vector3FromString());
                     }
                     break;
                 case "PlayerDisconnect":
@@ -107,8 +108,7 @@ public class NetworkManager : MonoBehaviour
                 case "GetRooms":
                     for (int i = 0; i < info.data.Count; i++)
                     {
-                        GameObject go = Instantiate(roomListObject);
-                        go.transform.SetParent(_rooms.transform);
+                        GameObject go = Instantiate(roomListObject,_rooms.transform);
                         go.name = info.data[i].value;
 
                         go.GetComponentInChildren<RoomPreview>().SetRoomInfo(info.data[i].value, info.data[i].key);
