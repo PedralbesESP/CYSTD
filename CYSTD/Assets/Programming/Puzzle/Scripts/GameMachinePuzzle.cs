@@ -72,8 +72,8 @@ public class GameMachinePuzzle : Puzzle
 
     Vector3 GetRandomPosition()
     {
-        float xScale = _machineBase.transform.localScale.x / 2f;
-        float yScale = _machineBase.transform.localScale.z / 2f;
+        float xScale = (_machineBase.transform.localScale.x / 2f) - 0.1f;
+        float yScale = (_machineBase.transform.localScale.z / 2f) - 0.1f;
         float x = Random.Range(-xScale, xScale);
         float z = Random.Range(-yScale, yScale);
         return new Vector3(x, _prize.transform.localPosition.y, z);

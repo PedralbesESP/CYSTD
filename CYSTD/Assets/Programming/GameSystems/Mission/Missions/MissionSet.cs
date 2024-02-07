@@ -12,7 +12,7 @@ public class MissionSet : BaseMission
     void Update()
     {
         if (!UpdateValidations()) return;
-        if (!IsCompleted && _submissions.All(m => m.GetMissionState().Equals(MissionState.DONE)))
+        if (!IsCompleted() && _submissions.All(m => m.GetMissionState().Equals(MissionState.DONE)))
         {
             _CompleteMission();
         }

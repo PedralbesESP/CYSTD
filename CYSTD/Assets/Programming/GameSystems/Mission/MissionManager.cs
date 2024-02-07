@@ -26,7 +26,7 @@ public class MissionManager : MonoBehaviour
 
     void Update()
     {
-        if (!_sceneEnterMission.IsCompleted)
+        if (!_sceneEnterMission.IsCompleted())
         {
             _SetMissionText(_sceneEnterMission);
             return;
@@ -43,7 +43,7 @@ public class MissionManager : MonoBehaviour
         {
             _missions.ForEach(m =>
             {
-                if (!m.IsCompleted) m.Enable();
+                if (!m.IsCompleted()) m.Enable();
             });
             _SetMissionText(GetActiveMissions());
             if (_CheckMissionsCompleted())
@@ -66,7 +66,7 @@ public class MissionManager : MonoBehaviour
         }
         else
         {
-            return _missions.TrueForAll(m => m.IsCompleted);
+            return _missions.TrueForAll(m => m.IsCompleted());
         }
     }
 
@@ -76,7 +76,7 @@ public class MissionManager : MonoBehaviour
         {
             return false;
         }
-        return _sceneExitMission.IsCompleted;
+        return _sceneExitMission.IsCompleted();
     }
 
     void _EnableEndMission()
@@ -117,6 +117,6 @@ public class MissionManager : MonoBehaviour
 
     public List<BaseMission> GetActiveMissions()
     {
-        return _missions.Where(m => !m.IsCompleted).ToList();
+        return _missions.Where(m => !m.IsCompleted()).ToList();
     }
 }

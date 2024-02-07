@@ -5,6 +5,8 @@ using UnityEngine;
 public class MissionChain : BaseMission
 {
     [SerializeField]
+    int missionsBackOnFail;
+    [SerializeField]
     List<BaseMission> _orderedSubmissions;
     int _currentPos;
 
@@ -19,8 +21,8 @@ public class MissionChain : BaseMission
     {
         if (!UpdateValidations()) return;
         BaseMission currentMission = _orderedSubmissions[_currentPos];
-        if (currentMission.IsFailed) PreviousMission();
-        else if (currentMission.IsCompleted) NextMission();
+        if (currentMission.IsFailed()) PreviousMission();
+        else if (currentMission.IsCompleted()) NextMission();
     }
 
     public override string GetMissionExplaination()
@@ -33,13 +35,16 @@ public class MissionChain : BaseMission
     {
         _orderedSubmissions[_currentPos].ResetMission();
         _orderedSubmissions[_currentPos].Disable();
-        _currentPos--;
+        int prevMissionPos = _currentPos - missionsBackOnFail;
+        if (prevMissionPos < 0) prevMissionPos = 0;
+        _currentPos = prevMissionPos;
         _orderedSubmissions[_currentPos].Enable();
         _orderedSubmissions[_currentPos].ResetMission();
     }
 
     void NextMission() 
     {
+        _orderedSubmissions[_currentPos].Disable();
         _currentPos++;
         if (_currentPos == _orderedSubmissions.Count)
         {
@@ -59,5 +64,10 @@ public class MissionChain : BaseMission
     {
         base.Disable();
         if (_currentPos < _orderedSubmissions.Count) _orderedSubmissions[_currentPos].Disable();
+    }
+
+    public override bool IsCompleted()
+    {
+        return _orderedSubmissions.TrueForAll(m => m.IsCompleted());
     }
 }
