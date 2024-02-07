@@ -10,8 +10,6 @@ public class JoinRoom : MonoBehaviour
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(onClick);
-        button.transform.localScale = new Vector3(1, 1, 1);
-        button.transform.position = new Vector3(button.transform.position.x, button.transform.position.y, 0);
     }
 
     void onClick()
@@ -22,6 +20,12 @@ public class JoinRoom : MonoBehaviour
         _message.data = new List<NetworkManager.Item>();
         _message.data.Add(new NetworkManager.Item { key = ParamKey.ID.ToString(), value = transform.parent.gameObject.name });
         NetworkManager.Instance.JoinRoom(_message);
+    }
+
+    [ContextMenu("DebugClick")]
+    void DebugClick()
+    {
+        onClick();
     }
 
 }
