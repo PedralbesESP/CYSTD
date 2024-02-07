@@ -24,4 +24,10 @@ public class JoinRoom : MonoBehaviour
         NetworkManager.Instance.JoinRoom(_message);
     }
 
+    [ContextMenu("DebugClick")]
+    void DebugClick()
+    {
+        onClick();
+    }
+
 }

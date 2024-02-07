@@ -10,6 +10,8 @@ using WebSocketSharp;
 /// </summary>
 public class NetworkManager : MonoBehaviour
 {
+    [SerializeField] float distanceUpdateThreshold = 0.5f;
+
     public static NetworkManager Instance;
     Queue<MessageEventArgs> serverEventQueue = new Queue<MessageEventArgs>();
     Vector3 playerPosition;
@@ -27,6 +29,7 @@ public class NetworkManager : MonoBehaviour
     const string URL = "ws://192.168.205.68:3003"; //////// SERVER ADDRESS ////////
 
     [SerializeField] private GameObject _rooms;
+    [SerializeField] private bool useEpsilon;
 
     void Start()
     {
@@ -75,7 +78,7 @@ public class NetworkManager : MonoBehaviour
                             otherPlayersId.Add(data.value);
                             DummyManager.dummyManager.AssignToDictionary(data.value);
                         }
-                        
+
                     }
                     break;
                 case "PlayerInfo":
@@ -107,15 +110,9 @@ public class NetworkManager : MonoBehaviour
                         GameObject go = Instantiate(roomListObject);
                         go.transform.SetParent(_rooms.transform);
                         go.name = info.data[i].value;
-                        List<GameObject> childs = new List<GameObject>();
-                        foreach (Transform items in go.transform)
-                        {
-                            //items.GetComponent<TextMeshPro>().text = "Id: " + info.data[i].value;
-                            childs.Add(items.gameObject);
-                            Debug.Log("Added to list:" + items.name);
-                        }
-                        childs[0].GetComponent<TextMeshProUGUI>().text = "Id: " + info.data[i].value;
-                        childs[1].GetComponent<TextMeshProUGUI>().text = info.data[i].key + "/4";
+
+                        go.GetComponentInChildren<RoomPreview>().SetRoomInfo(info.data[i].value, info.data[i].key);
+
                         //go.GetComponentsInChildren<TextMeshPro>()[0].text = "Id: " + info.data[i].value;
                         //go.GetComponentsInChildren<TextMeshPro>()[0].text = info.data.Count + "/4";
                         //go.GetComponentsInChildren<TextMeshPro>()[0].text = info.data.Count + "/4";
@@ -149,6 +146,11 @@ public class NetworkManager : MonoBehaviour
         }
 
     }
+
+    float GetDistanceUpdateThreshold(bool useEpsilon = false)
+    {
+        return useEpsilon ? Vector3.kEpsilon : distanceUpdateThreshold;
+    }
     private void Update()
     {
         if (serverEventQueue.Count > 0)
@@ -160,7 +162,7 @@ public class NetworkManager : MonoBehaviour
             Vector3 pos = GameManager.Instance.getPlayer().transform.position;
             float dif = Vector3.SqrMagnitude(pos - playerPosition);
 
-            if (dif > Vector3.kEpsilon) //Cuando el jugador se mueve se envia su posición.
+            if (dif > GetDistanceUpdateThreshold(useEpsilon)) //Cuando el jugador se mueve se envia su posición.
             {
                 Info message = createNetworkMessage();
                 _SendMessage(message);
