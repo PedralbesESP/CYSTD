@@ -10,11 +10,12 @@ using WebSocketSharp;
 /// </summary>
 public class NetworkManager : MonoBehaviour
 {
-    [SerializeField] float distanceUpdateThreshold = 0.5f;
+    [SerializeField] float distanceUpdateThreshold = 0.1f;
 
     public static NetworkManager Instance;
     Queue<MessageEventArgs> serverEventQueue = new Queue<MessageEventArgs>();
     Vector3 playerPosition;
+    Quaternion playerRotation;
     [SerializeField] private string _idYourPlayer = null;
     [SerializeField] private string _yourRoom = null;
     public List<string> otherPlayersId;
@@ -94,8 +95,7 @@ public class NetworkManager : MonoBehaviour
                     if (dummy != null)
                     {
                         //dummy.transform.position = info.data[1].value.Vector3FromString();
-                        dummy.transform.rotation = Quaternion.Euler(info.data[2].value.Vector3FromString());
-                        dummy.GetComponent<Dummy>().movePosition(info.data[1].value.Vector3FromString());
+                        dummy.GetComponent<Dummy>().movePosition(info.data[1].value.Vector3FromString(), Quaternion.Euler(info.data[2].value.Vector3FromString()));
                     }
                     break;
                 case "PlayerDisconnect":
@@ -108,7 +108,7 @@ public class NetworkManager : MonoBehaviour
                 case "GetRooms":
                     for (int i = 0; i < info.data.Count; i++)
                     {
-                        GameObject go = Instantiate(roomListObject,_rooms.transform);
+                        GameObject go = Instantiate(roomListObject, _rooms.transform);
                         go.name = info.data[i].value;
 
                         go.GetComponentInChildren<RoomPreview>().SetRoomInfo(info.data[i].value, info.data[i].key);
@@ -161,12 +161,13 @@ public class NetworkManager : MonoBehaviour
         {
             Vector3 pos = GameManager.Instance.getPlayer().transform.position;
             float dif = Vector3.SqrMagnitude(pos - playerPosition);
-
-            if (dif > GetDistanceUpdateThreshold(useEpsilon)) //Cuando el jugador se mueve se envia su posición.
+            float difRot = Vector3.SqrMagnitude(GameManager.Instance.getPlayer().transform.rotation.eulerAngles - playerRotation.eulerAngles);
+            if (dif > GetDistanceUpdateThreshold(useEpsilon) || difRot > GetDistanceUpdateThreshold(useEpsilon)) //Cuando el jugador se mueve o rota se envia su posición.
             {
                 Info message = createNetworkMessage();
                 _SendMessage(message);
                 playerPosition = GameManager.Instance.getPlayer().transform.position;
+                playerRotation = GameManager.Instance.getPlayer().transform.rotation;
             }
         }
     }
