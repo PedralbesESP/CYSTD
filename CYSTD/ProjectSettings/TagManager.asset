@@ -18,8 +18,8 @@ TagManager:
   - 
   - PostProcessing
   - Not in Reflection
-  - 
-  - 
+  - GameMachineHook
+  - GameMachineWalls
   - 
   - 
   - 

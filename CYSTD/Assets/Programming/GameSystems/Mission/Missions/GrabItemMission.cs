@@ -10,7 +10,7 @@ public class GrabItemMission : BaseMission
     void Update()
     {
         if (!UpdateValidations()) return;
-        if (!IsCompleted && Inventory.Instance.HasItem(_missionItem.ItemType))
+        if (!IsCompleted() && Inventory.Instance.HasItem(_missionItem.ItemType))
         {
             _CompleteMission();
         }

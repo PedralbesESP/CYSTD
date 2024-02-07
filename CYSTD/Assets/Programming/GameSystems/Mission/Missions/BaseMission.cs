@@ -9,8 +9,8 @@ public class BaseMission : MonoBehaviour
     protected MissionState _state;
     protected bool _enabled;
 
-    public bool IsCompleted { get => _state == MissionState.DONE; }
-    public bool IsFailed { get => _state == MissionState.FAILED; }
+    public virtual bool IsCompleted() { return _state == MissionState.DONE; }
+    public virtual bool IsFailed() { return _state == MissionState.FAILED; }
 
     void Awake()
     {
@@ -21,7 +21,7 @@ public class BaseMission : MonoBehaviour
     protected virtual bool UpdateValidations()
     {
         if (!_enabled) return false;
-        if (IsCompleted) return false;
+        if (IsCompleted()) return false;
         return true;
     }
 

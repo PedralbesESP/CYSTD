@@ -10,11 +10,12 @@ public class GasolineManager : MonoBehaviour
 
     void Update()
     {
-        if (_generatorMissions.Any(g => g.IsCompleted))
+        if (_generatorMissions.Any(g => g.IsCompleted()))
         {
-            _generatorMissions.Where(g => g.IsCompleted).ToList().ForEach(g =>
+            _generatorMissions.Where(g => g.IsCompleted()).ToList().ForEach(g =>
             {
                 g.AddRequirements(ItemType.GASOLINE);
+                if (!g.IsEnabled()) g.Enable();
                 g.SetMissionState(MissionState.NOT_DONE);
                 Timer.Instance.AddTime(_secondsToAdd);
             });
