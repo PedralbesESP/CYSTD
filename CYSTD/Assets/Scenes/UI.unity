@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.061362036, g: 0.08269931, b: 0.13781525, a: 1}
+  m_IndirectSpecularColor: {r: 0.06131912, g: 0.08263577, b: 0.13771345, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -650,11 +650,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c00f4210045c548912d1f81fb2e031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanceUpdateThreshold: 0.5
   _idYourPlayer: 
   _yourRoom: 
   otherPlayersId: []
   roomListObject: {fileID: 2754708228315972252, guid: 7e2a6917c697a6244a7688a1d90f3b96, type: 3}
-  _rooms: {fileID: 1241734852}
+  _rooms: {fileID: 1184649119}
+  useEpsilon: 0
 --- !u!4 &443957314
 Transform:
   m_ObjectHideFlags: 0
@@ -1704,6 +1706,11 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!1 &1184649119 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7002936658020746555, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
+  m_PrefabInstance: {fileID: 7848237161776785298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1200799612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,7 +1760,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 111
+  m_Priority: 11
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -2209,8 +2216,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404877599}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.005572444, y: 0.71172804, z: -0.005646364, w: 0.70241034}
-  m_LocalPosition: {x: -6.014, y: 1.4660001, z: -2.3619998}
+  m_LocalRotation: {x: -0.005262388, y: 0.9723462, z: -0.02201322, w: -0.23244505}
+  m_LocalPosition: {x: -6.255, y: 1.4150001, z: 1.6420001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4498,6 +4505,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0.64841783
       objectReference: {fileID: 0}
+    - target: {fileID: 7957952477581580127, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 9.200012
+      objectReference: {fileID: 0}
     - target: {fileID: 7959591489593866499, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4857,6 +4868,11 @@ PrefabInstance:
     - {fileID: 5243609692345635383, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
     - {fileID: 8406426631053889003, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
     - {fileID: 3710775480671997973, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
+    - {fileID: 9178540624080239920, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
+    - {fileID: 1646612679884846147, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
+    - {fileID: 7351842504294419589, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
+    - {fileID: 2326746760323632547, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
+    - {fileID: 7993287332787647499, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74c2a5c76ce46314ca02c8212a2b7fc4, type: 3}
