@@ -71,7 +71,7 @@ public class Timer : MonoBehaviour
             _secondsToEnd += secondsToAdd;
             if (_secondsToEnd >= 10)
             {
-                _last10Seconds = true;
+                _last10Seconds = false;
             }
             if (_secondsToEnd >= 30)
             {

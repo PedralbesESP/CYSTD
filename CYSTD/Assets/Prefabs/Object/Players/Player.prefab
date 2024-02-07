@@ -371,7 +371,6 @@ GameObject:
   - component: {fileID: 3128057309606736180}
   - component: {fileID: 3128057309606736184}
   - component: {fileID: 3128057309606736183}
-  - component: {fileID: 1016308954}
   - component: {fileID: 1501582170}
   m_Layer: 0
   m_Name: Player
@@ -448,18 +447,6 @@ CapsuleCollider:
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0}
---- !u!114 &1016308954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3128057309606736186}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 433bdae22ac33234499cd164070f9bdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1501582170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,12 +460,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputActions: {fileID: -944628639613478452, guid: 9611f8a77a3e77245af7efeae1e6ba07, type: 3}
-  _speed: 12
+  _speed: 3
   _jumpForce: 3
   _rotationSensitivity: 0.2
+  _runIncrementFactor: 1.7
+  _crouchDecrementFactor: 0.8
+  _maxRunTime: 5
   _walkableLayer:
     serializedVersion: 2
     m_Bits: 64
+  _staminaTxt: {fileID: 0}
 --- !u!1001 &3128057309052035822
 PrefabInstance:
   m_ObjectHideFlags: 0

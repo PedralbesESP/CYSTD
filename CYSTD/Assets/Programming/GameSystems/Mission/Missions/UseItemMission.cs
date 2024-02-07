@@ -31,4 +31,16 @@ public class UseItemMission : BaseMission
         if (_requiredItems.Count < 1) _CompleteMission();
         return usedItems;
     }
+
+    public override void Enable()
+    {
+        base.Enable();
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    public override void Disable()
+    {
+        base.Disable();
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+    }
 }

@@ -1,7 +1,7 @@
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using TMPro;
 using UnityEngine;
 using WebSocketSharp;
 
@@ -11,97 +11,278 @@ using WebSocketSharp;
 public class NetworkManager : MonoBehaviour
 {
     public static NetworkManager Instance;
-
-    Dictionary<long, NetworkControllerBase> _networkControllers;
+    Queue<MessageEventArgs> serverEventQueue = new Queue<MessageEventArgs>();
+    Vector3 playerPosition;
+    [SerializeField] private string _idYourPlayer = null;
+    [SerializeField] private string _yourRoom = null;
+    public List<string> otherPlayersId;
+    private List<Item> roomItemList;
+    [SerializeField] private GameObject roomListObject;
 
     WebSocket _socket;
+    bool isIngame = false;
+
+    List<Transform> _buttonList = new List<Transform>();
 
     const string URL = "ws://192.168.205.68:3003"; //////// SERVER ADDRESS ////////
 
-    void Awake()
+    [SerializeField] private GameObject _rooms;
+
+    void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
+        roomItemList = new List<Item>();
+        if (isIngame)
+        {
+            playerPosition = GameManager.Instance.getPlayer().transform.position;
+        }
+
         Instance = this;
-        _networkControllers = new Dictionary<long, NetworkControllerBase>();
         _socket = new WebSocket(URL);
         _socket.OnMessage += (sender, e) =>
         {
-            NetworkMessage recieved = JsonConvert.DeserializeObject<NetworkMessage>(e.Data);
-            foreach (var parameterSet in recieved.ParameterSets)
-            {
-                _networkControllers[parameterSet.SenderId].RecieveData(parameterSet);
-            }
-
+            serverEventQueue.Enqueue(e);
         };
-        //_socket.Connect();
+        _socket.Connect();
     }
 
-    void Update()
+    private void ProcessEvent(MessageEventArgs messageEventArgs)
     {
-        NetworkMessage message = _CreateNetworkMessage();
-        if (message == null || message?.ParameterSets.Count < 1)
+        //Debug.Log("Informaci�n recibida: " + messageEventArgs.Data);
+
+        Info info = new Info();
+        info = JsonUtility.FromJson<Info>(messageEventArgs.Data);
+        if (info == null)
         {
-            return;
+            Debug.LogError("El mensaje ha llegado vacio");
         }
-        //_SendMessage(message);
-    }
-
-    NetworkMessage _CreateNetworkMessage()
-    {
-        List<ParameterSet> parametersToSend = new List<ParameterSet>();
-
-        if (_networkControllers.Count < 0)
+        else
         {
-            return null;
-        }
-
-        foreach (var controller in _networkControllers)
-        {
-            ParameterSet parameters = controller.Value.SendData();
-            if (parameters != null && parameters.Parameters.Count > 0)
+            switch (info.action)
             {
-                parametersToSend.Add(parameters);
+                case "SetPlayerId":
+                    if (_idYourPlayer != info.data[0].value)
+                    {
+                        _idYourPlayer = info.data[0].value;
+                    }
+                    break;
+                case "SetDummyId":
+                    foreach (Item data in info.data)
+                    {
+                        //DummyManager.dummyManager.saveId(data.value);
+                        if (!otherPlayersId.Contains(data.value))
+                        {
+                            otherPlayersId.Add(data.value);
+                            DummyManager.dummyManager.AssignToDictionary(data.value);
+                        }
+                        
+                    }
+                    break;
+                case "PlayerInfo":
+                    GameObject dummy;
+                    try
+                    {
+                        dummy = DummyManager.dummyManager.DummyDictionary[info.data[0].value];
+                    }
+                    catch (Exception)
+                    {
+                        break;
+                    }
+                    if (dummy != null)
+                    {
+                        dummy.transform.position = info.data[1].value.Vector3FromString();
+                        dummy.transform.rotation = Quaternion.Euler(info.data[2].value.Vector3FromString());
+                    }
+                    break;
+                case "PlayerDisconnect":
+                    break;
+                case "CreateRoom":
+                    _yourRoom = info.data[0].value;
+                    MainMenuManager.Instance.SetId(_yourRoom);
+                    break;
+                case "GetRooms":
+                    for (int i = 0; i < info.data.Count; i++)
+                    {
+                        GameObject go = Instantiate(roomListObject);
+                        go.transform.SetParent(_rooms.transform);
+                        go.name = info.data[i].value;
+                        List<GameObject> childs = new List<GameObject>();
+                        foreach (Transform items in go.transform)
+                        {
+                            //items.GetComponent<TextMeshPro>().text = "Id: " + info.data[i].value;
+                            childs.Add(items.gameObject);
+                            Debug.Log("Added to list:" + items.name);
+                        }
+                        childs[0].GetComponent<TextMeshProUGUI>().text = "Id: " + info.data[i].value;
+                        childs[1].GetComponent<TextMeshProUGUI>().text = info.data[i].key + "/4";
+                        //go.GetComponentsInChildren<TextMeshPro>()[0].text = "Id: " + info.data[i].value;
+                        //go.GetComponentsInChildren<TextMeshPro>()[0].text = info.data.Count + "/4";
+                        //go.GetComponentsInChildren<TextMeshPro>()[0].text = info.data.Count + "/4";
+
+                        roomItemList.Add(info.data[i]);
+                        //_buttonList[i].name = info.data[i].value;
+                        //_buttonList[i].GetComponent<Button>().onClick.AddListener(delegate { JoinRoom(_buttonList[i].name); });
+                    }
+                    break;
+                case "JoinRoom":
+                    Debug.Log(_yourRoom);
+                    if (string.IsNullOrEmpty(_yourRoom))
+                    {
+                        _yourRoom = info.data[0].key;
+                        MainMenuManager.Instance.JoinRoom();
+                        MainMenuManager.Instance.SetPlayersText(info.data.Count);
+                        MainMenuManager.Instance.SetId(_yourRoom);
+                    }
+                    else if (_yourRoom == info.data[0].key)
+                    {
+                        //otherPlayersId.Add(info.data[0].value);
+                        MainMenuManager.Instance.SetPlayersText(info.data.Count);
+                    }
+                    break;
+                case "StartGame":
+                    SceneLoader.Instance.LoadScene("MainScene");
+                    break;
+                default:
+                    break;
             }
         }
 
-        if (parametersToSend.Count < 0)
+    }
+    private void Update()
+    {
+        if (serverEventQueue.Count > 0)
         {
-            return null;
+            ProcessEvent(serverEventQueue.Dequeue());
         }
+        if (isIngame)
+        {
+            Vector3 pos = GameManager.Instance.getPlayer().transform.position;
+            float dif = Vector3.SqrMagnitude(pos - playerPosition);
 
-        long timestamp = Mathf.RoundToInt(Time.realtimeSinceStartup * 1000);
-        return new NetworkMessage(timestamp, parametersToSend);
+            if (dif > Vector3.kEpsilon) //Cuando el jugador se mueve se envia su posición.
+            {
+                Info message = createNetworkMessage();
+                _SendMessage(message);
+                playerPosition = GameManager.Instance.getPlayer().transform.position;
+            }
+        }
     }
 
-    void _SendMessage(NetworkMessage message)
+
+    Info createNetworkMessage()
+    {
+        Info message = new Info();
+        message.action = ActionType.PlayerInfo.ToString();
+        message.data = new List<Item>();
+        message.data.Add(new Item { key = _yourRoom, value = _idYourPlayer });
+        message.data.Add(new Item { key = ParamKey.POSITION.ToString(), value = GameManager.Instance.getPlayer().transform.position.Vector3ToString() });
+        message.data.Add(new Item { key = ParamKey.ROTATION.ToString(), value = GameManager.Instance.getPlayer().transform.rotation.eulerAngles.Vector3ToString() });
+
+        return message;
+    }
+
+    public void CreateRoom()
+    {
+        Info message = new Info();
+        message.action = ActionType.CreateRoom.ToString();
+        message.data = new List<Item>();
+
+        _SendMessage(message);
+    }
+
+
+    public void GetRooms()
+    {
+        Info message = new Info();
+        message.action = ActionType.GetRooms.ToString();
+        _SendMessage(message);
+    }
+    public void JoinRoom(Info message)
+    {
+        _SendMessage(message);
+    }
+
+    public void StartGame()
+    {
+        Info message = new Info();
+        message.action = ActionType.StartGame.ToString();
+        message.data = new List<Item>();
+        message.data.Add(new Item { key = ParamKey.ID.ToString(), value = _yourRoom });
+
+        _SendMessage(message);
+    }
+
+    public void GameStarted()
+    {
+        Info message = new Info();
+        message.action = ActionType.SetDummyId.ToString();
+        message.data = new List<Item>();
+        message.data.Add(new Item { key = _yourRoom, value = _idYourPlayer });
+
+        _SendMessage(message);
+    }
+
+
+    void _SendMessage(Info message)
     {
         string json = JsonConvert.SerializeObject(message);
         if (_socket.IsAlive) _socket.Send(json);
     }
 
-    /// <summary>
-    /// Adds the NetworkController to the list to send and recieve data.
-    /// </summary>
-    public void AddNetworkController(NetworkControllerBase controller)
+    public void IsInGame()
     {
-        try
-        {
-            _networkControllers.Add(controller.Id, controller);
-        }
-        catch (ArgumentException)
-        {
-            _networkControllers[controller.Id] = controller;
-        }
+        isIngame = true;
+        GameStarted();
     }
 
-    class NetworkMessage {
-        public NetworkMessage(long timestamp, List<ParameterSet> parameters)
-        {
-            _timestamp = timestamp;
-            _parameters = parameters;
-        }
-        long _timestamp;
-        List<ParameterSet> _parameters;
-        public long Timestamp => _timestamp;
-        public List<ParameterSet> ParameterSets => _parameters;
+
+    public class idLIst
+    {
+        public List<int> listaIds;
     }
+
+    private void OnDestroy()
+    {
+        _socket.Close();
+    }
+
+    [Serializable]
+    public class Info
+    {
+        public string action;
+        public List<Item> data;
+    }
+    [Serializable]
+    public class Item
+    {
+        public string key;
+        public string value;
+    }
+
+    public enum ActionType
+    {
+        PlayerInfo,
+        SetPlayerId,
+        SetDummyId,
+        PlayerDisconnect,
+        CreateRoom,
+        GetRooms,
+        JoinRoom,
+        LeaveRoom,
+        StartGame,
+        EndGame
+    }
+
+
+
+    public string getPlayerID()
+    {
+        return _idYourPlayer;
+    }
+
+    public void SetPlayerID(string id)
+    {
+        _idYourPlayer = id;
+    }
+
 }
