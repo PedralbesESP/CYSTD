@@ -6,5 +6,6 @@ public enum MissionState
 {
     NOT_DONE,
     DOING,
+    FAILED,
     DONE
 }
