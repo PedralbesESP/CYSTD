@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 7325449504123241375}
   - component: {fileID: 6634660445602639029}
   - component: {fileID: 8060550171868275211}
+  - component: {fileID: 4975125254036459119}
   m_Layer: 5
   m_Name: ListLobbyPrefab
   m_TagString: Untagged
@@ -173,6 +174,20 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &4975125254036459119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2754708228315972252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24285b57fc8a17446ada20921f06fb4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idText: {fileID: 1212700362369927735}
+  playersText: {fileID: 8283797179696556116}
 --- !u!1 &2870068314375079594
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 405, y: -0.000019073}
+  m_AnchoredPosition: {x: 405, y: 0}
   m_SizeDelta: {x: 318.0713, y: 95.8091}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8707011663808489028
