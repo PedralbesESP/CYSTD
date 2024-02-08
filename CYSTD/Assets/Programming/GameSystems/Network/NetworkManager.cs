@@ -185,6 +185,7 @@ public class NetworkManager : MonoBehaviour
         return message;
     }
 
+
     public void CreateRoom()
     {
         Info message = new Info();
@@ -226,6 +227,13 @@ public class NetworkManager : MonoBehaviour
         _SendMessage(message);
     }
 
+    public void MissionChangeState(BaseMission mission)
+    {
+        Info message = new Info();
+        message.action = ActionType.MissionChange.ToString();
+        message.data = new List<Item>();
+        message.data.Add(new Item { key = _yourRoom, value = mission.GetMissionState().ToString() });
+    }
 
     void _SendMessage(Info message)
     {
@@ -274,7 +282,8 @@ public class NetworkManager : MonoBehaviour
         JoinRoom,
         LeaveRoom,
         StartGame,
-        EndGame
+        EndGame,
+        MissionChange
     }
 
 

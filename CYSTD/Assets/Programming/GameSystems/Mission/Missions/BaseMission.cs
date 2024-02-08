@@ -8,6 +8,7 @@ public class BaseMission : MonoBehaviour
     protected string _explaination;
     protected MissionState _state;
     protected bool _enabled;
+    protected MIssionName _name;
 
     public virtual bool IsCompleted() { return _state == MissionState.DONE; }
     public virtual bool IsFailed() { return _state == MissionState.FAILED; }
@@ -27,7 +28,11 @@ public class BaseMission : MonoBehaviour
 
     public void SetMissionState(MissionState state) 
     {
-        if (_enabled) _state = state;
+        if (_enabled)
+        {
+            _state = state;
+            NetworkManager.Instance.MissionChangeState(this);
+        }
     }
 
     public MissionState GetMissionState()
