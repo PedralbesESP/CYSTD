@@ -31,6 +31,7 @@ public class Dummy : MonoBehaviour
     public void movePosition(Vector3 desiredPos, Quaternion desiredRot)
     {
         this.desiredPosition = desiredPos;
+        this.desiredRotation = desiredRot;
     }
     private void Update()
     {
