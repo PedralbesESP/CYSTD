@@ -6,7 +6,7 @@ public enum ItemType
 {
     GASOLINE,
     BATTERY,
-    LEAVER,
+    LEVER,
     CABLE,
     GAME_MACHINE_CABLE,
     KEY,

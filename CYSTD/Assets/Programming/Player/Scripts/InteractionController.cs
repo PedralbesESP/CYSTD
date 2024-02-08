@@ -10,6 +10,14 @@ public class InteractionController : MonoBehaviour
 {
     [SerializeField]
     InputActionAsset _inputActions;
+
+    BaseMission _nearestMission;
+    GameObject _nearestItemOnReach;
+    InteractiveButton _nearestButton;
+
+    float _missionDistance = float.MaxValue;
+    float _itemDistance = float.MaxValue;
+
     string _grabHint;
     string _useHint;
     string _puzzleHint;
@@ -17,10 +25,7 @@ public class InteractionController : MonoBehaviour
     string _grabIssue;
     string _missionIssue;
     string _itemsUsedBase;
-    BaseMission _nearestMission;
-    float _missionDistance = float.MaxValue;
-    GameObject _nearestItemOnReach;
-    float _itemDistance = float.MaxValue;
+
     bool _canGrab;
     bool _canUse;
     bool _canPuzzle;
@@ -31,7 +36,7 @@ public class InteractionController : MonoBehaviour
         string binding = _inputActions.FindActionMap("Interaction").FindAction("MainInteraction").GetBindingDisplayString().ToUpper();
         string exitBinding = _inputActions.FindActionMap("Interaction").FindAction("ExitPuzzleInteraction").GetBindingDisplayString().ToUpper();
         _grabHint = $"Press " + binding + " to pick up";
-        _useHint = $"Press " + binding + " to use items";
+        _useHint = $"Press " + binding + " to use";
         _grabIssue = "Can't grab item";
         _missionIssue = "You don't have the necessary items";
         _itemsUsedBase = "Items used: ";
@@ -61,7 +66,7 @@ public class InteractionController : MonoBehaviour
     void OnDestroy()
     {
         _inputActions.FindActionMap("Interaction").FindAction("MainInteraction").performed -= Grab;
-        _inputActions.FindActionMap("Interaction").FindAction("MainInteraction").performed -= UseItem;
+        _inputActions.FindActionMap("Interaction").FindAction("MainInteraction").performed -= Use;
         _inputActions.Disable();
     }
 
@@ -174,20 +179,23 @@ public class InteractionController : MonoBehaviour
         }
     }
 
-    void UseItem(InputAction.CallbackContext ctx)
+    void Use(InputAction.CallbackContext ctx)
     {
-        if (_nearestMission != null && _nearestMission is UseItemMission)
+        if (_nearestMission != null && _nearestMission is UseItemMission useItemMission)
         {
             string itemsUsedStr;
-            List<ItemType> itemsUsed = ((UseItemMission)_nearestMission).UseRequiredItems();
-            if (itemsUsed != null && itemsUsed.Count > 0)
+            List<ItemType> itemsUsed = useItemMission.UseRequiredItems();
+            if (useItemMission.HasRequirements())
             {
-                itemsUsedStr = string.Join(", ", itemsUsed);
-                InteractionOptions.Instance.ActivateWithTime(_itemsUsedBase + itemsUsedStr, 4);
-            }
-            else
-            {
-                InteractionOptions.Instance.ActivateWithTime(_missionIssue, 4);
+                if (itemsUsed != null && itemsUsed.Count > 0)
+                {
+                    itemsUsedStr = string.Join(", ", itemsUsed.Select(i => i.ToString()));
+                    InteractionOptions.Instance.ActivateWithTime(_itemsUsedBase + itemsUsedStr, 4);
+                }
+                else
+                {
+                    InteractionOptions.Instance.ActivateWithTime(_missionIssue, 4);
+                }
             }
             if (_nearestMission.IsCompleted())
             {
@@ -236,14 +244,14 @@ public class InteractionController : MonoBehaviour
     {
         _canUse = true;
         InteractionOptions.Instance.Activate(_useHint);
-        _inputActions.FindActionMap("Interaction").FindAction("MainInteraction").performed += UseItem;
+        _inputActions.FindActionMap("Interaction").FindAction("MainInteraction").performed += Use;
     }
 
     void DeactivateUse()
     {
         _canUse = false;
         InteractionOptions.Instance.Deactivate();
-        _inputActions.FindActionMap("Interaction").FindAction("MainInteraction").performed -= UseItem;
+        _inputActions.FindActionMap("Interaction").FindAction("MainInteraction").performed -= Use;
     }
 
     void ActivatePuzzle()
