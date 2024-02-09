@@ -8,6 +8,7 @@ public class Dummy : MonoBehaviour
     [SerializeField]private string dummyUid;
     public Text dummyText ;
     Vector3 desiredPosition;
+    Quaternion desiredRotation;
     [SerializeField] private float lerpSpeed = 0.1f;
 
     private void Start()
@@ -27,15 +28,17 @@ public class Dummy : MonoBehaviour
         return dummyUid;
     }
 
-    public void movePosition(Vector3 desiredPos)
+    public void movePosition(Vector3 desiredPos, Quaternion desiredRot)
     {
         this.desiredPosition = desiredPos;
+        this.desiredRotation = desiredRot;
     }
     private void Update()
     {
         if(desiredPosition!= Vector3.zero)
         {
             transform.position = Vector3.Lerp(transform.position, desiredPosition, lerpSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, lerpSpeed);
         }
     }
 }

@@ -113,6 +113,9 @@ public class MissionManager : MonoBehaviour
 
     public List<BaseMission> GetMissions()
     {
+        List<BaseMission> allMisions = new List<BaseMission>(_missions);
+        allMisions.Add(_sceneEnterMission);
+        allMisions.Add(_sceneExitMission);
         return _missions;
     }
 

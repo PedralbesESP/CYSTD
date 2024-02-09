@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06131912, g: 0.08263577, b: 0.13771345, a: 1}
+  m_IndirectSpecularColor: {r: 0.06131888, g: 0.082636006, b: 0.13771345, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -234,6 +234,14 @@ PrefabInstance:
     - target: {fileID: 588559130780753560, guid: a917e5e25254c3f4999d85b9fbfe49ac, type: 3}
       propertyPath: m_VertexColorAlwaysGammaSpace
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117218202262034032, guid: a917e5e25254c3f4999d85b9fbfe49ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 285648274}
+    - target: {fileID: 3117218202262034032, guid: a917e5e25254c3f4999d85b9fbfe49ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
       objectReference: {fileID: 0}
     - target: {fileID: 3810803908730812289, guid: a917e5e25254c3f4999d85b9fbfe49ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -549,6 +557,17 @@ MonoBehaviour:
   _roomId: {fileID: 1367594949}
   _playerInRoom: {fileID: 1787078047}
   currentCamera: {fileID: 837885274}
+--- !u!114 &285648274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 409491532326649409, guid: a917e5e25254c3f4999d85b9fbfe49ac, type: 3}
+  m_PrefabInstance: {fileID: 285648270}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285648271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e6a1a3733e7da4c99bf6a950ef004a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &320253423
 GameObject:
   m_ObjectHideFlags: 3
@@ -650,7 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c00f4210045c548912d1f81fb2e031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceUpdateThreshold: 0.5
+  distanceUpdateThreshold: 0.1
   _idYourPlayer: 
   _yourRoom: 
   otherPlayersId: []

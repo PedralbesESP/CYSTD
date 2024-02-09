@@ -8,6 +8,7 @@ public class BaseMission : MonoBehaviour
     protected string _explaination;
     protected MissionState _state;
     protected bool _enabled;
+    [SerializeField] protected MissionName _name;
 
     public virtual bool IsCompleted() { return _state == MissionState.DONE; }
     public virtual bool IsFailed() { return _state == MissionState.FAILED; }
@@ -25,9 +26,18 @@ public class BaseMission : MonoBehaviour
         return true;
     }
 
-    public void SetMissionState(MissionState state) 
+    public MissionName getName()
     {
-        if (_enabled) _state = state;
+        return _name;
+    }
+
+    public void SetMissionState(MissionState state)
+    {
+        if (_enabled)
+        {
+            _state = state;
+            NetworkManager.Instance.MissionChangeState(this);
+        }
     }
 
     public MissionState GetMissionState()
@@ -55,7 +65,7 @@ public class BaseMission : MonoBehaviour
         _enabled = false;
     }
 
-    protected void _CompleteMission()
+    public void _CompleteMission()
     {
         SetMissionState(MissionState.DONE);
         Disable();
