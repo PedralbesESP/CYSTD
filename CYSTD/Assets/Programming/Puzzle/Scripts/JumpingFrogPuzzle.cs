@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class JumpingFrogPuzzle : Puzzle
 {
@@ -18,11 +19,17 @@ public class JumpingFrogPuzzle : Puzzle
     {
         base.Start();
         _isMoving = false;
+        _puzzleActions.FindAction("Action").performed += ToggleMoving;
     }
 
     void Update()
     {
         if (_isMoving) Move();
+    }
+
+    void ToggleMoving(InputAction.CallbackContext ctx)
+    {
+        _isMoving = !_isMoving;
     }
 
     void Move()
