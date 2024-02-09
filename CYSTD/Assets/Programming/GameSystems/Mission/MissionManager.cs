@@ -13,7 +13,7 @@ public class MissionManager : MonoBehaviour
     [SerializeField]
     List<BaseMission> _missions;
     [SerializeField]
-    EndMission _sceneExitMission;
+    BaseMission _sceneExitMission;
     [SerializeField]
     TMP_Text _missionText;
 
@@ -22,6 +22,7 @@ public class MissionManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        _sceneExitMission.Disable();
     }
 
     void Update()
@@ -112,6 +113,9 @@ public class MissionManager : MonoBehaviour
 
     public List<BaseMission> GetMissions()
     {
+        List<BaseMission> allMisions = new List<BaseMission>(_missions);
+        allMisions.Add(_sceneEnterMission);
+        allMisions.Add(_sceneExitMission);
         return _missions;
     }
 
