@@ -8,7 +8,7 @@ public class BaseMission : MonoBehaviour
     protected string _explaination;
     protected MissionState _state;
     protected bool _enabled;
-    protected MIssionName _name;
+    [SerializeField] protected MissionName _name;
 
     public virtual bool IsCompleted() { return _state == MissionState.DONE; }
     public virtual bool IsFailed() { return _state == MissionState.FAILED; }
@@ -26,7 +26,12 @@ public class BaseMission : MonoBehaviour
         return true;
     }
 
-    public void SetMissionState(MissionState state) 
+    public MissionName getName()
+    {
+        return _name;
+    }
+
+    public void SetMissionState(MissionState state)
     {
         if (_enabled)
         {
@@ -60,7 +65,7 @@ public class BaseMission : MonoBehaviour
         _enabled = false;
     }
 
-    protected void _CompleteMission()
+    public void _CompleteMission()
     {
         SetMissionState(MissionState.DONE);
         Disable();

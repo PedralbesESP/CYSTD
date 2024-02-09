@@ -1,5 +1,5 @@
 
-public enum MIssionName
+public enum MissionName
 {
     RecreationalArea,
     GetCableGameMachine,
@@ -20,5 +20,5 @@ public enum MIssionName
     FerrisWheel,
     TurnOnFerrisWheel,
     Exit,
-    Notbook
+    Notebook
 }

@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Use the battery to fix the ferris wheel
+  _name: 15
   _requiredItems: 01000000
   _refreshRequirements: 0
 --- !u!1 &2546277580622208349
@@ -325,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 1
   _explaination: Gasoline
+  _name: 0
   _requiredItems: 00000000
   _refreshRequirements: 0
 --- !u!1 &2561684883136215546
@@ -373,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Find a cable near the game zone
+  _name: 1
   _missionItem: {fileID: 7077400950037408080}
   DisableItemOnDisablingMission: 1
 --- !u!1 &2768850525460225557
@@ -421,6 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 1
   _explaination: Get the notebook
+  _name: 19
   _missionItem: {fileID: 7979519349935627241}
   DisableItemOnDisablingMission: 1
 --- !u!1 &4553908099240143490
@@ -471,6 +475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 1
   _explaination: 
+  _name: 9
   missionsBackOnFail: 0
   _orderedSubmissions:
   - {fileID: 4706261761402838785}
@@ -557,6 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Find a leaver
+  _name: 11
   _missionItem: {fileID: 4706261761281979269}
   DisableItemOnDisablingMission: 1
 --- !u!1 &4706261761404419645
@@ -605,6 +611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Find a cable
+  _name: 7
   _missionItem: {fileID: 4706261762106083191}
   DisableItemOnDisablingMission: 1
 --- !u!1 &4706261761575375438
@@ -677,6 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 1
   _explaination: 
+  _name: 16
   missionsBackOnFail: 0
   _orderedSubmissions:
   - {fileID: 7235038064555148402}
@@ -838,6 +846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Exit through the opening
+  _name: 18
 --- !u!1 &4706261761972889092
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,6 +893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Find the battery
+  _name: 14
   _missionItem: {fileID: 6735525277009343116}
   DisableItemOnDisablingMission: 1
 --- !u!1 &4706261762448297773
@@ -932,6 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Grab the key
+  _name: 4
   _missionItem: {fileID: 6316161958262594698}
   DisableItemOnDisablingMission: 1
 --- !u!1 &4724941177646050513
@@ -985,6 +996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: 
+  _name: 0
   missionsBackOnFail: 1
   _orderedSubmissions:
   - {fileID: 3348194038516059424}
@@ -1060,6 +1072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Use the key in the ferris wheel
+  _name: 5
   _requiredItems: 05000000
   _refreshRequirements: 0
 --- !u!1 &5708666157604470389
@@ -1307,6 +1320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Use the lever to fix the ferris wheel
+  _name: 12
   _requiredItems: 02000000
   _refreshRequirements: 0
 --- !u!1 &7200074004084061506
@@ -1357,6 +1371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 1
   _explaination: 
+  _name: 6
   missionsBackOnFail: 0
   _orderedSubmissions:
   - {fileID: 4706261761404419647}
@@ -1409,6 +1424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: 
+  _name: 13
   missionsBackOnFail: 0
   _orderedSubmissions:
   - {fileID: 4706261761972889094}
@@ -1481,6 +1497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Get the key from the game machine
+  _name: 3
   _puzzle: {fileID: 1279283378153123889}
 --- !u!1 &8364981358200969633
 GameObject:
@@ -1550,6 +1567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Connect the cable to the game machine
+  _name: 2
   _requiredItems: 04000000
   _refreshRequirements: 0
 --- !u!1 &8468219828596141619
@@ -1651,6 +1669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Use the cable to fix the ferris wheel
+  _name: 8
   _requiredItems: 03000000
   _refreshRequirements: 0
 --- !u!1 &9203566116030212563
@@ -1721,6 +1740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledOnStart: 0
   _explaination: Turn the ferris wheel on
+  _name: 17
   _requiredItems: 
   _refreshRequirements: 0
 --- !u!1001 &33315195150563975

@@ -140,6 +140,34 @@ public class NetworkManager : MonoBehaviour
                 case "StartGame":
                     SceneLoader.Instance.LoadScene("MainScene");
                     break;
+                case "MissionChange":
+                    foreach (BaseMission mission in MissionManager.Instance.GetMissions())
+                    {
+                        if (mission.getName().ToString() == info.data[0].value.ToString())
+                        {
+                            switch (info.data[0].value)
+                            {
+                                case "DOING":
+                                    mission.SetMissionState(MissionState.DOING);
+                                    break;
+                                case "DONE":
+                                    mission._CompleteMission();
+                                    mission.SetMissionState(MissionState.DONE);
+                                    break;
+                                case "FAILED":
+                                    mission.SetMissionState(MissionState.FAILED);
+                                    break;
+                                case "NOT_DONE":
+                                    mission.ResetMission();
+                                    break;
+                                default:
+                                    break;
+                            }
+                            //mission.SetMissionState(MissionState);
+                        }
+                    }
+                    break;
+                    
                 default:
                     break;
             }
@@ -232,7 +260,8 @@ public class NetworkManager : MonoBehaviour
         Info message = new Info();
         message.action = ActionType.MissionChange.ToString();
         message.data = new List<Item>();
-        message.data.Add(new Item { key = _yourRoom, value = mission.GetMissionState().ToString() });
+        message.data.Add(new Item { key = mission.getName().ToString(), value = mission.GetMissionState().ToString() });
+        _SendMessage(message);
     }
 
     void _SendMessage(Info message)
