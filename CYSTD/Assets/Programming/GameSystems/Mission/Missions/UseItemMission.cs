@@ -17,6 +17,11 @@ public class UseItemMission : BaseMission
         _requirements = _requiredItems;
     }
 
+    public bool HasRequirements()
+    {
+        return _requirements != null && _requirements.Count > 0;
+    }
+
     public void AddRequirements(ItemType newItem)
     {
         if (_requirements != null)
@@ -28,13 +33,16 @@ public class UseItemMission : BaseMission
     public List<ItemType> UseRequiredItems()
     {
         List<ItemType> usedItems = new List<ItemType>();
-        foreach (ItemType t in Inventory.Instance.GetAvaliableItems())
+        if (_requirements.Count > 0)
         {
-            if (_requirements.Contains(t))
+            foreach (ItemType t in Inventory.Instance.GetAvaliableItems())
             {
-                usedItems.Add(t);
-                _requirements.Remove(t);
-                Destroy(Inventory.Instance.RetrieveItem(t));
+                if (_requirements.Contains(t))
+                {
+                    usedItems.Add(t);
+                    _requirements.Remove(t);
+                    Destroy(Inventory.Instance.RetrieveItem(t));
+                }
             }
         }
         if (_requirements.Count < 1) _CompleteMission();
