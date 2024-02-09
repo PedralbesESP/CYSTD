@@ -87,7 +87,7 @@ public class Inventory : MonoBehaviour
     }
 
     void _SetInventoryText()
-    {
+    { 
         _inventoryText.SetText(string.Join(", ", _items.Select(i => i.Key)));
     }
 }
