@@ -1,6 +1,7 @@
 using FMOD.Studio;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] [Range(0.6f, 1)] float _crouchDecrementFactor;
     [SerializeField] float _maxRunTime;
     [SerializeField] LayerMask _walkableLayer;
-    [SerializeField] TMP_Text _staminaTxt;
+    [SerializeField] Slider _staminaSlider;
     InputAction _leftRightAction, _backwardForwardAction, _yDelta;
     Rigidbody _rigidbody;
     float _leftRight, _backwardForward, _yRotation;
@@ -208,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
                 _currentRunTime = _maxRunTime;
             }
         }
-        _staminaTxt.SetText($"{StaminaPercentage}%");
+        _staminaSlider.value = StaminaPercentage;
     }
 
     void _StartRun(InputAction.CallbackContext ctx)
