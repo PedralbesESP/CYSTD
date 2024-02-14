@@ -6,8 +6,6 @@ public class LightSystem : MonoBehaviour
 {
     public List<Light> _light; //cambiar a private
     float lightForce;
-    float t = 0f;
-    
 
     private void Start()
     {
@@ -43,7 +41,6 @@ public class LightSystem : MonoBehaviour
         {
             //light.intensity = lightForce;
             light.intensity = Timer.Instance.TimePercentage;
-
         }
     }
 }

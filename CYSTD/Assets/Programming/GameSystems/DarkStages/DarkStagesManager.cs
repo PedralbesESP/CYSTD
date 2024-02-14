@@ -24,7 +24,7 @@ public class DarkStagesManager : MonoBehaviour
             _currentStage.StartStage();
         }
         _currentStage.Update();
-        Debug.Log(_currentStage.GetType());
+        //Debug.Log(_currentStage.GetType());
     }
 
     DarkStage GetStage()
