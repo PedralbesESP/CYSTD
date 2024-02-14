@@ -17,6 +17,11 @@ public class PlayerSanity : MonoBehaviour
     [SerializeField] private float resMultiplier;
     float _dif = 0;
     float _lastDif;
+
+    [SerializeField] private Light_State InitialState;
+
+    [SerializeField] private List<LightEvent> _lightEvents = new List<LightEvent>();
+    
     void Start()
     {
         _sanity = 100;
@@ -48,6 +53,45 @@ public class PlayerSanity : MonoBehaviour
         if (_lights.Count == 0)
         {
             _sanity -= resMultiplier * Time.deltaTime;
+            if (_sanity <= 90)
+            {
+                if (!_lightEvents[0].IsActive())
+                {
+                    _lightEvents[0].PlayEvent();
+                }
+                for(int i = 1; i < _lightEvents.Count; i++ )
+                {
+                    _lightEvents[i].StopEvent();
+                }
+                
+                
+            }
+            if(_sanity<= 80)
+            {
+                if (!_lightEvents[1].IsActive())
+                {
+                    _lightEvents[1].PlayEvent();
+                }
+                for (int i = 2; i < _lightEvents.Count; i++)
+                {
+                    _lightEvents[i].StopEvent();
+                }
+            }
+            if(_sanity<= 70)
+            {
+                if (!_lightEvents[2].IsActive())
+                {
+                    _lightEvents[2].PlayEvent();
+                }
+                for (int i = 3; i < _lightEvents.Count; i++)
+                {
+                    _lightEvents[i].StopEvent();
+                }
+            }
+            if (_sanity <= 60)
+            {
+
+            }
         }
     }
 
