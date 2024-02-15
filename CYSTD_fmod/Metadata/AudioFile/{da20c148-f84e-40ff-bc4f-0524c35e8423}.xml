@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{da20c148-f84e-40ff-bc4f-0524c35e8423}">
+		<property name="assetPath">
+			<value>HorrorSFX_3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>4.9427891156462582</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c53e70ba-b042-42b3-920b-482171776b1b}</destination>
+		</relationship>
+	</object>
+</objects>

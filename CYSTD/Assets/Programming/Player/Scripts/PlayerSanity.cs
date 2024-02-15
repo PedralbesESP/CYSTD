@@ -14,17 +14,16 @@ public class PlayerSanity : MonoBehaviour
     [Range(1,20)]
     [SerializeField] private float _distanciaMinima = 1f;
     [Tooltip("Numero con el que se hace la operación para restar sanity")]
-    [SerializeField] private float resMultiplier;
+    [SerializeField] private float resMultiplier = 1f;
     float _dif = 0;
     float _lastDif;
 
-    [SerializeField] private Light_State InitialState;
 
-    [SerializeField] private List<LightEvent> _lightEvents = new List<LightEvent>();
-    
+    public float Sanity { get => _sanity; set => _sanity = value; }
+
     void Start()
     {
-        _sanity = 100;
+        Sanity = 100;
         _lights = new List<Collider>();
     }
 
@@ -41,19 +40,20 @@ public class PlayerSanity : MonoBehaviour
             }
         }
 
-        if (_sanity <= 100)
+        if (Sanity <= 100)
         {
             if (_lights.Count > 0)
             {
-                _sanity += Mathf.Min(factorHeal*_distanciaMinima / (_dif + float.Epsilon), factorHeal) * Time.deltaTime;
+                Sanity += Mathf.Min(factorHeal*_distanciaMinima / (_dif + float.Epsilon), factorHeal) * Time.deltaTime;
                 //Debug.Log(_sanity);
 
             }
         }
         if (_lights.Count == 0)
         {
-            _sanity -= resMultiplier * Time.deltaTime;
-            if (_sanity <= 90)
+            Sanity -= resMultiplier * Time.deltaTime;
+            /*
+            if (Sanity <= 90)
             {
                 if (!_lightEvents[0].IsActive())
                 {
@@ -66,7 +66,7 @@ public class PlayerSanity : MonoBehaviour
                 
                 
             }
-            if(_sanity<= 80)
+            if(Sanity<= 80)
             {
                 if (!_lightEvents[1].IsActive())
                 {
@@ -77,7 +77,7 @@ public class PlayerSanity : MonoBehaviour
                     _lightEvents[i].StopEvent();
                 }
             }
-            if(_sanity<= 70)
+            if(Sanity<= 70)
             {
                 if (!_lightEvents[2].IsActive())
                 {
@@ -88,10 +88,11 @@ public class PlayerSanity : MonoBehaviour
                     _lightEvents[i].StopEvent();
                 }
             }
-            if (_sanity <= 60)
+            if (Sanity <= 60)
             {
 
             }
+            */
         }
     }
 

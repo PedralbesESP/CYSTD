@@ -12,8 +12,11 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Atmosphere Sounds")]
     [field: SerializeField] private EventReference _atmosphereHorror;
 
+    [field: Header("Light Events Sounds")]
+    [field: SerializeField] private EventReference _fastBreathing;
     public static FMODEvents instance { get; private set; }
     public EventReference AtmosphereHorror { get => _atmosphereHorror; set => _atmosphereHorror = value; }
+    public EventReference FastBreathing { get => _fastBreathing; set => _fastBreathing = value; }
 
     private void Awake()
     {

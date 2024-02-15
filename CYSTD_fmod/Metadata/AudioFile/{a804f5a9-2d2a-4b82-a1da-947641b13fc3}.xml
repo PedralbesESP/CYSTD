@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a804f5a9-2d2a-4b82-a1da-947641b13fc3}">
+		<property name="assetPath">
+			<value>SpookyLaughs.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>6.8179591836734694</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c53e70ba-b042-42b3-920b-482171776b1b}</destination>
+		</relationship>
+	</object>
+</objects>
