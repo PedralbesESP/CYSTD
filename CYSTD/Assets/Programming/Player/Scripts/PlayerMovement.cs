@@ -1,6 +1,7 @@
 using FMOD.Studio;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -14,9 +15,10 @@ public class PlayerMovement : MonoBehaviour
                  MOUSE_DELTA_ACTION = "MouseDelta",
                  RUN_ACTION = "Run",
                  CROUCH_ACTION = "Crouch";
-    const float FORCE_SCALE_FACTOR = 100;
+
 
     private EventInstance _playerFootSteps;
+
 
     [SerializeField] InputActionAsset _inputActions;
     [SerializeField] float _speed, _jumpForce;
@@ -25,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] [Range(0.6f, 1)] float _crouchDecrementFactor;
     [SerializeField] float _maxRunTime;
     [SerializeField] LayerMask _walkableLayer;
-    [SerializeField] TMP_Text _staminaTxt;
+    [SerializeField] Slider _staminaSlider;
     InputAction _leftRightAction, _backwardForwardAction, _yDelta;
     Rigidbody _rigidbody;
     float _leftRight, _backwardForward, _yRotation;
@@ -33,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     bool _isRunning;
     bool _isCrouching;
     float _currentRunTime;
-    
+    float _forceScaleFactor = 1;
 
     private void Awake()
     {
@@ -49,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     public float Speed { get => _speed; }
-    public float JumpForce { get => _jumpForce * FORCE_SCALE_FACTOR; }
+    public float JumpForce { get => _jumpForce * 100 * _forceScaleFactor; }
     public float RunIncrementFactor { get => _runIncrementFactor; set => _runIncrementFactor = value; }
     public float CrouchDecrementFactor { get => _crouchDecrementFactor; set => _crouchDecrementFactor = value; }
     public bool IsRunning { get => _isRunning; set => _isRunning = value; }
@@ -110,6 +112,11 @@ public class PlayerMovement : MonoBehaviour
             CurrentState = newState;
         }
         checkState();
+    }
+
+    public void ChangeScaleFactor(float ammount)
+    {
+        _forceScaleFactor += ammount;
     }
 
     void checkState()
@@ -189,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
         _yRotation = _yDelta.ReadValue<Vector2>().x;
     }
 
-    void _HandleRun() 
+    void _HandleRun()
     {
         if (IsRunning)
         {
@@ -198,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 _currentRunTime = 0;
                 IsRunning = false;
-            } 
+            }
         }
         else if (_currentRunTime < _maxRunTime)
         {
@@ -208,7 +215,7 @@ public class PlayerMovement : MonoBehaviour
                 _currentRunTime = _maxRunTime;
             }
         }
-        _staminaTxt.SetText($"{StaminaPercentage}%");
+        _staminaSlider.value = StaminaPercentage;
     }
 
     void _StartRun(InputAction.CallbackContext ctx)
