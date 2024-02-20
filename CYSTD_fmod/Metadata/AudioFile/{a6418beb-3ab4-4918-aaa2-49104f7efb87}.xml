@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a6418beb-3ab4-4918-aaa2-49104f7efb87}">
+		<property name="assetPath">
+			<value>OutOfBreathWoman_1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>48.625291666666669</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c53e70ba-b042-42b3-920b-482171776b1b}</destination>
+		</relationship>
+	</object>
+</objects>
