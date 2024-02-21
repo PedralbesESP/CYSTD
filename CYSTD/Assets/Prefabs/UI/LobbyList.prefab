@@ -67,15 +67,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Choose a game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7056b93911ce9be4ba7fb40eadec6105, type: 2}
-  m_sharedMaterial: {fileID: 7368699899829539040, guid: 7056b93911ce9be4ba7fb40eadec6105, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 26dad16b3f3f07b4ebf030fbe2110ea4, type: 2}
+  m_sharedMaterial: {fileID: 6090111436682732774, guid: 26dad16b3f3f07b4ebf030fbe2110ea4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

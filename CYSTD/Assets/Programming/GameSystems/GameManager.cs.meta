@@ -3,7 +3,11 @@ guid: f82935775c70d20488871815cb821b99
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _player: {instanceID: 0}
+  - GameOver: {fileID: 6797028035430757613, guid: dc5149de1f6378b4bae2960f8f534dc2, type: 3}
+  - WinCanvas: {fileID: 8560630470445800873, guid: 009d69369de1b114cb4ba172b6c3a65b, type: 3}
+  - _playerInput: {instanceID: 0}
   executionOrder: 90
   icon: {instanceID: 0}
   userData: 
