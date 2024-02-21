@@ -26,9 +26,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574922845960039618}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35355332, y: -0.6123724, z: 0.6123726, w: 0.35355332}
-  m_LocalPosition: {x: 0.24822545, y: 1.5004907, z: 0.28507203}
-  m_LocalScale: {x: 0.009999998, y: 0.009999999, z: 0.01}
+  m_LocalRotation: {x: 0.3535533, y: -0.6123724, z: 0.6123726, w: 0.35355332}
+  m_LocalPosition: {x: -0.028374579, y: -0.030509353, z: 0.048872024}
+  m_LocalScale: {x: 0.009999998, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5231579718750561220}
@@ -487,9 +487,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2210264615618785667}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70710695, y: -0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: 0.33040977, y: 1.5004907, z: 0.23786676}
-  m_LocalScale: {x: 0.01, y: 0.009999998, z: 0.009999996}
+  m_LocalRotation: {x: 0.70710695, y: -0, z: 0.000000029802322, w: 0.7071067}
+  m_LocalPosition: {x: 0.053809762, y: -0.030509353, z: 0.0016667806}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.009999998}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5231579718750561220}
@@ -570,9 +570,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2430646500013688292}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35355335, y: 0.61237264, z: -0.61237234, w: 0.35355338}
-  m_LocalPosition: {x: 0.24819809, y: 1.5004907, z: 0.19018471}
-  m_LocalScale: {x: 0.009999998, y: 0.01, z: 0.009999999}
+  m_LocalRotation: {x: 0.35355335, y: 0.61237264, z: -0.61237234, w: 0.35355332}
+  m_LocalPosition: {x: -0.02840193, y: -0.030509353, z: -0.046015278}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.009999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5231579718750561220}
@@ -789,9 +789,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3333343781568625190}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70710695, y: -0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: 0.27563095, y: 1.5857557, z: 0.23778605}
-  m_LocalScale: {x: 0.01, y: 0.009999998, z: 0.009999996}
+  m_LocalRotation: {x: 0.70710695, y: -0, z: 0.000000029802322, w: 0.7071067}
+  m_LocalPosition: {x: -0.0009690522, y: 0.054755688, z: 0.0015860796}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.009999998}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5231579718750561220}
@@ -1363,9 +1363,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6891485270569819070}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70710695, y: -0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: 0.27563095, y: 1.5004144, z: 0.23778605}
-  m_LocalScale: {x: 0.01, y: 0.009999998, z: 0.009999996}
+  m_LocalRotation: {x: 0.70710695, y: -0, z: 0.000000029802322, w: 0.7071067}
+  m_LocalPosition: {x: -0.0009690522, y: -0.030585647, z: 0.0015860796}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.009999998}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5231579718750561220}
@@ -1476,7 +1476,7 @@ MonoBehaviour:
   _hint: Use the arrowkeys to move the hook and the spacebar to grab the prize.
   _endPosition: {fileID: 3462902253015779653}
   _machineBase: {fileID: 8350092500508399128}
-  _hook: {fileID: 0}
+  _hook: {fileID: 7594381868938487319}
   _prize: {fileID: 7033418233185599500}
   _movementSpeed: 0.5
 --- !u!1 &7150390502517461070
@@ -1620,7 +1620,7 @@ Transform:
   m_GameObject: {fileID: 7594381868938487319}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.2362, y: 1.531, z: -0.2766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField]private GameObject _player;
     [SerializeField] private GameObject GameOver;
+    [SerializeField] private GameObject WinCanvas;
     [SerializeField] private InputActionAsset _playerInput;
 
     void Awake()
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
-        SceneLoader.Instance.LoadScene("UI");
+        WinCanvas.SetActive(true);
         DisableInputs();
     }
 

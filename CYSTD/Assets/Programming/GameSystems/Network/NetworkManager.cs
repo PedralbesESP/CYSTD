@@ -27,13 +27,20 @@ public class NetworkManager : MonoBehaviour
 
     List<Transform> _buttonList = new List<Transform>();
 
-    const string URL = "ws://192.168.205.68:3003"; //////// SERVER ADDRESS ////////
+    const string URL = "ws://cystd.servegame.com:3003"; //////// SERVER ADDRESS ////////
+    //const string URL = "ws://140.238.221.197:3003"; /// SERVER IP ///
+    //const string URL = "ws://192.168.205.68:3003"; /// PC ZOE ///
+
 
     [SerializeField] private GameObject _rooms;
     [SerializeField] private bool useEpsilon;
 
+    public int TargetFrameRate = 60;
+
     void Start()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = TargetFrameRate;
         DontDestroyOnLoad(this.gameObject);
         roomItemList = new List<Item>();
         if (isIngame)
