@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class GameMachinePuzzle : Puzzle
 {
     [SerializeField]
+    Light light;
+    [SerializeField]
     Transform _endPosition;
     [SerializeField]
     GameObject _machineBase;
@@ -116,8 +118,8 @@ public class GameMachinePuzzle : Puzzle
         CapsuleCollider collider = _hook.GetComponent<CapsuleCollider>();
         List<Collider> overlappingColliders = new List<Collider>(Physics.OverlapCapsule(
             collider.bounds.center,
-            collider.bounds.center + new Vector3(0f, collider.height, 0f),
-            collider.radius
+            collider.bounds.center + new Vector3(0f, collider.height + 0.03f, 0f),
+            collider.radius + 0.03f
         ));
        
         if (overlappingColliders.Count == 0) return null;
@@ -157,5 +159,17 @@ public class GameMachinePuzzle : Puzzle
         _isLowering = false;
         _isWon = false;
         _hook.transform.position = _startHookPosition;
+    }
+
+    public override void Activate()
+    {
+        base.Activate();
+        light.enabled = true;
+    }
+
+    public override void Deactivate()
+    {
+        base.Deactivate();
+        light.enabled = false;
     }
 }
