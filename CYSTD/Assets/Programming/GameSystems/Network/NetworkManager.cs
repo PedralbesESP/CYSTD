@@ -27,9 +27,9 @@ public class NetworkManager : MonoBehaviour
 
     List<Transform> _buttonList = new List<Transform>();
 
-    const string URL = "ws://cystd.servegame.com:3003"; //////// SERVER ADDRESS ////////
+    //const string URL = "ws://cystd.servegame.com:3003"; //////// SERVER ADDRESS ////////
     //const string URL = "ws://140.238.221.197:3003"; /// SERVER IP ///
-    //const string URL = "ws://192.168.205.68:3003"; /// PC ZOE ///
+    const string URL = "ws://192.168.205.68:3003"; /// PC ZOE ///
 
 
     [SerializeField] private GameObject _rooms;
@@ -106,6 +106,7 @@ public class NetworkManager : MonoBehaviour
                     }
                     break;
                 case "PlayerDisconnect":
+
                     break;
                 case "CreateRoom":
                     _yourRoom = info.data[0].value;
@@ -197,7 +198,7 @@ public class NetworkManager : MonoBehaviour
             Vector3 pos = GameManager.Instance.getPlayer().transform.position;
             float dif = Vector3.SqrMagnitude(pos - playerPosition);
             float difRot = Vector3.SqrMagnitude(GameManager.Instance.getPlayer().transform.rotation.eulerAngles - playerRotation.eulerAngles);
-            if (dif > GetDistanceUpdateThreshold(useEpsilon) || difRot > GetDistanceUpdateThreshold(useEpsilon)) //Cuando el jugador se mueve o rota se envia su posición.
+            if (dif > GetDistanceUpdateThreshold(useEpsilon)) //Cuando el jugador se mueve o rota se envia su posición.
             {
                 Info message = createNetworkMessage();
                 _SendMessage(message);
@@ -268,6 +269,15 @@ public class NetworkManager : MonoBehaviour
         message.action = ActionType.MissionChange.ToString();
         message.data = new List<Item>();
         message.data.Add(new Item { key = mission.getName().ToString(), value = mission.GetMissionState().ToString() });
+        _SendMessage(message);
+    }
+
+    public void ThisPlayerDisconnect()
+    {
+        Info message = new Info();
+        message.action = ActionType.PlayerDisconnect.ToString();
+        message.data = new List<Item>();
+        message.data.Add(new Item { key = _yourRoom, value = _idYourPlayer });
         _SendMessage(message);
     }
 

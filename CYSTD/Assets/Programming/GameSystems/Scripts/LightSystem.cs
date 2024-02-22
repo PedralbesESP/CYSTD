@@ -16,11 +16,15 @@ public class LightSystem : MonoBehaviour
         }
         foreach (GameObject childLight in lightGameObject)
         {
-            Light light = childLight.GetComponentInChildren<Light>();
+            Light[] light = childLight.GetComponentsInChildren<Light>();
 
             if (light != null)
             {
-                _light.Add(light);
+                foreach (Light l in light)
+                {
+                    _light.Add(l);
+                }
+                
             }
         }
         lightForce = _light[0].intensity; // lightForce = fuerza inicial
